@@ -1,0 +1,52 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-navy text-cream">
+  <div class="mx-auto max-w-[1180px] px-6 py-16">
+    <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-10">
+
+      <!-- Brand -->
+      <div class="flex flex-col gap-4 max-w-xs">
+        <img src="/logos/acs_logo_clean.png" alt="All Shapes" class="h-7 w-auto brightness-0 invert" />
+        <p class="text-sm text-navy-muted leading-relaxed" style="color: #a09cbe;">
+          A senior product and engineering team, on subscription.
+        </p>
+      </div>
+
+      <!-- Nav -->
+      <nav class="flex flex-col gap-3">
+        <span class="text-xs font-medium tracking-widest uppercase" style="color: #a09cbe;">Pages</span>
+        {[
+          { label: "Home", href: "/" },
+          { label: "Compare", href: "/compare" },
+          { label: "Work", href: "/work" },
+          { label: "Notes", href: "/notes" },
+          { label: "Workshop", href: "/workshop" },
+        ].map((link) => (
+          <a href={link.href} class="text-sm text-cream hover:text-yellow transition-colors">{link.label}</a>
+        ))}
+      </nav>
+
+      <!-- Contact -->
+      <div class="flex flex-col gap-3">
+        <span class="text-xs font-medium tracking-widest uppercase" style="color: #a09cbe;">Contact</span>
+        <a href="mailto:workshop@allshapes.io" class="text-sm text-cream hover:text-yellow transition-colors">
+          workshop@allshapes.io
+        </a>
+        <a href="https://linkedin.com/company/allshapes" target="_blank" rel="noopener noreferrer" class="text-sm text-cream hover:text-yellow transition-colors">
+          LinkedIn
+        </a>
+      </div>
+
+    </div>
+
+    <div class="mt-12 pt-8 border-t border-navy-muted flex flex-col md:flex-row md:items-center md:justify-between gap-4" style="border-color: #3d3870;">
+      <p class="text-xs" style="color: #a09cbe;">© {year} ALL SHAPES®. All rights reserved.</p>
+      <div class="flex gap-6">
+        <a href="/privacy" class="text-xs hover:text-cream transition-colors" style="color: #a09cbe;">Privacy</a>
+        <a href="/terms" class="text-xs hover:text-cream transition-colors" style="color: #a09cbe;">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>
