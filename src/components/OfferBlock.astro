@@ -38,7 +38,7 @@ const pillars = [
     </div>
 
     <!-- Four-pillar grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-px bg-cream-deep rounded">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-px rounded" style="background: #d8d0a8;">
       {pillars.map((pillar) => (
         <div class="bg-cream p-8 md:p-10">
           <h3 class="font-sans font-medium text-base text-navy mb-3">{pillar.title}</h3>
@@ -46,10 +46,5 @@ const pillars = [
         </div>
       ))}
     </div>
-
-    <!-- Closing line — full width below grid -->
-    <p class="mt-10 text-center text-sm font-medium text-navy-muted tracking-wide">
-      One contract. One invoice. No staffing chess.
-    </p>
   </div>
 </section>
