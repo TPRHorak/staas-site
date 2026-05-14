@@ -1,35 +1,22 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import TrustStrip from '../components/TrustStrip.astro';
+import AntiPositioning from '../components/AntiPositioning.astro';
+import OfferBlock from '../components/OfferBlock.astro';
 ---
 
-<BaseLayout title="Startup as a Service — All Shapes">
-  <section class="mx-auto max-w-[1180px] px-6 py-32 text-center">
-    <p class="text-xs font-medium tracking-widest uppercase text-coral mb-6">Startup as a Service</p>
-    <h1 class="font-serif text-5xl md:text-7xl text-navy leading-tight mb-8">
-      Experts have never been<br class="hidden md:block" />
-      this affordable.
-    </h1>
-    <p class="text-lg text-navy-muted max-w-xl mx-auto mb-10 leading-relaxed">
-      A senior product and engineering team, on subscription — for the build that comes after the demo.
-    </p>
-    <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <a
-        href="#pricing"
-        class="inline-flex items-center justify-center px-6 py-3 rounded bg-navy text-cream text-sm font-medium hover:bg-navy-deep transition-colors"
-      >
-        See pricing
-      </a>
-      <a
-        href="/workshop"
-        class="inline-flex items-center justify-center px-6 py-3 rounded bg-coral text-cream text-sm font-medium hover:bg-coral-deep transition-colors"
-      >
-        Book the workshop
-      </a>
-    </div>
-  </section>
+<BaseLayout
+  title="Startup as a Service — Experts have never been this affordable"
+  description="A senior product and engineering team, on subscription — for the build that comes after the demo."
+>
+  <Hero />
+  <TrustStrip />
+  <AntiPositioning />
+  <OfferBlock />
 
-  <!-- Placeholder sections — built in Steps 2–4 -->
-  <div class="mx-auto max-w-[1180px] px-6 pb-32 text-center text-navy-muted text-sm space-y-4">
-    <p class="italic">More sections coming in Steps 2–4.</p>
+  <!-- Sections 5–14 built in Steps 3 & 4 -->
+  <div class="mx-auto max-w-[1180px] px-6 py-24 text-center">
+    <p class="text-sm text-navy-muted italic">Pricing, testimonials, work, FAQ and more — coming in Steps 3 & 4.</p>
   </div>
 </BaseLayout>

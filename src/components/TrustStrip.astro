@@ -1,0 +1,23 @@
+---
+const items = [
+  "4.8★ avg App Store rating",
+  "25,000+ five-star reviews",
+  "10-year longest partnership",
+  "Regular App of the Day features",
+];
+---
+
+<div class="border-y border-cream-deep bg-cream-deep">
+  <div class="mx-auto max-w-[1180px] px-6 py-4">
+    <ul class="flex flex-wrap justify-center gap-x-8 gap-y-2">
+      {items.map((item, i) => (
+        <li class="flex items-center gap-8">
+          <span class="text-sm font-medium text-navy">{item}</span>
+          {i < items.length - 1 && (
+            <span class="hidden sm:inline text-navy-muted" aria-hidden="true">·</span>
+          )}
+        </li>
+      ))}
+    </ul>
+  </div>
+</div>
