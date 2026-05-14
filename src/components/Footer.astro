@@ -1,52 +1,60 @@
 ---
 const year = new Date().getFullYear();
+
+const navLinks = [
+  { label: "Home", href: "/" },
+  { label: "Compare", href: "/compare" },
+  { label: "Work", href: "/work" },
+  { label: "Notes", href: "/notes" },
+  { label: "Workshop", href: "/workshop" },
+];
+
+const directLinks = [
+  { label: "workshop@allshapes.io", href: "mailto:workshop@allshapes.io" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/company/allshapesio", external: true },
+  { label: "Twitter / X", href: "https://x.com/allshapesio", external: true },
+  { label: "Privacy Policy", href: "https://allshapes.io/privacy-policy", external: true },
+  { label: "Terms of Service", href: "https://allshapes.io/terms-of-service", external: true },
+  { label: "Cookie Policy", href: "https://allshapes.io/cookie-policy", external: true },
+  { label: "Imprint", href: "https://allshapes.io/imprint", external: true },
+];
 ---
 
 <footer class="bg-navy text-cream">
   <div class="mx-auto max-w-[1180px] px-6 py-16">
-    <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-10">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
 
       <!-- Brand -->
-      <div class="flex flex-col gap-4 max-w-xs">
+      <div class="flex flex-col gap-4">
         <img src="/logos/acs_logo_clean.png" alt="All Shapes" class="h-7 w-auto brightness-0 invert" />
-        <p class="text-sm text-navy-muted leading-relaxed" style="color: #a09cbe;">
-          A senior product and engineering team, on subscription.
+        <p class="text-sm leading-relaxed" style="color: #a09cbe;">
+          London-based. Working with founders in NYC, LA, Lisbon, Berlin.
         </p>
+        <p class="text-sm" style="color: #a09cbe;">© {year} ALL SHAPES®. All rights reserved.</p>
       </div>
 
       <!-- Nav -->
       <nav class="flex flex-col gap-3">
-        <span class="text-xs font-medium tracking-widest uppercase" style="color: #a09cbe;">Pages</span>
-        {[
-          { label: "Home", href: "/" },
-          { label: "Compare", href: "/compare" },
-          { label: "Work", href: "/work" },
-          { label: "Notes", href: "/notes" },
-          { label: "Workshop", href: "/workshop" },
-        ].map((link) => (
+        <span class="text-xs font-medium tracking-widest uppercase mb-1" style="color: #a09cbe;">Pages</span>
+        {navLinks.map((link) => (
           <a href={link.href} class="text-sm text-cream hover:text-yellow transition-colors">{link.label}</a>
         ))}
       </nav>
 
-      <!-- Contact -->
+      <!-- Direct -->
       <div class="flex flex-col gap-3">
-        <span class="text-xs font-medium tracking-widest uppercase" style="color: #a09cbe;">Contact</span>
-        <a href="mailto:workshop@allshapes.io" class="text-sm text-cream hover:text-yellow transition-colors">
-          workshop@allshapes.io
-        </a>
-        <a href="https://linkedin.com/company/allshapes" target="_blank" rel="noopener noreferrer" class="text-sm text-cream hover:text-yellow transition-colors">
-          LinkedIn
-        </a>
+        <span class="text-xs font-medium tracking-widest uppercase mb-1" style="color: #a09cbe;">Direct</span>
+        {directLinks.map((link) => (
+          <a
+            href={link.href}
+            class="text-sm text-cream hover:text-yellow transition-colors"
+            {...link.external ? { target: "_blank", rel: "noopener noreferrer" } : {}}
+          >
+            {link.label}
+          </a>
+        ))}
       </div>
 
-    </div>
-
-    <div class="mt-12 pt-8 border-t border-navy-muted flex flex-col md:flex-row md:items-center md:justify-between gap-4" style="border-color: #3d3870;">
-      <p class="text-xs" style="color: #a09cbe;">© {year} ALL SHAPES®. All rights reserved.</p>
-      <div class="flex gap-6">
-        <a href="/privacy" class="text-xs hover:text-cream transition-colors" style="color: #a09cbe;">Privacy</a>
-        <a href="/terms" class="text-xs hover:text-cream transition-colors" style="color: #a09cbe;">Terms</a>
-      </div>
     </div>
   </div>
 </footer>

@@ -1,0 +1,55 @@
+---
+// Brief §5 Home, section 5 — Move #1, Made-by-Many four-pillar capability grid
+const pillars = [
+  {
+    title: "A senior product lead",
+    body: "Owns scope, taste, and trade-offs. Tells you what not to build.",
+  },
+  {
+    title: "Senior engineering capacity",
+    body: "Multi-platform — iOS, Android, web, backend. Same team in build and maintenance.",
+  },
+  {
+    title: "AI-supported throughput",
+    body: "Parallel agents under senior review. 5× the budget's worth of output, none of the slop.",
+  },
+  {
+    title: "A weekly cadence",
+    body: "Working software in users' hands every sprint. No quarter-long discovery, no theatre.",
+  },
+];
+---
+
+<section class="bg-cream py-24 md:py-[120px]">
+  <div class="mx-auto max-w-[1180px] px-6">
+    <!-- Eyebrow -->
+    <p class="text-xs font-medium tracking-widest uppercase text-coral mb-6">
+      Section 02 · The offer
+    </p>
+
+    <!-- H2 -->
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
+      <h2 class="font-serif text-4xl md:text-5xl text-navy leading-tight tracking-tight max-w-lg">
+        A real product team, on day one.
+      </h2>
+      <p class="text-sm text-navy-muted max-w-xs leading-relaxed md:text-right">
+        One contract. One invoice. No staffing chess.
+      </p>
+    </div>
+
+    <!-- Four-pillar grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-px bg-cream-deep rounded">
+      {pillars.map((pillar) => (
+        <div class="bg-cream p-8 md:p-10">
+          <h3 class="font-sans font-medium text-base text-navy mb-3">{pillar.title}</h3>
+          <p class="text-sm text-navy-muted leading-relaxed">{pillar.body}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Closing line — full width below grid -->
+    <p class="mt-10 text-center text-sm font-medium text-navy-muted tracking-wide">
+      One contract. One invoice. No staffing chess.
+    </p>
+  </div>
+</section>
