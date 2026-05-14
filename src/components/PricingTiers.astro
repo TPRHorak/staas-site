@@ -1,0 +1,112 @@
+---
+// Brief §5 Home §7 — Move #2. Copy from STAAS_SITE_COPY.md §Pricing
+const tiers = [
+  {
+    name: "Launch",
+    price: "€12,500",
+    period: "/ month",
+    tag: null,
+    subtitle: "Single-user products",
+    description: "Apps, tools, subscription products.",
+    includes: [
+      "18 build points / month",
+      "Senior product + engineering",
+      "Maintenance during quiet phases",
+      "3-month minimum, pause up to 60 days",
+    ],
+  },
+  {
+    name: "Scale",
+    price: "€19,500",
+    period: "/ month",
+    tag: "Most common",
+    subtitle: "B2B, marketplaces, shared data",
+    description: "Coaching platforms, multi-tenant SaaS.",
+    includes: [
+      "36 build points / month",
+      "Multi-tenant architecture work",
+      "Permission, data, role design",
+      "6-month minimum",
+    ],
+  },
+  {
+    name: "Embed",
+    price: "€17.5–25.5k",
+    period: "/ month, on top of base tier",
+    tag: null,
+    subtitle: "Strategic time, embedded",
+    description: "Tom or Callum as part of your founding team.",
+    includes: [
+      "Everything in base tiers",
+      "Strategic product decisions",
+      "Investor + sales support",
+      "6-month minimum",
+    ],
+  },
+];
+---
+
+<section id="pricing" class="bg-cream-deep py-24 md:py-[120px]">
+  <div class="mx-auto max-w-[1180px] px-6">
+    <!-- Eyebrow -->
+    <p class="text-xs font-medium tracking-widest uppercase text-coral mb-6">
+      Section 04 · What it costs
+    </p>
+
+    <!-- H2 -->
+    <h2 class="font-serif text-4xl md:text-5xl text-navy leading-tight tracking-tight max-w-lg mb-16">
+      Three ways to engage.
+    </h2>
+
+    <!-- Tier cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {tiers.map((tier) => (
+        <div class:list={[
+          "relative flex flex-col rounded bg-cream p-8 border",
+          tier.tag ? "border-navy" : "border-cream-deep"
+        ]}>
+          {tier.tag && (
+            <span class="absolute -top-3 left-6 px-3 py-1 bg-navy text-cream text-xs font-medium rounded tracking-wide">
+              {tier.tag}
+            </span>
+          )}
+
+          <p class="text-xs font-medium tracking-widest uppercase text-navy-muted mb-4">{tier.name}</p>
+
+          <div class="mb-1">
+            <span class="font-serif text-4xl text-navy">{tier.price}</span>
+          </div>
+          <p class="text-xs text-navy-muted mb-6">{tier.period}</p>
+
+          <p class="text-sm font-medium text-navy mb-1">{tier.subtitle}</p>
+          <p class="text-sm text-navy-muted mb-8 leading-relaxed">{tier.description}</p>
+
+          <ul class="flex flex-col gap-2 mb-10 flex-1">
+            {tier.includes.map((item) => (
+              <li class="flex items-start gap-2 text-sm text-navy-muted">
+                <span class="mt-1 shrink-0 w-3.5 h-3.5 rounded-full border border-coral flex items-center justify-center">
+                  <span class="w-1.5 h-1.5 rounded-full bg-coral block"></span>
+                </span>
+                {item}
+              </li>
+            ))}
+          </ul>
+
+          <a
+            href="/workshop"
+            class="mt-auto inline-flex items-center justify-center px-5 py-3 rounded bg-navy text-cream text-sm font-medium hover:bg-navy-deep transition-colors"
+          >
+            Book the workshop
+          </a>
+        </div>
+      ))}
+    </div>
+
+    <!-- Strikethrough line -->
+    <p class="mt-10 text-center text-sm text-navy-muted">
+      <s class="opacity-50">Workshop kickoff €1,500</s>
+      {" "}→{" "}
+      <strong class="text-navy font-medium">free with a 6-month sign.</strong>
+    </p>
+  </div>
+</section>

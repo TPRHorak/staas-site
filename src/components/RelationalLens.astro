@@ -1,0 +1,47 @@
+---
+// Brief §5 Home, section 10 — Slide-6 two-column philosophy comparison
+---
+
+<section class="bg-navy text-cream py-24 md:py-[120px]">
+  <div class="mx-auto max-w-[1180px] px-6">
+    <!-- Eyebrow -->
+    <p class="text-xs font-medium tracking-widest uppercase mb-6" style="color: #a09cbe;">
+      Section 07 · The product philosophy
+    </p>
+
+    <!-- H2 + subhead -->
+    <h2 class="font-serif text-4xl md:text-5xl leading-tight tracking-tight max-w-2xl mb-4">
+      We look at products with a relational lens.
+    </h2>
+    <p class="text-base mb-16 max-w-xl" style="color: #a09cbe;">
+      Software is the most direct relationship businesses have with their customers.
+    </p>
+
+    <!-- Two-column comparison -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-px rounded" style="background: #3d3870;">
+      <div class="p-8 md:p-10" style="background: #2B2660;">
+        <p class="text-xs font-medium tracking-widest uppercase mb-6" style="color: #a09cbe;">The default lens</p>
+        <p class="text-sm leading-relaxed" style="color: #a09cbe;">
+          Optimise for in-app metrics. DAU, session length, retention curves. Features shipped per quarter. The app is the product.
+        </p>
+      </div>
+      <div class="p-8 md:p-10" style="background: #1F1B4A;">
+        <p class="text-xs font-medium tracking-widest uppercase text-coral mb-6">The relational lens</p>
+        <p class="text-sm text-cream leading-relaxed">
+          Optimise for the user's real life. Did they meditate this morning? Did they actually go for the run? Did they get more done? The app is the means. The change in their life is the product.
+        </p>
+      </div>
+    </div>
+
+    <!-- Chain band -->
+    <div class="mt-10 flex flex-wrap items-center gap-2 text-sm" style="color: #a09cbe;">
+      {["Real-life impact", "customer success", "retention", "LTV"].map((step, i) => (
+        <>
+          <span class="text-cream font-medium">{step}</span>
+          {i < 3 && <span aria-hidden="true">→</span>}
+        </>
+      ))}
+      <span class="ml-2 italic">That order matters.</span>
+    </div>
+  </div>
+</section>
