@@ -1,0 +1,97 @@
+---
+// Brief §5 Home §12 — Move #3. 14-question accordion. Pure CSS, no JS framework.
+const faqs = [
+  {
+    q: "What's a build point?",
+    a: "A build point is the unit of work a senior engineer + AI agents can ship in roughly half a day. A new onboarding screen is typically 1 point. A subscription paywall with App Store integration is 2–3. A multi-tenant permission system is 6–8. Launch tier includes 18 points / month, Scale includes 36. We map your roadmap to points in the workshop so you know exactly what you're buying. Points reset each month — unused ones don't roll over, because we'd rather you ship something than bank IOUs.",
+  },
+  {
+    q: "Who actually does the work?",
+    a: "A senior product lead and senior engineers do the work, with AI agents handling boilerplate, tests, and infrastructure underneath. Tom or Callum reviews every meaningful product decision and every meaningful piece of code. We don't grow by hiring juniors and rotating them onto your project. We grow by taking on fewer clients per senior — which is also why the calendar matters more than the contract.",
+  },
+  {
+    q: "Why hire StaaS instead of a CTO?",
+    a: "A first CTO at this stage will spend their first six months hiring, not building. They'll cost ~£200k+ all-in, plus equity, plus the time to find one good enough. StaaS gets you the same caliber of judgement plus working software in week one — and you can keep the CTO seat open for someone you actually want to commit to long-term. Many of our clients hire a CTO 12–18 months in, and we hand the codebase over cleanly.",
+  },
+  {
+    q: "Do you only work on iOS apps?",
+    a: "No. We build for iOS, Android, web, and backend — same team across the stack. Most of our public case studies are App Store apps because that's where editorial features are most visible, but the underlying capability is multi-platform. If you're building a web product, a multi-tenant SaaS, or a coaching platform, the Scale tier was designed for you.",
+  },
+  {
+    q: "What happens if we want to hand over to an in-house team?",
+    a: "We document as we build. Architecture decisions, deploy pipelines, the rationale behind tricky calls — all written down, all in your repo. When you're ready to bring it in-house, we run a 30-day handover sprint where your team shadows ours, then we sit on retainer for a quarter to answer questions. No surprise lock-in.",
+  },
+  {
+    q: "Can we pause?",
+    a: "Yes. Launch tier pauses up to 60 days. Scale and Embed pause anytime, with banked days converting to maintenance time — we keep the build alive (security patches, App Store submissions, bug fixes) while you decide what's next. Pause is the most-used clause in our contract, and that's by design.",
+  },
+  {
+    q: "Do you take equity?",
+    a: "No. StaaS is a fixed monthly fee, full stop. You keep all of the upside. If we ever take equity, it's a separate conversation in addition to (not instead of) a paid retainer — and it's an exception, not the model.",
+  },
+  {
+    q: "How fast will we see working software?",
+    a: "Week one. Sprint one of any tier ships working software into your hands. We don't do quarter-long discoveries. The workshop on day one is the discovery, and everything after is shipped code reviewed weekly with you in the loop.",
+  },
+  {
+    q: "Why do I need a design and development agency if I have AI?",
+    a: "AI is excellent at writing boilerplate, generating tests, and shipping a working prototype. It's bad at deciding what to build, what to leave out, and how the parts hold together six months in. Those are senior product calls, and they don't have a model that's better than a human who has shipped real products. StaaS exists because AI made code cheap — which made senior judgement valuable in proportion. You're not paying us instead of using AI. You're paying us to point a fleet of AI agents at the right work and to catch the things they get wrong.",
+  },
+  {
+    q: "What if we hate the work?",
+    a: "We have a 75% money-back guarantee for the first two weeks of any tier — no questions asked. After that, the 3-month minimum applies, but if a build is heading the wrong way we'll re-plan with you mid-cycle rather than power through. The pause clause exists for this reason too.",
+  },
+  {
+    q: "What about IP ownership?",
+    a: "You own everything we build, end of conversation. Code, designs, assets, App Store accounts, infrastructure — all yours, all transferred at handover. We retain the right to reference the project as a case study (with your permission) and to reuse genuinely generic patterns, but nothing specific to your product.",
+  },
+  {
+    q: "What's NOT included?",
+    a: "Marketing campaigns, paid acquisition, App Store optimisation as a standalone service, customer support, content writing for in-app copy that isn't UX-critical, and anything that needs a regulated specialism we don't have (medical device certification, financial compliance audits). We'll tell you what's out before you sign — and recommend who to bring in for the things we don't do.",
+  },
+  {
+    q: "What does the workshop actually produce?",
+    a: "A written scope document, a build-points estimate for the first 90 days, a risk register ranked by probability and impact, a sprint-1 brief ready to execute, and a three-tier price quote tailored to your product. You also leave with a recording. If you don't sign with us afterwards, the workshop output is still yours — you can take it to another team. We've had founders do exactly that.",
+  },
+  {
+    q: "How does pricing flexibility work mid-build?",
+    a: "You can move up tiers anytime (Launch → Scale, Scale → Embed) — billing prorates from the next sprint. Moving down requires 30 days' notice and only happens at the end of a minimum-term cycle. If you're between tiers in real life, tell us — we can usually flex within a tier for a short stretch, and recommend a real move at the next billing cycle.",
+  },
+];
+---
+
+<section class="bg-cream-deep py-24 md:py-[120px]">
+  <div class="mx-auto max-w-[1180px] px-6">
+    <!-- Eyebrow -->
+    <p class="text-xs font-medium tracking-widest uppercase text-coral mb-6">
+      Section 09 · Frequently asked questions
+    </p>
+
+    <!-- H2 -->
+    <h2 class="font-serif text-4xl md:text-5xl text-navy leading-tight tracking-tight max-w-lg mb-16">
+      The 14 questions every founder asks.
+    </h2>
+
+    <!-- Accordion — pure CSS using <details> -->
+    <div class="flex flex-col divide-y" style="border-color: #d8d0a8;">
+      {faqs.map((faq, i) => (
+        <details class="group py-6">
+          <summary class="flex items-center justify-between cursor-pointer list-none gap-4">
+            <span class="font-sans font-medium text-base text-navy pr-4">{faq.q}</span>
+            <span
+              class="shrink-0 w-5 h-5 rounded-full border border-navy flex items-center justify-center text-navy transition-transform group-open:rotate-45"
+              aria-hidden="true"
+            >
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                <path d="M5 1v8M1 5h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </span>
+          </summary>
+          <p class="mt-4 text-sm text-navy-muted leading-relaxed max-w-2xl">
+            {faq.a}
+          </p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

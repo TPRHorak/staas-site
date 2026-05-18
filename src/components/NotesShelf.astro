@@ -1,0 +1,43 @@
+---
+// Brief §5 Home §11 — Move #7. Three most-recent notes excerpts.
+import { getCollection } from 'astro:content';
+import NoteCard from './NoteCard.astro';
+
+const allNotes = await getCollection('notes');
+const notes = allNotes
+  .sort((a, b) => new Date(b.data.publishedAt).getTime() - new Date(a.data.publishedAt).getTime())
+  .slice(0, 3);
+---
+
+<section class="bg-cream py-24 md:py-[120px]">
+  <div class="mx-auto max-w-[1180px] px-6">
+    <!-- Eyebrow -->
+    <p class="text-xs font-medium tracking-widest uppercase text-coral mb-6">
+      Section 08 · Notes
+    </p>
+
+    <!-- H2 -->
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-16">
+      <h2 class="font-serif text-4xl md:text-5xl text-navy leading-tight tracking-tight max-w-lg">
+        How we think about it.
+      </h2>
+      <a href="/notes" class="text-sm font-medium text-coral hover:text-coral-deep transition-colors shrink-0">
+        All notes →
+      </a>
+    </div>
+
+    <!-- Three note cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {notes.map((note) => (
+        <NoteCard
+          title={note.data.title}
+          slug={note.data.slug}
+          excerpt={note.data.excerpt}
+          author={note.data.author}
+          authorRole={note.data.authorRole}
+          readingTime={note.data.readingTime}
+        />
+      ))}
+    </div>
+  </div>
+</section>

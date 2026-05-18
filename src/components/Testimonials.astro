@@ -1,0 +1,96 @@
+---
+// Brief §5 Home §8 — Move #4. Copy from STAAS_SITE_COPY.md §Testimonials
+const testimonials = [
+  {
+    quote: "An advisor was helping me decide which agency to work with. I sent him information and proposals from a bunch of competitors. With all the companies he reviewed, there were always pros and cons for all of them. Except All Shapes.",
+    name: "Akash Vaghela",
+    role: "Founder",
+    brand: "RNT Fitness",
+    initials: "AV",
+    metrics: ["Multi-platform", "Premium coaching SaaS", "Multi-tenant from day one"],
+    killer: true,
+  },
+  {
+    quote: "Your company rules. I often feel dazed from days filled with chasing vendors to hold up their end of our partnership. All Shapes has been a breath of fresh air since day one.",
+    name: "Brandon Leichter",
+    role: "Owner",
+    brand: "Allen's Camera",
+    initials: "BL",
+    metrics: ["10× online revenue", "22% higher avg order value", "197% growth in carts"],
+    killer: false,
+  },
+  {
+    quote: "When we started talking, you could feel the attention to detail and that the team really understands the industry and what we as a company are about. So you could sense it would be a really good collaboration.",
+    name: "Chandni Vaghela",
+    role: "Co-founder",
+    brand: "RNT Fitness",
+    initials: "CV",
+    metrics: ["Long-term partnership", "Same team, build to maintenance", "In-house but not in-house"],
+    killer: false,
+  },
+];
+---
+
+<section class="bg-cream py-24 md:py-[120px]">
+  <div class="mx-auto max-w-[1180px] px-6">
+    <!-- Eyebrow -->
+    <p class="text-xs font-medium tracking-widest uppercase text-coral mb-6">
+      Section 05 · From founders we've worked with
+    </p>
+
+    <!-- H2 -->
+    <h2 class="font-serif text-4xl md:text-5xl text-navy leading-tight tracking-tight max-w-lg mb-16">
+      What they said.
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {testimonials.map((t) => (
+        <div class:list={[
+          "flex flex-col rounded p-8 border",
+          t.killer ? "border-navy bg-navy text-cream" : "border-cream-deep bg-cream"
+        ]}>
+          <!-- Avatar -->
+          <div class:list={[
+            "w-10 h-10 rounded-full flex items-center justify-center text-sm font-medium mb-6 shrink-0",
+            t.killer ? "bg-coral text-cream" : "bg-cream-deep text-navy"
+          ]}>
+            {t.initials}
+          </div>
+
+          <!-- Quote -->
+          <blockquote class:list={[
+            "text-sm leading-relaxed mb-8 flex-1",
+            t.killer ? "text-cream" : "text-navy-muted"
+          ]}>
+            "{t.quote}"
+          </blockquote>
+
+          <!-- Attribution -->
+          <div class="mb-6">
+            <p class:list={["text-sm font-medium", t.killer ? "text-cream" : "text-navy"]}>
+              {t.name}
+            </p>
+            <p class:list={["text-xs mt-0.5", t.killer ? "opacity-60" : "text-navy-muted"]}>
+              {t.role} · {t.brand}
+            </p>
+          </div>
+
+          <!-- Metrics -->
+          <div class:list={[
+            "flex flex-wrap gap-2 border-t pt-6",
+            t.killer ? "border-navy-muted" : "border-cream-deep"
+          ]}>
+            {t.metrics.map((m) => (
+              <span class:list={[
+                "text-xs px-2 py-1 rounded",
+                t.killer ? "bg-navy-muted text-cream" : "bg-cream-deep text-navy-muted"
+              ]}>
+                {m}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

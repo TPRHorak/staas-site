@@ -1,0 +1,41 @@
+---
+interface Props {
+  title: string;
+  slug: string;
+  hero: string;
+  oneLine: string;
+  awards: string[];
+}
+const { title, slug, hero, oneLine, awards } = Astro.props;
+---
+
+<a
+  href={`/work/${slug}`}
+  class="group flex flex-col rounded overflow-hidden border border-cream-deep hover:border-navy transition-colors bg-cream"
+>
+  <!-- Hero image -->
+  <div class="aspect-[4/3] bg-cream-deep overflow-hidden">
+    <img
+      src={hero}
+      alt={title}
+      class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
+      loading="lazy"
+      onerror="this.style.display='none'; this.parentElement.classList.add('flex','items-center','justify-center'); this.parentElement.innerHTML += '<span class=\'text-navy-muted text-sm\'>' + this.alt + '</span>'"
+    />
+  </div>
+
+  <!-- Content -->
+  <div class="p-6 flex flex-col flex-1">
+    <h3 class="font-sans font-medium text-base text-navy mb-1">{title}</h3>
+    <p class="text-sm text-navy-muted mb-4 leading-relaxed flex-1">{oneLine}</p>
+
+    <!-- Award badges -->
+    <div class="flex flex-wrap gap-2">
+      {awards.map((award) => (
+        <span class="text-xs px-2 py-1 bg-yellow-soft text-navy rounded font-medium">
+          {award}
+        </span>
+      ))}
+    </div>
+  </div>
+</a>
