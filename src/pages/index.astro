@@ -7,24 +7,46 @@ import OfferBlock from '../components/OfferBlock.astro';
 import MethodBlock from '../components/MethodBlock.astro';
 import PricingTiers from '../components/PricingTiers.astro';
 import RiskReversal from '../components/RiskReversal.astro';
+import Testimonials from '../components/Testimonials.astro';
+import SelectedWork from '../components/SelectedWork.astro';
 import RelationalLens from '../components/RelationalLens.astro';
+import NotesShelf from '../components/NotesShelf.astro';
+import FAQ from '../components/FAQ.astro';
+import AskClaude from '../components/AskClaude.astro';
+import FinalCTA from '../components/FinalCTA.astro';
 ---
 
 <BaseLayout
   title="Startup as a Service — Experts have never been this affordable"
   description="A senior product and engineering team, on subscription — for the build that comes after the demo."
 >
+  <!-- 1. Nav (in BaseLayout) -->
+  <!-- 2. Hero -->
   <Hero />
+  <!-- 3. Trust strip -->
   <TrustStrip />
+  <!-- 4. Anti-positioning -->
   <AntiPositioning />
+  <!-- 5. Offer block -->
   <OfferBlock />
+  <!-- 6. Method -->
   <MethodBlock />
+  <!-- 7. Pricing + risk reversal -->
   <PricingTiers />
   <RiskReversal />
+  <!-- 8. Testimonials -->
+  <Testimonials />
+  <!-- 9. Selected work -->
+  <SelectedWork />
+  <!-- 10. Relational lens -->
   <RelationalLens />
-
-  <!-- Testimonials, work, notes shelf, FAQ, Ask Claude, final CTA — Step 4 -->
-  <div class="mx-auto max-w-[1180px] px-6 py-24 text-center">
-    <p class="text-sm text-navy-muted italic">Testimonials, work, notes, FAQ and more — coming in Step 4.</p>
-  </div>
+  <!-- 11. Notes shelf -->
+  <NotesShelf />
+  <!-- 12. FAQ -->
+  <FAQ />
+  <!-- 13. Ask Claude / ChatGPT -->
+  <AskClaude />
+  <!-- 14. Final CTA -->
+  <FinalCTA />
+  <!-- 15. Footer (in BaseLayout) -->
 </BaseLayout>
