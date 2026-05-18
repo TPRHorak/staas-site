@@ -15,42 +15,61 @@
     aria-hidden="true"
   ></div>
 
-  <div class="relative mx-auto max-w-[1180px] px-6 pt-28 pb-24 md:pt-36 md:pb-32">
-    <!-- Eyebrow -->
-    <p class="text-xs font-medium tracking-widest uppercase text-coral mb-6">
-      Startup as a Service
-    </p>
+  <div class="relative mx-auto max-w-[1180px] px-6 pt-28 pb-0 md:pt-36">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-end">
 
-    <!-- H1 -->
-    <h1 class="font-serif text-5xl md:text-7xl text-navy leading-[1.05] tracking-tight max-w-3xl mb-6">
-      Experts have never been<br />
-      this <em class="not-italic text-coral">affordable.</em>
-    </h1>
+      <!-- Left: copy -->
+      <div class="pb-24 md:pb-32">
+        <!-- Eyebrow -->
+        <p class="text-xs font-medium tracking-widest uppercase text-coral mb-6">
+          Startup as a Service
+        </p>
 
-    <!-- Subhead -->
-    <p class="text-xl text-navy-muted max-w-xl mb-3 leading-relaxed">
-      A senior product and engineering team, on subscription — for the build that comes after the demo.
-    </p>
+        <!-- H1 -->
+        <h1 class="font-serif text-5xl md:text-6xl text-navy leading-[1.05] tracking-tight mb-6">
+          Experts have never been
+          this <em class="not-italic text-coral">affordable.</em>
+        </h1>
 
-    <!-- Body line -->
-    <p class="text-base text-navy-muted max-w-xl mb-10 leading-relaxed">
-      The team you call when AI got you to a prototype, but you need a real product.
-    </p>
+        <!-- Subhead -->
+        <p class="text-xl text-navy-muted max-w-xl mb-3 leading-relaxed">
+          A senior product and engineering team, on subscription — for the build that comes after the demo.
+        </p>
 
-    <!-- CTAs -->
-    <div class="flex flex-col sm:flex-row gap-4">
-      <a
-        href="#pricing"
-        class="inline-flex items-center justify-center px-7 py-3.5 rounded bg-navy text-cream text-sm font-medium hover:bg-navy-deep transition-colors"
-      >
-        See pricing
-      </a>
-      <a
-        href="/workshop"
-        class="inline-flex items-center justify-center px-7 py-3.5 rounded bg-coral text-cream text-sm font-medium hover:bg-coral-deep transition-colors"
-      >
-        Book the workshop
-      </a>
+        <!-- Body line -->
+        <p class="text-base text-navy-muted max-w-xl mb-10 leading-relaxed">
+          The team you call when AI got you to a prototype, but you need a real product.
+        </p>
+
+        <!-- CTAs -->
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a
+            href="#pricing"
+            class="inline-flex items-center justify-center px-7 py-3.5 rounded bg-navy text-cream text-sm font-medium hover:bg-navy-deep transition-colors"
+          >
+            See pricing
+          </a>
+          <a
+            href="/sprint"
+            class="inline-flex items-center justify-center px-7 py-3.5 rounded bg-coral text-cream text-sm font-medium hover:bg-coral-deep transition-colors"
+          >
+            Book the sprint
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: image — hidden on mobile, visible md+ -->
+      <div class="hidden md:block self-end">
+        <div class="rounded-t overflow-hidden" style="height: 480px;">
+          <img
+            src="/hero-bg.jpg"
+            alt="A senior team working on a product"
+            class="w-full h-full object-cover object-top"
+            loading="eager"
+          />
+        </div>
+      </div>
+
     </div>
   </div>
 </section>

@@ -7,6 +7,7 @@ const testimonials = [
     role: "Founder",
     brand: "RNT Fitness",
     initials: "AV",
+    photo: "https://allshapes.io/assets/images/temp/testimonial-rnt.jpg",
     metrics: ["Multi-platform", "Premium coaching SaaS", "Multi-tenant from day one"],
     killer: true,
   },
@@ -16,6 +17,7 @@ const testimonials = [
     role: "Owner",
     brand: "Allen's Camera",
     initials: "BL",
+    photo: "https://allshapes.io/assets/images/temp/testimonial-acs.jpg",
     metrics: ["10× online revenue", "22% higher avg order value", "197% growth in carts"],
     killer: false,
   },
@@ -25,6 +27,7 @@ const testimonials = [
     role: "Co-founder",
     brand: "RNT Fitness",
     initials: "CV",
+    photo: null,
     metrics: ["Long-term partnership", "Same team, build to maintenance", "In-house but not in-house"],
     killer: false,
   },
@@ -50,8 +53,17 @@ const testimonials = [
           t.killer ? "border-navy bg-navy text-cream" : "border-cream-deep bg-cream"
         ]}>
           <!-- Avatar -->
+          {t.photo ? (
+            <img
+              src={t.photo}
+              alt={t.name}
+              class="w-10 h-10 rounded-full object-cover mb-6 shrink-0"
+              onerror={`this.style.display='none'; this.nextElementSibling.style.display='flex'`}
+            />
+          ) : null}
           <div class:list={[
-            "w-10 h-10 rounded-full flex items-center justify-center text-sm font-medium mb-6 shrink-0",
+            "w-10 h-10 rounded-full items-center justify-center text-sm font-medium mb-6 shrink-0",
+            t.photo ? "hidden" : "flex",
             t.killer ? "bg-coral text-cream" : "bg-cream-deep text-navy"
           ]}>
             {t.initials}
