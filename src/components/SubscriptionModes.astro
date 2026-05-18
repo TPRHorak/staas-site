@@ -1,0 +1,63 @@
+---
+// Deck Section XX — "Inside the subscription" — three modes of work
+const modes = [
+  {
+    n: "01",
+    title: "Design.",
+    body: "User interviews, user stories, UX flows, UI design, design sprints for new features.",
+    example: "A pure-design month: 3–4 interview sessions, a feature design sprint, a working prototype, a written brief for build.",
+  },
+  {
+    n: "02",
+    title: "Build.",
+    body: "Multi-platform engineering — iOS, Android, web, backend — under senior product review.",
+    example: "A pure-build month: one or two features shipped end-to-end, full release cycle, beta deployment, App Store submission.",
+  },
+  {
+    n: "03",
+    title: "Prototype to product.",
+    body: "For clients arriving with a vibe-coded MVP. Harden the architecture, fix security debt, ship the parts that need to be real.",
+    example: "A pure P2P month: full code audit, architecture rewrite of the riskiest layer, test coverage, deployment pipeline.",
+  },
+];
+---
+
+<section class="bg-navy text-cream py-24 md:py-[120px]">
+  <div class="mx-auto max-w-[1180px] px-6">
+    <!-- Eyebrow -->
+    <p class="text-xs font-medium tracking-widest uppercase mb-6" style="color: #a09cbe;">
+      Inside the subscription
+    </p>
+
+    <!-- H2 -->
+    <h2 class="font-serif text-4xl md:text-5xl leading-tight tracking-tight max-w-xl mb-4">
+      One subscription. Three modes of work.
+    </h2>
+    <p class="text-base mb-16 max-w-xl leading-relaxed" style="color: #a09cbe;">
+      Your monthly capacity gets spent on whichever combination serves the product right now. The senior team allocates with you, week by week.
+    </p>
+
+    <!-- Modes grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-px rounded overflow-hidden" style="background: #3d3870;">
+      {modes.map((mode) => (
+        <div class="flex flex-col gap-4 p-8 md:p-10" style="background: #2B2660;">
+          <span class="text-xs font-medium tracking-widest uppercase" style="color: #a09cbe;">{mode.n}</span>
+          <h3 class="font-serif text-2xl text-cream">{mode.title}</h3>
+          <p class="text-sm leading-relaxed" style="color: #a09cbe;">{mode.body}</p>
+          <p class="text-xs leading-relaxed border-t pt-4" style="color: #6b6899; border-color: #3d3870;">{mode.example}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Typical split -->
+    <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-4 text-sm" style="color: #a09cbe;">
+      <p><span class="text-cream font-medium">Typical Launch month:</span> 80% Build / 20% Design. Split decided in the Friday review.</p>
+      <p><span class="text-cream font-medium">Typical Scale month:</span> 40% Design / 50% Build / 10% Prototype-to-Product.</p>
+    </div>
+
+    <p class="mt-6 text-sm" style="color: #a09cbe;">
+      You hire one team. They flex with the product.{" "}
+      <span class="text-cream">No re-staffing every time the work changes shape.</span>
+    </p>
+  </div>
+</section>

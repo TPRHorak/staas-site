@@ -1,0 +1,64 @@
+---
+// Deck Section XX — "We tell you what not to build"
+const examples = [
+  {
+    trigger: "Founder wants a generative-AI feature.",
+    response: "We test the assumption first with a Postgres view and a saved-search UX. AI goes in only when the data tells us it'll move the metric.",
+    label: "Database before AI.",
+  },
+  {
+    trigger: "Audience-led founder wants a mobile app.",
+    response: "We ship a behavioural email sequence first. Build the app once email proves the funnel.",
+    label: "Email before app.",
+  },
+  {
+    trigger: "Don't roll your own analytics, auth, or payments.",
+    response: "We'll tell you which third-party service is good enough for your stage — and which one you'll outgrow.",
+    label: "Off-the-shelf before custom.",
+  },
+];
+---
+
+<section class="bg-cream py-24 md:py-[120px]">
+  <div class="mx-auto max-w-[1180px] px-6">
+    <!-- Eyebrow -->
+    <p class="text-xs font-medium tracking-widest uppercase text-coral mb-6">
+      How we think
+    </p>
+
+    <!-- H2 -->
+    <h2 class="font-serif text-4xl md:text-5xl text-navy leading-tight tracking-tight max-w-xl mb-4">
+      We tell you what not to build.
+    </h2>
+    <p class="text-base text-navy-muted max-w-xl mb-16 leading-relaxed">
+      Most teams sell you the most complex thing they can. We sell you the simplest thing that still scales. Senior judgement is what tells you which is which.
+    </p>
+
+    <!-- Examples -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+      {examples.map((ex) => (
+        <div class="rounded border border-cream-deep p-8 flex flex-col gap-4">
+          <p class="text-xs font-medium tracking-widest uppercase text-coral">{ex.label}</p>
+          <p class="text-sm text-navy-muted leading-relaxed italic">"{ex.trigger}"</p>
+          <p class="text-sm text-navy leading-relaxed border-t border-cream-deep pt-4">{ex.response}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Closing line -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-cream-deep pt-10">
+      <div>
+        <p class="text-xs font-medium tracking-widest uppercase text-navy-muted mb-2">Macro</p>
+        <p class="text-sm text-navy-muted leading-relaxed">Which bet is worth taking. Which market position is defensible.</p>
+      </div>
+      <div>
+        <p class="text-xs font-medium tracking-widest uppercase text-navy-muted mb-2">Micro</p>
+        <p class="text-sm text-navy-muted leading-relaxed">Which library, which architecture, which trade-off this week.</p>
+      </div>
+    </div>
+    <p class="mt-6 text-sm text-navy-muted">
+      Both altitudes, every engagement.{" "}
+      <span class="text-navy font-medium">Our incentive isn't to build the most expensive product. It's to build the one that works.</span>
+    </p>
+  </div>
+</section>
