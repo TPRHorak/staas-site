@@ -1,0 +1,143 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CompareTable from '../components/CompareTable.astro';
+
+const comparisons = [
+  {
+    title: "StaaS vs. hiring two engineers",
+    comparison: {
+      them: {
+        label: "Hire two engineers",
+        points: [
+          "4–6 months to onboard",
+          "Two payroll lines, equity, benefits",
+          "Junior-to-mid level at this comp range",
+          "Product direction is your job",
+          "Quality is your job",
+          "They scale by adding more bodies",
+        ],
+      },
+      us: {
+        points: [
+          "Working software in week 1",
+          "One invoice, one contract",
+          "Senior judgement on every line",
+          "Product direction is our job",
+          "Quality is our job",
+          "We scale by adding AI throughput, not headcount",
+        ],
+      },
+    },
+  },
+  {
+    title: "StaaS vs. freelancer roulette",
+    comparison: {
+      them: {
+        label: "Freelancers",
+        points: [
+          "Six freelancers, six personalities, six rate cards",
+          "Continuity drifts the moment one rolls off",
+          "No one owns 'the product' — only their slice",
+          "You're the project manager by default",
+          "Quality varies by who picked up the ticket",
+        ],
+      },
+      us: {
+        points: [
+          "One team, one brief, one accountable lead",
+          "Same people in build and maintenance",
+          "One person owns scope and taste",
+          "We project-manage ourselves",
+          "Senior review on every shipped change",
+        ],
+      },
+    },
+  },
+  {
+    title: "StaaS vs. venture studios that take 30%",
+    comparison: {
+      them: {
+        label: "Venture studios",
+        points: [
+          "25–40% equity for the engineering team",
+          "You give up the upside before you've earned it",
+          "Studio priorities ≠ your priorities when things get hard",
+          "Hard to exit cleanly if the fit is wrong",
+        ],
+      },
+      us: {
+        points: [
+          "0% equity. Fixed monthly fee.",
+          "You keep the upside.",
+          "Our priorities = your priorities by construction.",
+          "3-month minimum. Pause or leave whenever it stops working.",
+        ],
+      },
+    },
+  },
+  {
+    title: "StaaS vs. six-month agency discoveries",
+    comparison: {
+      them: {
+        label: "Agencies",
+        points: [
+          "8–12 week 'discovery' before code is written",
+          "Senior partners pitch, juniors build",
+          "Hourly billing — incentive is to bill more hours",
+          "Plateau after launch — they move to the next client",
+          "'Out of scope' is the most common email",
+        ],
+      },
+      us: {
+        points: [
+          "Workshop on day one. Code in week one.",
+          "The senior who pitches is the senior who builds.",
+          "Flat monthly fee — incentive is to ship the right thing fast.",
+          "Same team maintains the product after launch.",
+          "Build points reset monthly. Scope is a conversation, not a contract argument.",
+        ],
+      },
+    },
+  },
+];
+---
+
+<BaseLayout
+  title="Compare — Startup as a Service"
+  description="How StaaS compares to hiring engineers, freelancers, venture studios, and agencies."
+>
+  <!-- Header -->
+  <section class="bg-cream pt-28 pb-16 md:pt-36 md:pb-20">
+    <div class="mx-auto max-w-[1180px] px-6">
+      <p class="text-xs font-medium tracking-widest uppercase text-coral mb-6">Compare</p>
+      <h1 class="font-serif text-5xl md:text-7xl text-navy leading-tight tracking-tight max-w-2xl mb-6">
+        How StaaS is different.
+      </h1>
+      <p class="text-xl text-navy-muted max-w-xl leading-relaxed">
+        We work best when the alternative on your desk is one of these four. Here's how we stack up.
+      </p>
+    </div>
+  </section>
+
+  <!-- Comparisons -->
+  <section class="bg-cream-deep py-16 md:py-24">
+    <div class="mx-auto max-w-[1180px] px-6 flex flex-col gap-8">
+      {comparisons.map((c) => (
+        <CompareTable title={c.title} comparison={c.comparison} />
+      ))}
+    </div>
+  </section>
+
+  <!-- Footer CTA -->
+  <section class="bg-cream py-20 md:py-24 text-center">
+    <div class="mx-auto max-w-[1180px] px-6">
+      <p class="text-base text-navy-muted mb-6">Still unsure?</p>
+      <a
+        href="/workshop"
+        class="inline-flex items-center justify-center px-8 py-4 rounded bg-coral text-cream text-sm font-medium hover:bg-coral-deep transition-colors"
+      >
+        Book the workshop — one paid day to decide together.
+      </a>
+    </div>
+  </section>
+</BaseLayout>

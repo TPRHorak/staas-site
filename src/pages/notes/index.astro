@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import NoteCard from '../../components/NoteCard.astro';
+import { getCollection } from 'astro:content';
+
+const allNotes = await getCollection('notes');
+const notes = allNotes.sort(
+  (a, b) => new Date(b.data.publishedAt).getTime() - new Date(a.data.publishedAt).getTime()
+);
+---
+
+<BaseLayout
+  title="Notes — Startup as a Service"
+  description="Short essays from the team — on the relational lens, senior judgement in the AI era, and what actually happens after the workshop."
+>
+  <!-- Header -->
+  <section class="bg-cream pt-28 pb-16 md:pt-36 md:pb-20">
+    <div class="mx-auto max-w-[1180px] px-6">
+      <p class="text-xs font-medium tracking-widest uppercase text-coral mb-6">Notes</p>
+      <h1 class="font-serif text-5xl md:text-7xl text-navy leading-tight tracking-tight max-w-2xl mb-6">
+        How we think about it.
+      </h1>
+      <p class="text-xl text-navy-muted max-w-xl leading-relaxed">
+        Short essays from the team — on the relational lens, senior judgement in the AI era, and what actually happens after the workshop.
+      </p>
+    </div>
+  </section>
+
+  <!-- Notes grid -->
+  <section class="bg-cream-deep py-16 md:py-24">
+    <div class="mx-auto max-w-[1180px] px-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {notes.map((note) => (
+          <NoteCard
+            title={note.data.title}
+            slug={note.data.slug}
+            excerpt={note.data.excerpt}
+            author={note.data.author}
+            authorRole={note.data.authorRole}
+            readingTime={note.data.readingTime}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

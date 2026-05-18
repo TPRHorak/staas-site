@@ -1,0 +1,161 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const phases = [
+  {
+    n: "01",
+    title: "Pressure-test the idea.",
+    body: "What's actually blocking you, and what's the leanest way to test it?",
+  },
+  {
+    n: "02",
+    title: "Map the build.",
+    body: "We sketch the scope — features, architecture, what to ship in sprint one, what to defer.",
+  },
+  {
+    n: "03",
+    title: "Price the plan.",
+    body: "Three-tier price quote, build-point estimate, what's in and out, risk register.",
+  },
+  {
+    n: "04",
+    title: "Decide together.",
+    body: "You leave with a written plan you can take to your team, your board, or a different agency.",
+  },
+];
+
+const artifacts = [
+  "A written scope document",
+  "A build-points estimate for the first 90 days",
+  "A risk register — what could go wrong, ranked",
+  "A sprint-1 brief, ready to start",
+  "A three-tier price quote (Launch / Scale / Embed)",
+  "A recording of the session",
+];
+
+const icps = [
+  {
+    title: "Creators with an audience.",
+    body: "You own the audience. We bring the team. Newsletter, podcast, community, course. Building a product for the audience you already have.",
+  },
+  {
+    title: "Founders without a CTO.",
+    body: "Past prototype. Need real product. Pre-seed, seed, post-Lovable / Cursor / Claude Code. A working demo, no engineering org yet.",
+  },
+  {
+    title: "Operators of existing products.",
+    body: "Already shipping. Need senior judgement. Retention, conversion, App Store editorial. You need product taste plus build capacity.",
+  },
+];
+---
+
+<BaseLayout
+  title="Book the Workshop — Startup as a Service"
+  description="A paid one-day workshop where we pressure-test the product, lock the plan, and price the build. €1,500, refunded against your first month."
+>
+  <!-- Hero -->
+  <section class="bg-cream pt-28 pb-20 md:pt-36 md:pb-28">
+    <div class="mx-auto max-w-[1180px] px-6">
+      <p class="text-xs font-medium tracking-widest uppercase text-coral mb-6">The Workshop</p>
+      <h1 class="font-serif text-5xl md:text-7xl text-navy leading-[1.02] tracking-tight max-w-2xl mb-6">
+        One paid day to decide together.
+      </h1>
+      <p class="text-xl text-navy-muted max-w-xl leading-relaxed mb-10">
+        A founder-and-team workshop where we pressure-test the product, lock the plan, and price the build. €1,500, refunded against your first month.
+      </p>
+      <a
+        href="mailto:workshop@allshapes.io"
+        class="inline-flex items-center justify-center px-8 py-4 rounded bg-coral text-cream text-sm font-medium hover:bg-coral-deep transition-colors"
+      >
+        Book it →
+      </a>
+    </div>
+  </section>
+
+  <!-- What we cover -->
+  <section class="bg-cream-deep py-20 md:py-28">
+    <div class="mx-auto max-w-[1180px] px-6">
+      <h2 class="font-serif text-4xl md:text-5xl text-navy leading-tight tracking-tight max-w-lg mb-16">
+        What we cover.
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {phases.map((phase) => (
+          <div class="border-t-2 pt-6" style="border-color: #2B2660;">
+            <span class="text-xs font-medium tracking-widest uppercase text-navy-muted mb-3 block">{phase.n}</span>
+            <h3 class="font-sans font-medium text-base text-navy mb-2">{phase.title}</h3>
+            <p class="text-sm text-navy-muted leading-relaxed">{phase.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- What you leave with -->
+  <section class="bg-cream py-20 md:py-28">
+    <div class="mx-auto max-w-[1180px] px-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+        <div>
+          <h2 class="font-serif text-4xl md:text-5xl text-navy leading-tight tracking-tight mb-10">
+            What you leave with.
+          </h2>
+          <ul class="flex flex-col gap-4">
+            {artifacts.map((item) => (
+              <li class="flex items-start gap-3 text-sm text-navy-muted">
+                <span class="mt-1 shrink-0 w-3.5 h-3.5 rounded-full border border-coral flex items-center justify-center">
+                  <svg width="6" height="6" viewBox="0 0 6 6"><polyline points="1,3 2.5,4.5 5,1.5" stroke="#E34C39" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+                </span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Cost & terms -->
+        <div class="rounded bg-cream-deep p-8 md:p-10 self-start">
+          <h2 class="font-serif text-2xl text-navy mb-8">Cost and terms.</h2>
+          <ul class="flex flex-col gap-5 text-sm text-navy-muted leading-relaxed">
+            <li><strong class="text-navy font-medium">€1,500.</strong> Refunded against the first month of any tier.</li>
+            <li><strong class="text-navy font-medium">6-month sign → workshop is free.</strong></li>
+            <li><strong class="text-navy font-medium">No-fit refund.</strong> If you decide we're not the right team, the €1,500 is yours to keep. We learned something too.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who it's for -->
+  <section class="bg-navy text-cream py-20 md:py-28">
+    <div class="mx-auto max-w-[1180px] px-6">
+      <h2 class="font-serif text-4xl md:text-5xl leading-tight tracking-tight max-w-lg mb-16">
+        Who it's for.
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {icps.map((icp) => (
+          <div class="border-t pt-6" style="border-color: #3d3870;">
+            <h3 class="font-sans font-medium text-base text-cream mb-3">{icp.title}</h3>
+            <p class="text-sm leading-relaxed" style="color: #a09cbe;">{icp.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Booking -->
+  <section class="bg-cream py-20 md:py-28 text-center">
+    <div class="mx-auto max-w-[1180px] px-6">
+      <h2 class="font-serif text-4xl md:text-5xl text-navy leading-tight tracking-tight mb-4">
+        Or just email us.
+      </h2>
+      <p class="text-base text-navy-muted max-w-md mx-auto mb-10 leading-relaxed">
+        If a one-day workshop feels heavy, just write. We'll tell you straight whether we're the right team.
+      </p>
+      <!-- COPY_TODO: Replace mailto with Cal.com or SavvyCal embed once booking tool is chosen -->
+      <a
+        href="mailto:workshop@allshapes.io"
+        class="inline-flex items-center justify-center px-8 py-4 rounded bg-navy text-cream text-sm font-medium hover:bg-navy-deep transition-colors"
+      >
+        workshop@allshapes.io
+      </a>
+    </div>
+  </section>
+</BaseLayout>
