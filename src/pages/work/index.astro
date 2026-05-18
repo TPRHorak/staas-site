@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import WorkCard from '../../components/WorkCard.astro';
+import { getCollection } from 'astro:content';
+
+const allWork = await getCollection('work');
+const works = allWork.sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout
+  title="Selected work — Startup as a Service"
+  description="A decade of building products founders return to. Each case study is a partnership, not a one-off project."
+>
+  <!-- Header -->
+  <section class="bg-cream pt-28 pb-16 md:pt-36 md:pb-20">
+    <div class="mx-auto max-w-[1180px] px-6">
+      <p class="text-xs font-medium tracking-widest uppercase text-coral mb-6">Selected work</p>
+      <h1 class="font-serif text-5xl md:text-7xl text-navy leading-tight tracking-tight max-w-2xl mb-6">
+        Apps people actually open.
+      </h1>
+      <p class="text-xl text-navy-muted max-w-xl leading-relaxed">
+        A decade of building products founders return to. Each case study is a partnership, not a one-off project.
+      </p>
+    </div>
+  </section>
+
+  <!-- Work grid -->
+  <section class="bg-cream-deep py-16 md:py-24">
+    <div class="mx-auto max-w-[1180px] px-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {works.map((work) => (
+          <WorkCard
+            title={work.data.title}
+            slug={work.data.slug}
+            hero={work.data.hero}
+            oneLine={work.data.oneLine}
+            awards={work.data.awards}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
