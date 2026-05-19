@@ -1,87 +1,54 @@
 ---
-// Deck Section XX — "What we believe / What we won't do"
+// Deck Section 06 — "What we believe / What we won't do"
 const believes = [
-  {
-    title: "Judgement over speed.",
-    body: "AI made code cheap. Senior taste got rare. We sell both.",
-  },
-  {
-    title: "Right-sizing.",
-    body: "Build the cheapest thing that scales. Tell you what not to build.",
-  },
-  {
-    title: "The change in their life is the product.",
-    body: "Real-life impact → customer success → retention → LTV. That order matters.",
-  },
-  {
-    title: "Same team, for years.",
-    body: "Continuity is the product. Seniors who learn your business stay on it.",
-  },
-  {
-    title: "Published pricing. No equity.",
-    body: "Rates on the website. Founder keeps the cap table.",
-  },
+  { title: "Judgement over speed.", body: "AI made code cheap. Senior taste got rare. We sell both." },
+  { title: "Right-sizing.", body: "Build the cheapest thing that scales. Tell you what not to build." },
+  { title: "The change in their life is the product.", body: "Real-life impact → customer success → retention → LTV. That order matters." },
+  { title: "Same team, for years.", body: "Continuity is the product. Seniors who learn your business stay on it." },
+  { title: "Published pricing. No equity.", body: "Rates on the website. Founder keeps the cap table." },
 ];
 
 const wonts = [
-  {
-    title: "Discovery theatre.",
-    body: "Quarter-long decks pretending to be planning.",
-  },
-  {
-    title: "Up-selling complexity.",
-    body: "AI features when a database does the job.",
-  },
-  {
-    title: "Optimising for DAU.",
-    body: "Vanity metrics that don't track the user's life getting better.",
-  },
-  {
-    title: "Rotating juniors.",
-    body: "Senior pitches; juniors execute; you find out in month four.",
-  },
-  {
-    title: "Equity for execution.",
-    body: "Venture studios that take 30% for \"the team.\"",
-  },
+  { title: "Discovery theatre.", body: "Quarter-long decks pretending to be planning." },
+  { title: "Up-selling complexity.", body: "AI features when a database does the job." },
+  { title: "Optimising for DAU.", body: "Vanity metrics that don't track the user's life getting better." },
+  { title: "Rotating juniors.", body: "Senior pitches; juniors execute; you find out in month four." },
+  { title: "Equity for execution.", body: "Venture studios that take 30% for \"the team.\"" },
 ];
 ---
 
-<section class="bg-cream-deep py-24 md:py-[120px]">
+<section class="bg-navy text-cream py-24 md:py-[120px]">
   <div class="mx-auto max-w-[1180px] px-6">
-    <!-- Eyebrow -->
-    <p class="text-xs font-medium tracking-widest uppercase text-coral mb-6">
-      What we believe
-    </p>
 
-    <!-- H2 -->
-    <h2 class="font-serif text-4xl md:text-5xl text-navy leading-tight tracking-tight max-w-lg mb-4">
+    <!-- Header -->
+    <p class="text-xs font-medium tracking-widest uppercase mb-8" style="color: #a09cbe;">What we believe</p>
+    <h2 class="font-serif text-5xl md:text-6xl text-cream leading-tight tracking-tight max-w-xl mb-6">
       A short list. We mean every line.
     </h2>
-    <p class="text-base text-navy-muted mb-16 max-w-lg leading-relaxed">
+    <p class="text-base mb-16 max-w-sm leading-relaxed" style="color: #a09cbe;">
       Hire us if these match. Don't if they don't.
     </p>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-px rounded overflow-hidden" style="background: #d8d0a8;">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-px rounded overflow-hidden" style="background: #3d3870;">
 
       <!-- Believe -->
-      <div class="bg-cream p-8 md:p-10 flex flex-col gap-6">
-        <p class="text-xs font-medium tracking-widest uppercase text-navy-muted">What we believe</p>
-        {believes.map((item) => (
-          <div class="border-t border-cream-deep pt-5">
-            <p class="text-sm font-medium text-navy mb-1">{item.title}</p>
-            <p class="text-sm text-navy-muted leading-relaxed">{item.body}</p>
+      <div class="p-8 md:p-12 flex flex-col gap-0" style="background: #1F1B4A;">
+        <p class="text-xs font-medium tracking-widest uppercase text-coral mb-8">What we believe</p>
+        {believes.map((item, i) => (
+          <div class={`py-6 ${i < believes.length - 1 ? 'border-b' : ''}`} style="border-color: #3d3870;">
+            <p class="font-serif text-xl text-cream mb-1">{item.title}</p>
+            <p class="text-sm leading-relaxed" style="color: #a09cbe;">{item.body}</p>
           </div>
         ))}
       </div>
 
       <!-- Won't do -->
-      <div class="bg-cream p-8 md:p-10 flex flex-col gap-6">
-        <p class="text-xs font-medium tracking-widest uppercase text-coral">What we won't do</p>
-        {wonts.map((item) => (
-          <div class="border-t border-cream-deep pt-5">
-            <p class="text-sm font-medium text-navy mb-1">{item.title}</p>
-            <p class="text-sm text-navy-muted leading-relaxed">{item.body}</p>
+      <div class="p-8 md:p-12 flex flex-col gap-0" style="background: #2B2660;">
+        <p class="text-xs font-medium tracking-widest uppercase text-coral mb-8">What we won't do</p>
+        {wonts.map((item, i) => (
+          <div class={`py-6 ${i < wonts.length - 1 ? 'border-b' : ''}`} style="border-color: #3d3870;">
+            <p class="font-serif text-xl text-cream mb-1">{item.title}</p>
+            <p class="text-sm leading-relaxed" style="color: #a09cbe;">{item.body}</p>
           </div>
         ))}
       </div>

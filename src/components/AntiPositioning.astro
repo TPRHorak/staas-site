@@ -1,5 +1,5 @@
 ---
-// Brief §5 Home, section 4 — Slide-1 "The catch with AI" trio
+// Deck Section 01 — The catch with AI
 const columns = [
   {
     title: "Vibe-coded MVPs",
@@ -17,37 +17,33 @@ const columns = [
 ---
 
 <section class="relative overflow-hidden bg-navy text-cream py-24 md:py-[120px]">
-  <!-- Decorative blob -->
-  <div
-    class="pointer-events-none absolute -bottom-20 -right-20 w-[360px] h-[360px] rounded-full opacity-20"
-    style="background: #EC95C5; filter: blur(80px);"
-    aria-hidden="true"
-  ></div>
+  <div class="pointer-events-none absolute -bottom-20 -right-20 w-[400px] h-[400px] rounded-full opacity-10"
+    style="background: #EC95C5; filter: blur(80px);" aria-hidden="true"></div>
 
   <div class="relative mx-auto max-w-[1180px] px-6">
     <!-- Eyebrow -->
-    <p class="text-xs font-medium tracking-widest uppercase mb-6" style="color: #a09cbe;">
-      Section 01 · The catch with AI
+    <p class="text-xs font-medium tracking-widest uppercase mb-8" style="color: #a09cbe;">
+      The catch with AI
     </p>
 
-    <!-- H2 -->
-    <h2 class="font-serif text-4xl md:text-5xl leading-tight tracking-tight max-w-2xl mb-16">
+    <!-- H2 — big and dramatic -->
+    <h2 class="font-serif text-5xl md:text-6xl lg:text-7xl leading-[1.0] tracking-tight max-w-3xl mb-20">
       AI made shipping software cheap. It made shipping the{" "}
       <em class="not-italic text-coral">right</em> software harder.
     </h2>
 
     <!-- Three columns -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-16">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-px rounded overflow-hidden" style="background: #3d3870;">
       {columns.map((col) => (
-        <div class="border-t pt-6" style="border-color: #3d3870;">
-          <h3 class="font-sans font-medium text-base mb-3 text-cream">{col.title}</h3>
+        <div class="p-8 md:p-10" style="background: #2B2660;">
+          <h3 class="font-serif text-2xl text-coral mb-4">{col.title}</h3>
           <p class="text-sm leading-relaxed" style="color: #a09cbe;">{col.body}</p>
         </div>
       ))}
     </div>
 
     <!-- Closing line -->
-    <p class="text-base font-medium max-w-2xl leading-relaxed" style="color: #a09cbe;">
+    <p class="mt-16 font-serif text-2xl md:text-3xl max-w-3xl leading-snug" style="color: #a09cbe;">
       Half the products launched in 2026 will be forgotten by Friday.{" "}
       <span class="text-cream">The ones that aren't will have a senior team behind them.</span>
     </p>

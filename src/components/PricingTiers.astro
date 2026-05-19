@@ -1,5 +1,5 @@
 ---
-// Brief §5 Home §7 — Move #2. Copy from STAAS_SITE_COPY.md §Pricing
+// Deck Section 04 — After the Sprint, three ways to engage
 const tiers = [
   {
     name: "Launch",
@@ -48,42 +48,46 @@ const tiers = [
 
 <section id="pricing" class="bg-cream-deep py-24 md:py-[120px]">
   <div class="mx-auto max-w-[1180px] px-6">
-    <!-- Eyebrow -->
-    <p class="text-xs font-medium tracking-widest uppercase text-coral mb-6">
-      Section 04 · What it costs
-    </p>
 
-    <!-- H2 -->
-    <h2 class="font-serif text-4xl md:text-5xl text-navy leading-tight tracking-tight max-w-lg mb-16">
-      Three ways to engage.
-    </h2>
+    <p class="text-xs font-medium tracking-widest uppercase text-coral mb-8">After the Sprint</p>
+
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-6">
+      <h2 class="font-serif text-5xl md:text-6xl text-navy leading-tight tracking-tight max-w-lg">
+        Three ways to engage.
+      </h2>
+      <p class="text-sm text-navy-muted md:text-right shrink-0">
+        Subscription tiers. Pause anytime. No equity.
+      </p>
+    </div>
+
+    <div class="mb-16 h-px" style="background: #d8d0a8;"></div>
 
     <!-- Tier cards -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       {tiers.map((tier) => (
         <div class:list={[
-          "relative flex flex-col rounded bg-cream p-8 border",
-          tier.tag ? "border-navy" : "border-cream-deep"
+          "relative flex flex-col rounded p-8 border",
+          tier.tag ? "border-navy bg-navy text-cream" : "border-cream bg-cream"
         ]}>
           {tier.tag && (
-            <span class="absolute -top-3 left-6 px-3 py-1 bg-navy text-cream text-xs font-medium rounded tracking-wide">
+            <span class="absolute -top-3 left-6 px-3 py-1 bg-coral text-cream text-xs font-medium rounded tracking-wide">
               {tier.tag}
             </span>
           )}
 
-          <p class="text-xs font-medium tracking-widest uppercase text-navy-muted mb-4">{tier.name}</p>
+          <p class:list={["text-xs font-medium tracking-widest uppercase mb-4", tier.tag ? "opacity-60" : "text-navy-muted"]}>{tier.name}</p>
 
           <div class="mb-1">
-            <span class="font-serif text-4xl text-navy">{tier.price}</span>
+            <span class:list={["font-serif text-5xl", tier.tag ? "text-cream" : "text-navy"]}>{tier.price}</span>
           </div>
-          <p class="text-xs text-navy-muted mb-6">{tier.period}</p>
+          <p class:list={["text-xs mb-8", tier.tag ? "opacity-60" : "text-navy-muted"]}>{tier.period}</p>
 
-          <p class="text-sm font-medium text-navy mb-1">{tier.subtitle}</p>
-          <p class="text-sm text-navy-muted mb-8 leading-relaxed">{tier.description}</p>
+          <p class:list={["text-sm font-medium mb-1", tier.tag ? "text-cream" : "text-navy"]}>{tier.subtitle}</p>
+          <p class:list={["text-sm mb-8 leading-relaxed", tier.tag ? "opacity-70" : "text-navy-muted"]}>{tier.description}</p>
 
-          <ul class="flex flex-col gap-2 mb-10 flex-1">
+          <ul class="flex flex-col gap-3 mb-10 flex-1">
             {tier.includes.map((item) => (
-              <li class="flex items-start gap-2 text-sm text-navy-muted">
+              <li class:list={["flex items-start gap-2 text-sm", tier.tag ? "text-cream opacity-80" : "text-navy-muted"]}>
                 <span class="mt-1 shrink-0 w-3.5 h-3.5 rounded-full border border-coral flex items-center justify-center">
                   <span class="w-1.5 h-1.5 rounded-full bg-coral block"></span>
                 </span>
@@ -94,7 +98,12 @@ const tiers = [
 
           <a
             href="/sprint"
-            class="mt-auto inline-flex items-center justify-center px-5 py-3 rounded bg-navy text-cream text-sm font-medium hover:bg-navy-deep transition-colors"
+            class:list={[
+              "mt-auto inline-flex items-center justify-center px-5 py-3 rounded text-sm font-medium transition-colors",
+              tier.tag
+                ? "bg-coral text-cream hover:bg-coral-deep"
+                : "bg-navy text-cream hover:bg-navy-deep"
+            ]}
           >
             Book the sprint
           </a>
@@ -102,11 +111,14 @@ const tiers = [
       ))}
     </div>
 
-    <!-- Strikethrough line -->
-    <p class="mt-10 text-center text-sm text-navy-muted">
-      <s class="opacity-50">Sprint €6,250</s>
-      {" "}→{" "}
-      <strong class="text-navy font-medium">full credit toward month 1 if you sign within 14 days.</strong>
-    </p>
+    <!-- Bottom lines -->
+    <div class="mt-12 flex flex-col md:flex-row md:items-center md:justify-between gap-4 border-t pt-10" style="border-color: #d8d0a8;">
+      <p class="font-serif text-xl text-navy">Same team, for years. Continuity is the product.</p>
+      <p class="text-sm text-navy-muted">
+        <s class="opacity-50">Sprint €6,250</s>
+        {" "}→{" "}
+        <strong class="text-navy font-medium">full credit toward month 1 if you sign within 14 days.</strong>
+      </p>
+    </div>
   </div>
 </section>

@@ -1,5 +1,4 @@
 ---
-// Brief §5 Home §8 — Move #4. Copy from STAAS_SITE_COPY.md §Testimonials
 const testimonials = [
   {
     quote: "An advisor was helping me decide which agency to work with. I sent him information and proposals from a bunch of competitors. With all the companies he reviewed, there were always pros and cons for all of them. Except All Shapes.",
@@ -34,47 +33,53 @@ const testimonials = [
 ];
 ---
 
-<section class="bg-cream py-24 md:py-[120px]">
+<section class="bg-cream-deep py-24 md:py-[120px]">
   <div class="mx-auto max-w-[1180px] px-6">
     <!-- Eyebrow -->
-    <p class="text-xs font-medium tracking-widest uppercase text-coral mb-6">
-      Section 05 · From founders we've worked with
+    <p class="text-xs font-medium tracking-widest uppercase text-coral mb-8">
+      From founders we've worked with
     </p>
 
     <!-- H2 -->
-    <h2 class="font-serif text-4xl md:text-5xl text-navy leading-tight tracking-tight max-w-lg mb-16">
+    <h2 class="font-serif text-5xl md:text-6xl text-navy leading-tight tracking-tight max-w-lg mb-16">
       What they said.
     </h2>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       {testimonials.map((t) => (
         <div class:list={[
-          "flex flex-col rounded p-8 border",
-          t.killer ? "border-navy bg-navy text-cream" : "border-cream-deep bg-cream"
+          "flex flex-col rounded p-8 md:p-10",
+          t.killer ? "bg-navy text-cream" : "bg-cream border border-cream-deep"
         ]}>
           <!-- Avatar -->
           {t.photo ? (
             <img
               src={t.photo}
               alt={t.name}
-              class="w-10 h-10 rounded-full object-cover mb-6 shrink-0"
+              class="w-12 h-12 rounded-full object-cover mb-6 shrink-0"
               onerror={`this.style.display='none'; this.nextElementSibling.style.display='flex'`}
             />
           ) : null}
           <div class:list={[
-            "w-10 h-10 rounded-full items-center justify-center text-sm font-medium mb-6 shrink-0",
+            "w-12 h-12 rounded-full items-center justify-center text-sm font-medium mb-6 shrink-0",
             t.photo ? "hidden" : "flex",
             t.killer ? "bg-coral text-cream" : "bg-cream-deep text-navy"
           ]}>
             {t.initials}
           </div>
 
+          <!-- Quote mark -->
+          <p class:list={[
+            "font-serif text-5xl leading-none mb-4 -mt-2",
+            t.killer ? "text-coral" : "text-cream-deep"
+          ]}>"</p>
+
           <!-- Quote -->
           <blockquote class:list={[
-            "text-sm leading-relaxed mb-8 flex-1",
-            t.killer ? "text-cream" : "text-navy-muted"
+            "font-serif text-lg leading-snug mb-8 flex-1",
+            t.killer ? "text-cream" : "text-navy"
           ]}>
-            "{t.quote}"
+            {t.quote}
           </blockquote>
 
           <!-- Attribution -->
@@ -95,7 +100,7 @@ const testimonials = [
             {t.metrics.map((m) => (
               <span class:list={[
                 "text-xs px-2 py-1 rounded",
-                t.killer ? "bg-navy-muted text-cream" : "bg-cream-deep text-navy-muted"
+                t.killer ? "bg-navy-deep text-cream opacity-80" : "bg-cream-deep text-navy-muted"
               ]}>
                 {m}
               </span>
