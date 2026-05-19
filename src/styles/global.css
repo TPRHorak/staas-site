@@ -1,5 +1,24 @@
 @import "tailwindcss";
 
+/* Self-hosted Recoleta — matches allshapes.io */
+@font-face {
+  font-family: 'Recoleta';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/recoleta-regular.woff2') format('woff2'),
+       url('/fonts/recoleta-regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Recoleta';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/recoleta-semibold.woff2') format('woff2'),
+       url('/fonts/recoleta-semibold.woff') format('woff');
+}
+
 @theme {
   /* Colours */
   --color-cream: #F2ECCA;
@@ -16,7 +35,7 @@
   --color-yellow-paper: #FAE9A8;
 
   /* Typography */
-  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-serif: 'Recoleta', Georgia, serif;
   --font-sans: 'Inter', system-ui, sans-serif;
 
   /* Border radius — sharp, editorial */
@@ -36,7 +55,7 @@ body {
 }
 
 h1, h2, h3 {
-  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-family: 'Recoleta', Georgia, serif;
   letter-spacing: -0.01em;
   font-weight: 500;
 }
