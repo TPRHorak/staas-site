@@ -1,19 +1,16 @@
 ---
 const columns = [
   {
-    tag: ".vibe_coded_mvps",
-    title: "Vibe-coded MVPs",
-    body: "Demo on a weekend. Fall apart in week six. Multi-tenant ceiling, security debt, no taste.",
+    label: "Vibe-coded MVPs",
+    body: "Demo on a weekend, fall apart in week six. Multi-tenant ceiling, security debt, and nobody who can tell you what to actually fix.",
   },
   {
-    tag: ".agencies",
-    title: "Agencies",
-    body: "Still selling hours. Six-month discoveries, rotating juniors, plateau after launch.",
+    label: "Traditional agencies",
+    body: "Still billing hours. Six months of discovery, rotating juniors, and a plateau the moment you're out of retainer.",
   },
   {
-    tag: ".freelancers",
-    title: "Freelancers",
-    body: "Ship code, not strategy. Can't tell you what to build. Continuity drifts the moment they're off the project.",
+    label: "Solo freelancers",
+    body: "They write code, not strategy. Can't advise on what to build. Continuity drifts the moment the project ends or they find something better.",
   },
 ];
 ---
@@ -21,25 +18,25 @@ const columns = [
 <section class="text-cream py-24 md:py-[120px]" style="background: #2B2660;">
   <div class="mx-auto max-w-[1180px] px-6">
 
-    <p class="font-mono text-xs text-coral mb-10 tracking-wider">// the_catch_with_ai</p>
+    <p class="font-mono text-xs text-coral mb-10 tracking-wider">// the_gap_ai_left</p>
 
     <h2 class="font-serif text-5xl md:text-6xl lg:text-7xl text-cream leading-[1.0] tracking-tight max-w-3xl mb-20">
-      AI made shipping software cheap. It made shipping the <em class="not-italic text-coral">right</em> software harder.
+      AI made writing code cheap. It made the <em class="not-italic text-coral">judgement</em> behind it rarer.
     </h2>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-px rounded overflow-hidden" style="background: #3d3870;">
       {columns.map((col) => (
-        <div class="p-8 md:p-10" style="background: #1F1B4A;">
-          <p class="font-mono text-xs text-coral mb-6">{col.tag}</p>
-          <h3 class="font-serif text-2xl text-cream mb-4">{col.title}</h3>
+        <div class="p-8 md:p-10 flex flex-col gap-4" style="background: #1F1B4A;">
+          <div class="w-8 h-px bg-coral mb-2"></div>
+          <h3 class="font-serif text-2xl text-cream">{col.label}</h3>
           <p class="text-sm leading-relaxed" style="color: #a09cbe;">{col.body}</p>
         </div>
       ))}
     </div>
 
     <p class="mt-16 font-serif text-2xl md:text-3xl leading-snug max-w-3xl" style="color: #a09cbe;">
-      Half the products launched in 2026 will be forgotten by Friday.{" "}
-      <span class="text-cream">The ones that aren't will have a senior team behind them.</span>
+      Most products built in 2026 will be forgotten inside a year.{" "}
+      <span class="text-cream">The ones that last had someone behind them who cared about the right things.</span>
     </p>
   </div>
 </section>

@@ -1,53 +1,52 @@
 ---
-// Deck Section 10 — From Sprint to shipping in 30 days
 const steps = [
   {
     n: "01",
     title: "Start with the Sprint.",
     sub: "Two weeks. €6,250. No commitment beyond it.",
     bullets: [
-      "We map your goals, audience, and the biggest friction",
-      "Prototype the strongest bet, run 5 user interviews",
-      "Choose the path: build one feature or prove the plan",
-      "You leave with working software and a written strategy doc",
+      "Map your goals, your users, and the biggest risk in the plan",
+      "Prototype the strongest approach, test it with five real users",
+      "Pick a path: one feature live, or a clear strategy for the build",
+      "You leave with working software and a written direction doc",
     ],
     note: "Full credit toward month 1 if you sign within 14 days.",
   },
   {
     n: "02",
     title: "Onboard in a week.",
-    sub: "Fast, structured, no surprises.",
+    sub: "No ramp-up theatre.",
     bullets: [
-      "Senior team fully briefed on codebase and plan",
-      "User-test findings from the Sprint folded in",
-      "First subscription sprint scoped",
-      "Second feature designed before week one is done",
+      "Senior team fully across codebase and Sprint findings",
+      "First subscription sprint scoped before day five",
+      "Second feature in design before week one closes",
+      "Existing codebase audited, debt flagged, priorities set",
     ],
-    note: "No discovery theatre. The Sprint was the discovery.",
+    note: "The Sprint was the discovery. We build from there.",
   },
   {
     n: "03",
     title: "Ship every two weeks.",
-    sub: "Working software, not status updates.",
+    sub: "Working software, not status emails.",
     bullets: [
-      "Features shipped end-to-end on a two-week cadence",
-      "Full release cycle, beta deployment, App Store submission when relevant",
-      "Weekly call with you in the loop",
-      "Direct access to the engineers doing the work",
+      "End-to-end features on a two-week cadence",
+      "Full release cycle: beta, App Store, production",
+      "Weekly call, direct access to the engineers building",
+      "You know what's coming before it's built",
     ],
-    note: "Most teams take 90 days to write a discovery doc. We use 90 days to ship products.",
+    note: "Most teams spend 90 days on a discovery doc. We ship in that time.",
   },
   {
     n: "04",
-    title: "Learn and plan the next sprint.",
-    sub: "Every cycle gets smarter.",
+    title: "Learn and plan what's next.",
+    sub: "Every cycle is smarter than the last.",
     bullets: [
       "Beta users in the product inside 30 days",
-      "Sprint 2 planned against what they actually do — not what we assumed",
-      "Pause anytime, up to 60 days, no penalty",
-      "Same team on your project for as long as it takes",
+      "Sprint 2 planned against what they actually do",
+      "Pause up to 60 days if you need to, no penalty",
+      "Same people on your product — no rotation, no handover",
     ],
-    note: "We don't disappear after launch.",
+    note: "We don't disappear after launch. That's when the work starts.",
   },
 ];
 ---
@@ -55,41 +54,40 @@ const steps = [
 <section class="py-24 md:py-[120px]" style="background: #1F1B4A;">
   <div class="mx-auto max-w-[1180px] px-6">
 
-    <p class="font-mono text-xs text-coral mb-10 tracking-wider">// how_we_start</p>
+    <p class="font-mono text-xs text-coral mb-10 tracking-wider">// from_sprint_to_shipping</p>
 
-    <h2 class="font-serif text-5xl md:text-6xl lg:text-7xl text-cream leading-[1.0] tracking-tight max-w-2xl mb-6">
-      A process built on transparency.
-    </h2>
-    <p class="text-base mb-20 max-w-lg leading-relaxed" style="color: #a09cbe;">
-      No bloat. No surprises. Here's exactly what working with us looks like.
-    </p>
+    <div class="flex flex-col md:flex-row md:items-end gap-6 mb-20">
+      <h2 class="font-serif text-5xl md:text-6xl lg:text-7xl text-cream leading-[1.0] tracking-tight max-w-2xl">
+        From first call to live product.
+      </h2>
+      <p class="text-base max-w-sm leading-relaxed md:ml-auto md:text-right shrink-0" style="color: #a09cbe;">
+        Four steps. No surprises. Here's what we do and when.
+      </p>
+    </div>
 
-    <div class="flex flex-col gap-px" style="background: #3d3870; border-radius: 4px; overflow: hidden;">
+    <!-- 2×2 card grid — distinct from SLS row-table -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-px rounded overflow-hidden" style="background: #3d3870;">
       {steps.map((step) => (
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-0" style="background: #2B2660;">
-          <!-- Number + title -->
-          <div class="p-8 md:p-10 md:border-r flex flex-col justify-between" style="border-color: #3d3870;">
-            <span class="font-mono text-5xl text-coral font-bold leading-none">{step.n}</span>
-            <div class="mt-8">
+        <div class="p-8 md:p-10 flex flex-col gap-6" style="background: #2B2660;">
+          <!-- Step number + title -->
+          <div class="flex items-start gap-5">
+            <span class="font-mono text-5xl text-coral font-bold leading-none shrink-0">{step.n}</span>
+            <div>
               <p class="font-serif text-xl text-cream leading-snug">{step.title}</p>
-              <p class="font-mono text-xs mt-2 leading-relaxed" style="color: #575280;">{step.sub}</p>
+              <p class="font-mono text-xs mt-1" style="color: #575280;">{step.sub}</p>
             </div>
           </div>
           <!-- Bullets -->
-          <div class="px-8 pb-8 pt-0 md:p-10 md:col-span-2 md:border-r" style="border-color: #3d3870;">
-            <ul class="flex flex-col gap-4">
-              {step.bullets.map((b) => (
-                <li class="flex items-start gap-3 text-sm leading-relaxed" style="color: #a09cbe;">
-                  <span class="text-coral mt-0.5 shrink-0">→</span>
-                  {b}
-                </li>
-              ))}
-            </ul>
-          </div>
+          <ul class="flex flex-col gap-3 border-t border-b py-6" style="border-color: #3d3870;">
+            {step.bullets.map((b) => (
+              <li class="flex items-start gap-3 text-sm leading-relaxed" style="color: #a09cbe;">
+                <span class="text-coral mt-0.5 shrink-0">→</span>
+                {b}
+              </li>
+            ))}
+          </ul>
           <!-- Note -->
-          <div class="px-8 pb-8 pt-0 md:p-10 flex items-end">
-            <p class="font-mono text-xs leading-relaxed italic" style="color: #575280;">{step.note}</p>
-          </div>
+          <p class="font-mono text-xs leading-relaxed" style="color: #575280;">{step.note}</p>
         </div>
       ))}
     </div>
