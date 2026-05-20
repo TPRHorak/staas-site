@@ -1,0 +1,64 @@
+---
+// Adapted from SLS "who_we_work_with" pattern + deck ICPs
+const profiles = [
+  {
+    tag: "Creators with an audience",
+    headline: "You own the audience. We build the product.",
+    body: "Newsletter, podcast, community, course — you've proven demand. Now you need the product. We build it without you needing to learn a single line of code or manage a dev team.",
+    aside: "vs. venture studios that take 30%.",
+  },
+  {
+    tag: "Founders without a CTO",
+    headline: "Your runway is short. You need someone who ships.",
+    body: "Past prototype. Pre-seed or seed. Post-Lovable / Cursor / Claude Code. You have a working demo but no engineering org. We plug in, build, and deliver — not one who bills for discovery meetings.",
+    aside: "vs. hiring two engineers, freelancer roulette, or quarter-long agency discoveries.",
+  },
+  {
+    tag: "Operators of existing products",
+    headline: "Already shipping. Need senior judgement.",
+    body: "Retention dropping. Conversion stuck. App Store editorial within reach. You have a product and users — you need product taste plus build capacity to push to the next level.",
+    aside: "vs. feature audits, retention consultants, and in-house hires that take six months.",
+  },
+];
+---
+
+<section class="bg-cream py-24 md:py-[120px]">
+  <div class="mx-auto max-w-[1180px] px-6">
+
+    <p class="font-mono text-xs text-coral mb-10 tracking-wider">// who_we_work_with</p>
+
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
+      <h2 class="font-serif text-5xl md:text-6xl lg:text-7xl text-navy leading-[1.0] tracking-tight max-w-2xl">
+        Sound like you? We should talk.
+      </h2>
+      <p class="text-sm text-navy-muted max-w-xs leading-relaxed md:text-right shrink-0">
+        We work best with people who have a clear goal and need someone to make it real.
+      </p>
+    </div>
+
+    <div class="flex flex-col gap-px" style="background: #d8d0a8; border-radius: 4px; overflow: hidden;">
+      {profiles.map((p, i) => (
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-0 bg-cream">
+          <!-- Tag col -->
+          <div class="p-8 md:p-10 md:border-r" style="border-color: #d8d0a8;">
+            <span class="font-mono text-xs text-coral tracking-wider">{String(i + 1).padStart(2, '0')}</span>
+            <p class="font-serif text-2xl text-navy mt-3 leading-snug">{p.tag}</p>
+          </div>
+          <!-- Content col -->
+          <div class="px-8 pb-8 pt-0 md:p-10 md:col-span-2 flex flex-col justify-between gap-6">
+            <div>
+              <h3 class="font-sans font-medium text-lg text-navy mb-3 leading-snug">{p.headline}</h3>
+              <p class="text-sm text-navy-muted leading-relaxed max-w-xl">{p.body}</p>
+            </div>
+            <p class="font-mono text-xs" style="color: #b8b2d8;">{p.aside}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <p class="mt-10 text-sm text-navy-muted">
+      Don't see yourself here?{" "}
+      <a href="mailto:workshop@allshapes.io" class="text-coral hover:underline">Write to us anyway →</a>
+    </p>
+  </div>
+</section>

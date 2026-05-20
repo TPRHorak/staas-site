@@ -1,72 +1,75 @@
 ---
-// Hero — brief §5 Home.Hero + STAAS_SITE_COPY.md §Home.Hero
 ---
 
-<section class="relative overflow-hidden bg-cream">
-  <!-- Decorative blobs -->
-  <div
-    class="pointer-events-none absolute -top-24 -right-32 w-[520px] h-[520px] rounded-full opacity-50"
-    style="background: #F8DA8A; filter: blur(100px);"
-    aria-hidden="true"
-  ></div>
-  <div
-    class="pointer-events-none absolute top-40 -left-24 w-[360px] h-[360px] rounded-full opacity-40"
-    style="background: #F4C4DC; filter: blur(80px);"
-    aria-hidden="true"
-  ></div>
+<section class="bg-navy-deep text-cream relative overflow-hidden">
 
-  <div class="relative mx-auto max-w-[1180px] px-6 pt-28 pb-0 md:pt-36">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-end">
+  <!-- Subtle grid texture -->
+  <div class="pointer-events-none absolute inset-0 opacity-[0.04]"
+    style="background-image: linear-gradient(#F2ECCA 1px, transparent 1px), linear-gradient(90deg, #F2ECCA 1px, transparent 1px); background-size: 64px 64px;"
+    aria-hidden="true"></div>
+
+  <div class="relative mx-auto max-w-[1180px] px-6 pt-32 pb-0 md:pt-40">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-end">
 
       <!-- Left: copy -->
       <div class="pb-24 md:pb-32">
-        <!-- Eyebrow -->
-        <p class="text-xs font-medium tracking-widest uppercase text-coral mb-8">
-          Startup as a Service
-        </p>
+        <p class="font-mono text-xs text-coral mb-10 tracking-wider">// startup_as_a_service</p>
 
-        <!-- H1 -->
-        <h1 class="font-serif text-6xl md:text-7xl lg:text-8xl text-navy leading-[1.0] tracking-tight mb-8">
-          Experts have never been this
-          <em class="not-italic text-coral"> affordable.</em>
+        <h1 class="font-serif text-6xl md:text-7xl lg:text-8xl text-cream leading-[1.0] tracking-tight mb-8">
+          The team you call to validate fast,<em class="not-italic text-coral"> then build to last.</em>
         </h1>
 
-        <!-- Subhead -->
-        <p class="text-lg md:text-xl text-navy-muted max-w-md mb-3 leading-relaxed">
-          The team you call to validate fast, then build to last.
+        <p class="text-base md:text-lg leading-relaxed mb-10 max-w-md" style="color: #a09cbe;">
+          A senior product and engineering team, on subscription. Experts have never been this affordable.
         </p>
 
-        <!-- Body line -->
-        <p class="text-base text-navy-muted max-w-md mb-10 leading-relaxed">
-          A senior product and engineering team, on subscription — for the build that comes after the demo.
-        </p>
-
-        <!-- CTAs -->
         <div class="flex flex-col sm:flex-row gap-4">
-          <a
-            href="#pricing"
-            class="inline-flex items-center justify-center px-7 py-3.5 rounded bg-navy text-cream text-sm font-medium hover:bg-navy-deep transition-colors"
-          >
-            See pricing
+          <a href="/sprint"
+            class="inline-flex items-center justify-center px-7 py-3.5 rounded-sm bg-coral text-cream text-sm font-medium hover:bg-coral-deep transition-colors">
+            Book the Sprint →
           </a>
-          <a
-            href="/sprint"
-            class="inline-flex items-center justify-center px-7 py-3.5 rounded bg-coral text-cream text-sm font-medium hover:bg-coral-deep transition-colors"
-          >
-            Book the sprint
+          <a href="#pricing"
+            class="inline-flex items-center justify-center px-7 py-3.5 rounded-sm text-sm font-medium transition-colors"
+            style="border: 1px solid #3d3870; color: #a09cbe;">
+            See pricing
           </a>
         </div>
       </div>
 
-      <!-- Right: image — hidden on mobile, visible md+ -->
+      <!-- Right: terminal widget -->
       <div class="hidden md:block self-end">
-        <div class="rounded-t overflow-hidden" style="height: 520px;">
-          <img
-            src="/hero-bg.jpg"
-            alt="A senior team working on a product"
-            class="w-full h-full object-cover object-top"
-            loading="eager"
-          />
+        <div class="rounded-t overflow-hidden" style="background: #1a1730; border: 1px solid #3d3870; border-bottom: none;">
+          <!-- Terminal chrome -->
+          <div class="flex items-center gap-2 px-4 py-3 border-b" style="border-color: #3d3870;">
+            <span class="w-3 h-3 rounded-full" style="background: #E34C39;"></span>
+            <span class="w-3 h-3 rounded-full" style="background: #F5C650;"></span>
+            <span class="w-3 h-3 rounded-full" style="background: #34C759;"></span>
+            <span class="ml-4 font-mono text-xs" style="color: #575280;">sprint</span>
+          </div>
+          <!-- Terminal body -->
+          <div class="p-6 font-mono text-sm" style="min-height: 320px;">
+            <p style="color: #575280;">❯ <span class="text-cream">start-sprint --client=your-product</span></p>
+            <p class="mt-4" style="color: #575280;">Scaffolding sprint...</p>
+            <div class="mt-3 flex flex-col gap-2">
+              {[
+                "Mapping goals, audience, friction",
+                "Sketching individual solutions",
+                "Prototyping the strongest bet",
+                "Running 5 user interviews",
+                "Choosing the path",
+              ].map((step) => (
+                <div class="flex items-center justify-between">
+                  <span style="color: #a09cbe;">{step}</span>
+                  <span class="text-coral ml-8">done</span>
+                </div>
+              ))}
+            </div>
+            <div class="mt-6 pt-5 border-t" style="border-color: #3d3870;">
+              <p class="text-coral">// direction confirmed.</p>
+              <p style="color: #a09cbe;">// week 2 starts now.</p>
+            </div>
+            <p class="mt-4" style="color: #575280;">❯ <span class="animate-pulse">▌</span></p>
+          </div>
         </div>
       </div>
 

@@ -1,5 +1,4 @@
 ---
-// Brief §5 Home §9 — Move #6. Three case study cards, Significa pattern.
 import WorkCard from './WorkCard.astro';
 
 const works = [
@@ -7,47 +6,68 @@ const works = [
     title: "Five Minute Journal",
     slug: "five-minute-journal",
     hero: "/case-studies/five-minute-journal.jpg",
-    oneLine: "The journal app for a daily gratitude practice. 60k MAU, 4.8★.",
+    oneLine: "The daily gratitude app. 60k MAU, 4.8★.",
     awards: ["App of the Day", "4.8★", "25k+ reviews", "60k MAU"],
   },
   {
     title: "The Doctor's Kitchen",
     slug: "doctors-kitchen",
     hero: "/case-studies/doctors-kitchen.jpg",
-    oneLine: "Recipe + nutrition platform built around Dr Rupy's evidence-based food framework.",
-    awards: ["App of the Day", "4.8★", "500+ recipes"],
+    oneLine: "Dr Rupy's evidence-based recipe platform.",
+    awards: ["Apple editorial", "App of the Day", "4.8★", "500+ recipes"],
   },
   {
     title: "RNT Fitness",
     slug: "rnt-fitness",
     hero: "/case-studies/rnt-fitness.jpg",
-    oneLine: "Premium fitness education platform — multi-tenant, cohort-based, social learning.",
-    awards: ["Multi-platform", "Multi-tenant from day one", "Cohort-driven SaaS"],
+    oneLine: "Premium coaching SaaS. Multi-tenant from day one.",
+    awards: ["Multi-platform", "Multi-tenant", "Cohort-driven"],
+  },
+  {
+    title: "Allen's Camera",
+    slug: "allens-camera",
+    hero: "/case-studies/allens-camera.jpg",
+    oneLine: "10× online revenue. Philadelphia's most trusted camera store.",
+    awards: ["10× revenue", "22% higher AOV", "197% more carts"],
   },
 ];
 ---
 
-<section class="bg-cream-deep py-24 md:py-[120px]">
+<section class="py-24 md:py-[120px]" style="background: #1F1B4A;">
   <div class="mx-auto max-w-[1180px] px-6">
-    <!-- Eyebrow -->
-    <p class="text-xs font-medium tracking-widest uppercase text-coral mb-6">
-      Section 06 · Selected work
-    </p>
 
-    <!-- H2 -->
+    <p class="font-mono text-xs text-coral mb-10 tracking-wider">// selected_work</p>
+
     <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-16">
-      <h2 class="font-serif text-4xl md:text-5xl text-navy leading-tight tracking-tight max-w-lg">
+      <h2 class="font-serif text-5xl md:text-6xl text-cream leading-tight tracking-tight max-w-lg">
         Apps people actually open.
       </h2>
-      <a href="/work" class="text-sm font-medium text-coral hover:text-coral-deep transition-colors shrink-0">
-        See all work →
+      <a href="/work" class="font-mono text-xs text-coral hover:underline shrink-0">
+        see_all_work →
       </a>
     </div>
 
-    <!-- Three cards -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-px rounded overflow-hidden" style="background: #3d3870;">
       {works.map((work) => (
-        <WorkCard {...work} />
+        <a href={`/work/${work.slug}`} class="group block relative overflow-hidden" style="aspect-ratio: 4/3;">
+          <img
+            src={work.hero}
+            alt={work.title}
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+          <!-- Overlay -->
+          <div class="absolute inset-0 flex flex-col justify-end p-8"
+            style="background: linear-gradient(to top, rgba(31,27,74,0.95) 0%, rgba(31,27,74,0.4) 50%, transparent 100%);">
+            <p class="font-mono text-xs text-coral mb-2">{work.awards[0]}</p>
+            <h3 class="font-serif text-2xl text-cream mb-2">{work.title}</h3>
+            <p class="text-sm" style="color: #a09cbe;">{work.oneLine}</p>
+            <div class="flex flex-wrap gap-2 mt-4">
+              {work.awards.slice(1).map((a) => (
+                <span class="font-mono text-xs px-2 py-1 rounded-sm" style="background: #3d3870; color: #a09cbe;">{a}</span>
+              ))}
+            </div>
+          </div>
+        </a>
       ))}
     </div>
   </div>

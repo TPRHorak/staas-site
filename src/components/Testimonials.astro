@@ -3,108 +3,85 @@ const testimonials = [
   {
     quote: "An advisor was helping me decide which agency to work with. I sent him information and proposals from a bunch of competitors. With all the companies he reviewed, there were always pros and cons for all of them. Except All Shapes.",
     name: "Akash Vaghela",
-    role: "Founder",
-    brand: "RNT Fitness",
+    role: "Founder, RNT Fitness",
     initials: "AV",
     photo: "https://allshapes.io/assets/images/temp/testimonial-rnt.jpg",
     metrics: ["Multi-platform", "Premium coaching SaaS", "Multi-tenant from day one"],
-    killer: true,
   },
   {
     quote: "Your company rules. I often feel dazed from days filled with chasing vendors to hold up their end of our partnership. All Shapes has been a breath of fresh air since day one.",
     name: "Brandon Leichter",
-    role: "Owner",
-    brand: "Allen's Camera",
+    role: "Owner, Allen's Camera",
     initials: "BL",
     photo: "https://allshapes.io/assets/images/temp/testimonial-acs.jpg",
     metrics: ["10× online revenue", "22% higher avg order value", "197% growth in carts"],
-    killer: false,
   },
   {
     quote: "When we started talking, you could feel the attention to detail and that the team really understands the industry and what we as a company are about. So you could sense it would be a really good collaboration.",
     name: "Chandni Vaghela",
-    role: "Co-founder",
-    brand: "RNT Fitness",
+    role: "Co-founder, RNT Fitness",
     initials: "CV",
     photo: null,
-    metrics: ["Long-term partnership", "Same team, build to maintenance", "In-house but not in-house"],
-    killer: false,
+    metrics: ["Same team, build to maintenance", "In-house but not in-house"],
   },
 ];
 ---
 
-<section class="bg-cream-deep py-24 md:py-[120px]">
+<section class="bg-cream py-24 md:py-[120px]">
   <div class="mx-auto max-w-[1180px] px-6">
-    <!-- Eyebrow -->
-    <p class="text-xs font-medium tracking-widest uppercase text-coral mb-8">
-      From founders we've worked with
-    </p>
 
-    <!-- H2 -->
+    <p class="font-mono text-xs text-coral mb-10 tracking-wider">// from_founders</p>
+
     <h2 class="font-serif text-5xl md:text-6xl text-navy leading-tight tracking-tight max-w-lg mb-16">
       What they said.
     </h2>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      {testimonials.map((t) => (
+    <div class="flex flex-col gap-px rounded overflow-hidden" style="background: #d8d0a8;">
+      {testimonials.map((t, i) => (
         <div class:list={[
-          "flex flex-col rounded p-8 md:p-10",
-          t.killer ? "bg-navy text-cream" : "bg-cream border border-cream-deep"
+          "grid grid-cols-1 md:grid-cols-4 gap-0",
+          i === 0 ? "bg-navy" : "bg-cream"
         ]}>
-          <!-- Avatar -->
-          {t.photo ? (
-            <img
-              src={t.photo}
-              alt={t.name}
-              class="w-12 h-12 rounded-full object-cover mb-6 shrink-0"
-              onerror={`this.style.display='none'; this.nextElementSibling.style.display='flex'`}
-            />
-          ) : null}
+          <!-- Avatar col -->
           <div class:list={[
-            "w-12 h-12 rounded-full items-center justify-center text-sm font-medium mb-6 shrink-0",
-            t.photo ? "hidden" : "flex",
-            t.killer ? "bg-coral text-cream" : "bg-cream-deep text-navy"
-          ]}>
-            {t.initials}
+            "p-8 md:p-10 md:border-r flex flex-col gap-4",
+            i === 0 ? "" : ""
+          ]} style={`border-color: ${i === 0 ? '#3d3870' : '#d8d0a8'};`}>
+            {t.photo ? (
+              <img src={t.photo} alt={t.name}
+                class="w-14 h-14 rounded-full object-cover"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
+            ) : null}
+            <div class:list={[
+              "w-14 h-14 rounded-full items-center justify-center text-sm font-medium shrink-0",
+              t.photo ? "hidden" : "flex",
+              i === 0 ? "bg-coral text-cream" : "bg-cream-deep text-navy"
+            ]}>
+              {t.initials}
+            </div>
+            <div>
+              <p class:list={["text-sm font-medium", i === 0 ? "text-cream" : "text-navy"]}>{t.name}</p>
+              <p class:list={["font-mono text-xs mt-1", i === 0 ? "opacity-50" : "text-navy-muted"]}>{t.role}</p>
+            </div>
           </div>
-
-          <!-- Quote mark -->
-          <p class:list={[
-            "font-serif text-5xl leading-none mb-4 -mt-2",
-            t.killer ? "text-coral" : "text-cream-deep"
-          ]}>"</p>
-
-          <!-- Quote -->
-          <blockquote class:list={[
-            "font-serif text-lg leading-snug mb-8 flex-1",
-            t.killer ? "text-cream" : "text-navy"
-          ]}>
-            {t.quote}
-          </blockquote>
-
-          <!-- Attribution -->
-          <div class="mb-6">
-            <p class:list={["text-sm font-medium", t.killer ? "text-cream" : "text-navy"]}>
-              {t.name}
-            </p>
-            <p class:list={["text-xs mt-0.5", t.killer ? "opacity-60" : "text-navy-muted"]}>
-              {t.role} · {t.brand}
-            </p>
-          </div>
-
-          <!-- Metrics -->
-          <div class:list={[
-            "flex flex-wrap gap-2 border-t pt-6",
-            t.killer ? "border-navy-muted" : "border-cream-deep"
-          ]}>
-            {t.metrics.map((m) => (
-              <span class:list={[
-                "text-xs px-2 py-1 rounded",
-                t.killer ? "bg-navy-deep text-cream opacity-80" : "bg-cream-deep text-navy-muted"
-              ]}>
-                {m}
-              </span>
-            ))}
+          <!-- Quote col -->
+          <div class="px-8 pb-8 pt-0 md:p-10 md:col-span-3 flex flex-col justify-between gap-8">
+            <blockquote class:list={[
+              "font-serif text-xl md:text-2xl leading-snug",
+              i === 0 ? "text-cream" : "text-navy"
+            ]}>
+              "{t.quote}"
+            </blockquote>
+            <div class="flex flex-wrap gap-2">
+              {t.metrics.map((m) => (
+                <span class:list={[
+                  "font-mono text-xs px-2 py-1 rounded-sm",
+                  i === 0 ? "text-cream" : "text-navy-muted"
+                ]} style={i === 0 ? "background: #3d3870;" : "background: #ECE4B8;"}>
+                  {m}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       ))}

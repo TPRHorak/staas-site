@@ -1,58 +1,33 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
-import TrustStrip from '../components/TrustStrip.astro';
+import ClientTicker from '../components/ClientTicker.astro';
 import AntiPositioning from '../components/AntiPositioning.astro';
-import OfferBlock from '../components/OfferBlock.astro';
-import MethodBlock from '../components/MethodBlock.astro';
+import WhoItsFor from '../components/WhoItsFor.astro';
+import HowWeStart from '../components/HowWeStart.astro';
 import PricingTiers from '../components/PricingTiers.astro';
-import RiskReversal from '../components/RiskReversal.astro';
-import WhatWeBelieve from '../components/WhatWeBelieve.astro';
-import SubscriptionModes from '../components/SubscriptionModes.astro';
-import NotToBuild from '../components/NotToBuild.astro';
-import Testimonials from '../components/Testimonials.astro';
 import SelectedWork from '../components/SelectedWork.astro';
-import RelationalLens from '../components/RelationalLens.astro';
+import Testimonials from '../components/Testimonials.astro';
+import AboutTeam from '../components/AboutTeam.astro';
+import WhatWeBelieve from '../components/WhatWeBelieve.astro';
 import FAQ from '../components/FAQ.astro';
-import AskClaude from '../components/AskClaude.astro';
 import FinalCTA from '../components/FinalCTA.astro';
 ---
 
 <BaseLayout
-  title="Startup as a Service — Experts have never been this affordable"
-  description="A senior product and engineering team, on subscription — for the build that comes after the demo."
+  title="Startup as a Service — The team you call to validate fast, then build to last."
+  description="A senior product and engineering team, on subscription."
 >
-  <!-- 1. Nav (in BaseLayout) -->
-  <!-- 2. Hero -->
   <Hero />
-  <!-- 3. Trust strip -->
-  <TrustStrip />
-  <!-- 4. Anti-positioning -->
+  <ClientTicker />
   <AntiPositioning />
-  <!-- 5. Offer block -->
-  <OfferBlock />
-  <!-- 6. Method -->
-  <MethodBlock />
-  <!-- 7. What we believe / won't do -->
-  <WhatWeBelieve />
-  <!-- 8. Pricing + risk reversal -->
+  <WhoItsFor />
+  <HowWeStart />
   <PricingTiers />
-  <RiskReversal />
-  <!-- 9. Subscription modes -->
-  <SubscriptionModes />
-  <!-- 10. Testimonials -->
-  <Testimonials />
-  <!-- 11. Selected work -->
   <SelectedWork />
-  <!-- 12. We tell you what not to build -->
-  <NotToBuild />
-  <!-- 13. Relational lens -->
-  <RelationalLens />
-  <!-- 14. FAQ -->
+  <Testimonials />
+  <AboutTeam />
+  <WhatWeBelieve />
   <FAQ />
-  <!-- 13. Ask Claude / ChatGPT -->
-  <AskClaude />
-  <!-- 14. Final CTA -->
   <FinalCTA />
-  <!-- 15. Footer (in BaseLayout) -->
 </BaseLayout>

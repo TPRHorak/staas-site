@@ -1,5 +1,4 @@
 ---
-// Deck Section 06 — "What we believe / What we won't do"
 const believes = [
   { title: "Judgement over speed.", body: "AI made code cheap. Senior taste got rare. We sell both." },
   { title: "Right-sizing.", body: "Build the cheapest thing that scales. Tell you what not to build." },
@@ -17,42 +16,41 @@ const wonts = [
 ];
 ---
 
-<section class="bg-navy text-cream py-24 md:py-[120px]">
+<section class="py-24 md:py-[120px]" style="background: #2B2660;">
   <div class="mx-auto max-w-[1180px] px-6">
 
-    <!-- Header -->
-    <p class="text-xs font-medium tracking-widest uppercase mb-8" style="color: #a09cbe;">What we believe</p>
-    <h2 class="font-serif text-5xl md:text-6xl text-cream leading-tight tracking-tight max-w-xl mb-6">
-      A short list. We mean every line.
-    </h2>
-    <p class="text-base mb-16 max-w-sm leading-relaxed" style="color: #a09cbe;">
-      Hire us if these match. Don't if they don't.
-    </p>
+    <p class="font-mono text-xs text-coral mb-10 tracking-wider">// what_we_believe</p>
+
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-6">
+      <h2 class="font-serif text-5xl md:text-6xl text-cream leading-tight tracking-tight max-w-lg">
+        A short list. We mean every line.
+      </h2>
+      <p class="font-mono text-xs md:text-right shrink-0" style="color: #575280;">
+        // Hire us if these match. Don't if they don't.
+      </p>
+    </div>
+
+    <div class="mb-16 h-px" style="background: #3d3870;"></div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-px rounded overflow-hidden" style="background: #3d3870;">
-
-      <!-- Believe -->
-      <div class="p-8 md:p-12 flex flex-col gap-0" style="background: #1F1B4A;">
-        <p class="text-xs font-medium tracking-widest uppercase text-coral mb-8">What we believe</p>
+      <div class="p-8 md:p-10 flex flex-col gap-0" style="background: #1F1B4A;">
+        <p class="font-mono text-xs text-coral mb-8">// believe</p>
         {believes.map((item, i) => (
-          <div class={`py-6 ${i < believes.length - 1 ? 'border-b' : ''}`} style="border-color: #3d3870;">
-            <p class="font-serif text-xl text-cream mb-1">{item.title}</p>
+          <div class:list={["py-6", i < believes.length - 1 ? "border-b" : ""]} style="border-color: #3d3870;">
+            <p class="font-serif text-lg text-cream mb-1">{item.title}</p>
             <p class="text-sm leading-relaxed" style="color: #a09cbe;">{item.body}</p>
           </div>
         ))}
       </div>
-
-      <!-- Won't do -->
-      <div class="p-8 md:p-12 flex flex-col gap-0" style="background: #2B2660;">
-        <p class="text-xs font-medium tracking-widest uppercase text-coral mb-8">What we won't do</p>
+      <div class="p-8 md:p-10 flex flex-col gap-0" style="background: #2B2660;">
+        <p class="font-mono text-xs text-coral mb-8">// won't_do</p>
         {wonts.map((item, i) => (
-          <div class={`py-6 ${i < wonts.length - 1 ? 'border-b' : ''}`} style="border-color: #3d3870;">
-            <p class="font-serif text-xl text-cream mb-1">{item.title}</p>
+          <div class:list={["py-6", i < wonts.length - 1 ? "border-b" : ""]} style="border-color: #3d3870;">
+            <p class="font-serif text-lg text-cream mb-1">{item.title}</p>
             <p class="text-sm leading-relaxed" style="color: #a09cbe;">{item.body}</p>
           </div>
         ))}
       </div>
-
     </div>
   </div>
 </section>
