@@ -2,15 +2,15 @@
 const steps = [
   {
     n: "01",
-    title: "Start with the Sprint.",
-    sub: "Two weeks. €6,250. No commitment beyond it.",
+    title: "Start with a Sprint.",
+    sub: "Two weeks. €6,250. One real outcome.",
     bullets: [
+      "Book in a few clicks — terms and NDA handled in the same flow",
       "Map your goals, your users, and the biggest risk in the plan",
       "Prototype the strongest approach, test it with five real users",
-      "Pick a path: one feature live, or a clear strategy for the build",
-      "You leave with working software and a written direction doc",
+      "Leave with working software or a tested prototype plus a buildable plan",
     ],
-    note: "Full credit toward month 1 if you sign within 14 days.",
+    note: "Full credit toward month 1 if you continue within 14 days.",
   },
   {
     n: "02",
@@ -27,12 +27,12 @@ const steps = [
   {
     n: "03",
     title: "Ship every two weeks.",
-    sub: "Working software, not status emails.",
+    sub: "Working software, in your Slack.",
     bullets: [
       "End-to-end features on a two-week cadence",
+      "Shared Slack channel with the senior team building the work",
       "Full release cycle: beta, App Store, production",
-      "Weekly call, direct access to the engineers building",
-      "You know what's coming before it's built",
+      "Time-boxed access — not a calendar full of status meetings",
     ],
     note: "Most teams spend 90 days on a discovery doc. We ship in that time.",
   },
@@ -42,30 +42,34 @@ const steps = [
     sub: "Every cycle is smarter than the last.",
     bullets: [
       "Beta users in the product inside 30 days",
-      "Sprint 2 planned against what they actually do",
-      "Pause up to 60 days if you need to, no penalty",
+      "Next sprint planned against what they actually do",
       "Same people on your product — no rotation, no handover",
+      "Quiet phases handled — security patches, App Store, small fixes",
     ],
     note: "We don't disappear after launch. That's when the work starts.",
   },
 ];
 ---
 
-<section class="py-24 md:py-[120px]" style="background: #1F1B4A;">
+<section id="how-it-works" class="py-24 md:py-[120px]" style="background: #1F1B4A;">
   <div class="mx-auto max-w-[1180px] px-6">
 
-    <p class="font-mono text-xs text-coral mb-10 tracking-wider">// from_sprint_to_shipping</p>
+    <p class="font-mono text-xs mb-10 tracking-wider" style="color: #575280;">// no_fuss</p>
 
-    <div class="flex flex-col md:flex-row md:items-end gap-6 mb-20">
+    <div class="flex flex-col md:flex-row md:items-end gap-6 mb-12">
       <h2 class="font-serif text-5xl md:text-6xl lg:text-7xl text-cream leading-[1.0] tracking-tight max-w-2xl">
-        From first call to live product.
+        The in-house team that isn't in-house.
       </h2>
       <p class="text-base max-w-sm leading-relaxed md:ml-auto md:text-right shrink-0" style="color: #a09cbe;">
         Four steps. No surprises. Here's what we do and when.
       </p>
     </div>
 
-    <!-- 2×2 card grid — distinct from SLS row-table -->
+    <p class="font-serif text-xl md:text-2xl leading-snug mb-20 max-w-3xl" style="color: #d8d2ee;">
+      No onboarding. No discovery quarter. We've done this for dozens of startups, so getting started feels less like hiring an agency and more like switching on a team you've worked with for years. We look at your mess, carve out the first two weeks, and get going.
+    </p>
+
+    <!-- 2×2 card grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-px rounded overflow-hidden" style="background: #3d3870;">
       {steps.map((step) => (
         <div class="p-8 md:p-10 flex flex-col gap-6" style="background: #2B2660;">
@@ -92,10 +96,15 @@ const steps = [
       ))}
     </div>
 
+    <p class="mt-16 font-serif text-2xl md:text-3xl leading-snug max-w-3xl text-cream">
+      No status meetings.<br/>
+      <span style="color: #a09cbe;">We're in your Slack, building alongside you.</span>
+    </p>
+
     <div class="mt-12 flex flex-col sm:flex-row gap-4">
       <a href="/sprint"
         class="inline-flex items-center justify-center px-7 py-3.5 rounded-sm bg-coral text-cream text-sm font-medium hover:bg-coral-deep transition-colors">
-        Book the Sprint →
+        Book a Sprint →
       </a>
       <a href="mailto:workshop@allshapes.io"
         class="inline-flex items-center justify-center px-7 py-3.5 rounded-sm text-sm font-medium transition-colors"

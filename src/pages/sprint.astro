@@ -2,11 +2,11 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const week1Steps = [
-  { label: "Map", body: "goals, audience, friction" },
-  { label: "Sketch", body: "individual solutions" },
-  { label: "Decide", body: "pick the strongest, choose the path" },
-  { label: "Prototype", body: "realistic build" },
-  { label: "Test", body: "5 user interviews, founder in the room" },
+  { day: "Day 1", label: "Map", body: "goals, audience, friction" },
+  { day: "Day 2", label: "Sketch", body: "individual solutions" },
+  { day: "Day 3", label: "Decide", body: "pick the strongest, choose the path" },
+  { day: "Day 4", label: "Prototype", body: "realistic build" },
+  { day: "Day 5", label: "Test", body: "5 user interviews, founder in the room" },
 ];
 
 const icps = [
@@ -19,14 +19,14 @@ const icps = [
     body: "Past prototype. Need real product. Pre-seed, seed, post-Lovable / Cursor / Claude Code. A working demo, no engineering org yet.",
   },
   {
-    title: "Operators of existing products.",
-    body: "Already shipping. Need senior judgement. Retention, conversion, App Store editorial. You need product taste plus build capacity.",
+    title: "Founders with a CTO and a backlog.",
+    body: "You have a team. You're still behind. We plug in alongside your engineers and cane through a defined chunk — one initiative, shipped — then hand back clean.",
   },
 ];
 ---
 
 <BaseLayout
-  title="Book the Sprint — Startup as a Service"
+  title="Book a Sprint — Startup as a Service"
   description="Two weeks. €6,250. One real outcome — picked together in Week 1."
 >
   <!-- Hero -->
@@ -51,6 +51,26 @@ const icps = [
     </div>
   </section>
 
+  <!-- Day 0 -->
+  <section class="bg-cream py-16 md:py-20" style="border-top: 1px solid #d8d0a8;">
+    <div class="mx-auto max-w-[1180px] px-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start">
+        <div>
+          <p class="text-xs font-medium tracking-widest uppercase text-coral mb-3">Day 0</p>
+          <h2 class="font-serif text-4xl md:text-5xl text-navy leading-tight tracking-tight">
+            Meet and greet.
+          </h2>
+        </div>
+        <div class="flex flex-col gap-4">
+          <p class="text-base text-navy-muted leading-relaxed">
+            A short call to get to know each other and your goals. You get a welcome pack — worksheet, contract, NDA, and a short list of what to share. We do our homework so <span class="text-navy font-medium">Day 1 is real work, not introductions.</span>
+          </p>
+          <p class="font-mono text-xs" style="color: #b8b2d8;">// 30–45 minutes · video call</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Week 1 -->
   <section class="bg-cream-deep py-20 md:py-28">
     <div class="mx-auto max-w-[1180px] px-6">
@@ -58,7 +78,7 @@ const icps = [
 
         <!-- Label -->
         <div>
-          <p class="text-xs font-medium tracking-widest uppercase text-coral mb-3">Week 1</p>
+          <p class="text-xs font-medium tracking-widest uppercase text-coral mb-3">Week 1 — Days 1–5</p>
           <h2 class="font-serif text-4xl md:text-5xl text-navy leading-tight tracking-tight">
             Find the bet.
           </h2>
@@ -68,7 +88,8 @@ const icps = [
         <div class="flex flex-col gap-5">
           {week1Steps.map((step) => (
             <div class="flex items-baseline gap-3">
-              <span class="shrink-0 text-sm font-medium text-coral w-20">{step.label}</span>
+              <span class="shrink-0 font-mono text-xs text-coral w-16">{step.day}</span>
+              <span class="shrink-0 text-sm font-medium text-navy w-20">{step.label}</span>
               <span class="text-sm text-navy-muted leading-relaxed">{step.body}</span>
             </div>
           ))}
@@ -155,8 +176,33 @@ const icps = [
           href="mailto:workshop@allshapes.io"
           class="inline-flex items-center justify-center px-7 py-3.5 rounded bg-coral text-cream text-sm font-medium hover:bg-coral-deep transition-colors shrink-0"
         >
-          Book the sprint →
+          Book a Sprint →
         </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- What you walk away with -->
+  <section class="bg-cream py-20 md:py-28">
+    <div class="mx-auto max-w-[1180px] px-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start">
+        <div>
+          <p class="text-xs font-medium tracking-widest uppercase text-coral mb-3">// outcomes</p>
+          <h2 class="font-serif text-4xl md:text-5xl text-navy leading-tight tracking-tight">
+            What you actually walk away with.
+          </h2>
+        </div>
+        <div class="flex flex-col gap-6">
+          <p class="text-base text-navy-muted leading-relaxed">
+            The Sprint isn't a planning exercise. You leave with something real you can show — a working feature live on a URL, or a tested prototype plus a build plan any team could execute. <span class="text-navy font-medium">Something to put in front of users, or in front of investors.</span>
+          </p>
+          <div class="border-t pt-6" style="border-color: #d8d0a8;">
+            <p class="font-serif text-2xl text-navy leading-snug mb-3">"How many sprints until I have a product?"</p>
+            <p class="text-sm text-navy-muted leading-relaxed">
+              Honestly — it depends on what you're building. A focused tool might take one or two. A multi-user platform, more. What's true every time: the first Sprint produces something tangible, and you'll finish it knowing exactly what the path looks like. No open-ended retainers, no surprises.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </section>

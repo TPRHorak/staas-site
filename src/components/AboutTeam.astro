@@ -4,15 +4,23 @@ const team = [
     name: "Tom Horak",
     role: "CEO & Co-Founder",
     since: "since 2015",
-    bio: "A decade running product and engineering across consumer apps, SaaS, and ecommerce. Built All Shapes into the team behind some of the App Store's most recognised consumer products — Five Minute Journal, The Doctor's Kitchen, RNT Fitness. Tom leads strategy, client relationships, and every meaningful product decision.",
+    bio: "A decade running product and engineering across consumer apps, SaaS, and ecommerce. Built All Shapes into the team behind some of the App Store's most recognised consumer products — Five Minute Journal, The Doctor's Kitchen, RNT Fitness. Tom leads strategy, client relationships, and every meaningful product decision. He also hosts the All Shapes podcast — interviewing the founders building today.",
     focus: "Product strategy · Client relationships · Pricing and scope",
     contact: "thomas@allshapes.io",
   },
   {
     name: "Callum",
-    role: "Technical Director & Co-Founder",
+    role: "Operations & Co-Founder",
     since: "since 2015",
-    bio: "Lead engineer across a decade of All Shapes products. Has shipped iOS, Android, web, and backend for everything from App of the Day consumer apps to multi-tenant SaaS platforms serving thousands of users. Every architectural decision goes through Callum. If there's a technical risk in your product, he'll find it.",
+    bio: "Callum has run the operational side of All Shapes for a decade — how projects are scoped, staffed, and delivered, and how clients experience working with us. If a Sprint runs smoothly, that's Callum.",
+    focus: "Operations · Delivery · Client experience",
+    contact: null,
+  },
+  {
+    name: "Jakob",
+    role: "Lead Engineer",
+    since: "engineering lead",
+    bio: "Jakob leads engineering across All Shapes products — iOS, Android, web, and backend, from App-of-the-Day consumer apps to multi-tenant SaaS platforms serving thousands of users. Every architectural decision goes through Jakob. If there's a technical risk in your product, he'll find it.",
     focus: "Architecture · Multi-platform engineering · Technical review",
     contact: null,
   },
@@ -28,10 +36,10 @@ const team = [
       The people behind the product.
     </h2>
     <p class="text-base text-navy-muted max-w-lg mb-20 leading-relaxed">
-      Founded by Tom and Callum — a decade of building together. Every client. Every line of code. That's us.
+      Founded by Tom and Callum — a decade of building together. Jakob leads engineering. Every client. Every line of code. That's us.
     </p>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-px rounded overflow-hidden" style="background: #d8d0a8;">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-px rounded overflow-hidden" style="background: #d8d0a8;">
       {team.map((person) => (
         <div class="bg-cream p-8 md:p-12 flex flex-col gap-6">
           <!-- Header -->
