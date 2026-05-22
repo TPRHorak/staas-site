@@ -1,5 +1,24 @@
 @import "tailwindcss";
 
+/* Self-hosted Recoleta — matches allshapes.io */
+@font-face {
+  font-family: 'Recoleta';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/recoleta-regular.woff2') format('woff2'),
+       url('/fonts/recoleta-regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Recoleta';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/recoleta-semibold.woff2') format('woff2'),
+       url('/fonts/recoleta-semibold.woff') format('woff');
+}
+
 @theme {
   /* Colours */
   --color-cream: #F2ECCA;
@@ -16,7 +35,7 @@
   --color-yellow-paper: #FAE9A8;
 
   /* Typography */
-  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-serif: 'Recoleta', Georgia, serif;
   --font-sans: 'Inter', system-ui, sans-serif;
 
   /* Border radius — sharp, editorial */
@@ -25,8 +44,8 @@
 
 /* Base defaults */
 html {
-  background-color: #F2ECCA;
-  color: #2B2660;
+  background-color: #2B2660;
+  color: #F2ECCA;
   font-family: 'Inter', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
@@ -36,7 +55,24 @@ body {
 }
 
 h1, h2, h3 {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  letter-spacing: -0.01em;
-  font-weight: 500;
+  font-family: 'Recoleta', Georgia, serif;
+  letter-spacing: -0.02em;
+  font-weight: 400;
 }
+
+/* Ticker animation */
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.ticker-track {
+  animation: ticker 35s linear infinite;
+  will-change: transform;
+}
+.ticker-track:hover {
+  animation-play-state: paused;
+}
+
+/* FAQ open/close transition */
+details summary::-webkit-details-marker { display: none; }
+details[open] summary .faq-plus { transform: rotate(45deg); }

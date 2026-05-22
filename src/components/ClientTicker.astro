@@ -1,0 +1,33 @@
+---
+const clients = [
+  "Five Minute Journal",
+  "The Doctor's Kitchen",
+  "RNT Fitness",
+  "Allen's Camera",
+  "MyGear Vault",
+  "Welbeck Health",
+  "iOS",
+  "Android",
+  "SaaS",
+  "Ecommerce",
+  "Consumer Apps",
+  "Healthcare",
+  "Fitness",
+  "Nutrition",
+  "Productivity",
+];
+
+// Duplicate for seamless loop
+const doubled = [...clients, ...clients];
+---
+
+<div class="overflow-hidden border-y py-5" style="background: #1F1B4A; border-color: #3d3870;">
+  <div class="ticker-track flex items-center gap-0 whitespace-nowrap" style="width: max-content;">
+    {doubled.map((item, i) => (
+      <span class="inline-flex items-center gap-8 px-8">
+        <span class="font-mono text-xs tracking-widest uppercase" style="color: #a09cbe;">{item}</span>
+        <span class="text-coral text-xs" aria-hidden="true">✦</span>
+      </span>
+    ))}
+  </div>
+</div>

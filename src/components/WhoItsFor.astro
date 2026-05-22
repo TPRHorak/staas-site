@@ -1,0 +1,63 @@
+---
+const profiles = [
+  {
+    n: "01",
+    tag: "Creators with an audience",
+    headline: "You've proven demand. Now you need the product.",
+    body: "Newsletter, podcast, community, course — you know what your audience wants. We build the software without you learning to code or managing engineers.",
+    aside: "Not a venture studio. No equity taken.",
+  },
+  {
+    n: "02",
+    tag: "Founders without a CTO",
+    headline: "Past demo. Pre-hire. Need someone who ships.",
+    body: "Pre-seed or seed. You have a Lovable or Cursor prototype and a real customer problem. We plug in as your product and engineering arm from week one.",
+    aside: "No six-month recruitment. No discovery quarter.",
+  },
+  {
+    n: "03",
+    tag: "Operators of existing products",
+    headline: "You have users. You need the next level.",
+    body: "Retention plateauing. Conversion stuck. Competitors moving. You have a product — you need senior judgement and build capacity without the full-time headcount.",
+    aside: "Same team on your product for as long as it takes.",
+  },
+];
+---
+
+<section class="bg-cream py-24 md:py-[120px]">
+  <div class="mx-auto max-w-[1180px] px-6">
+
+    <p class="font-mono text-xs text-coral mb-10 tracking-wider">// who_we_build_for</p>
+
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
+      <h2 class="font-serif text-5xl md:text-6xl lg:text-7xl text-navy leading-[1.0] tracking-tight max-w-xl">
+        Three founders we know well.
+      </h2>
+      <p class="text-sm text-navy-muted max-w-xs leading-relaxed md:text-right shrink-0">
+        If you're one of them, we can probably start within a week.
+      </p>
+    </div>
+
+    <!-- 3-column card grid, distinct from row-table layout -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-px rounded overflow-hidden" style="background: #d8d0a8;">
+      {profiles.map((p) => (
+        <div class="bg-cream p-8 md:p-10 flex flex-col justify-between gap-8 min-h-[360px]">
+          <!-- Top: number + tag -->
+          <div>
+            <p class="font-mono text-4xl font-bold text-coral leading-none mb-6">{p.n}</p>
+            <p class="font-serif text-2xl text-navy leading-snug mb-4">{p.tag}</p>
+            <p class="font-sans font-medium text-sm text-navy mb-3 leading-snug">{p.headline}</p>
+            <p class="text-sm text-navy-muted leading-relaxed">{p.body}</p>
+          </div>
+          <!-- Bottom: aside -->
+          <p class="font-mono text-xs border-t border-cream-deep pt-6" style="color: #b8b2d8;">{p.aside}</p>
+        </div>
+      ))}
+    </div>
+
+    <p class="mt-10 text-sm text-navy-muted">
+      None of these fit exactly?{" "}
+      <a href="mailto:workshop@allshapes.io" class="text-coral hover:underline">Tell us what you're building →</a>
+    </p>
+  </div>
+</section>

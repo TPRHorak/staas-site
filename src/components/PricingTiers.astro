@@ -1,5 +1,4 @@
 ---
-// Brief §5 Home §7 — Move #2. Copy from STAAS_SITE_COPY.md §Pricing
 const tiers = [
   {
     name: "Launch",
@@ -46,67 +45,71 @@ const tiers = [
 ];
 ---
 
-<section id="pricing" class="bg-cream-deep py-24 md:py-[120px]">
+<section id="pricing" class="bg-cream py-24 md:py-[120px]">
   <div class="mx-auto max-w-[1180px] px-6">
-    <!-- Eyebrow -->
-    <p class="text-xs font-medium tracking-widest uppercase text-coral mb-6">
-      Section 04 · What it costs
-    </p>
 
-    <!-- H2 -->
-    <h2 class="font-serif text-4xl md:text-5xl text-navy leading-tight tracking-tight max-w-lg mb-16">
-      Three ways to engage.
-    </h2>
+    <p class="font-mono text-xs text-coral mb-10 tracking-wider">// after_the_sprint</p>
 
-    <!-- Tier cards -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-6">
+      <h2 class="font-serif text-5xl md:text-6xl text-navy leading-tight tracking-tight max-w-lg">
+        Three ways to engage.
+      </h2>
+      <p class="text-sm text-navy-muted md:text-right shrink-0">
+        Subscription tiers. Pause anytime. No equity.
+      </p>
+    </div>
+
+    <div class="mb-16 h-px" style="background: #d8d0a8;"></div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-px rounded overflow-hidden" style="background: #d8d0a8;">
       {tiers.map((tier) => (
         <div class:list={[
-          "relative flex flex-col rounded bg-cream p-8 border",
-          tier.tag ? "border-navy" : "border-cream-deep"
+          "relative flex flex-col p-8 md:p-10",
+          tier.tag ? "bg-navy text-cream" : "bg-cream"
         ]}>
           {tier.tag && (
-            <span class="absolute -top-3 left-6 px-3 py-1 bg-navy text-cream text-xs font-medium rounded tracking-wide">
+            <span class="absolute top-8 right-8 px-2 py-1 bg-coral text-cream text-xs font-mono rounded-sm">
               {tier.tag}
             </span>
           )}
 
-          <p class="text-xs font-medium tracking-widest uppercase text-navy-muted mb-4">{tier.name}</p>
+          <p class="font-mono text-xs mb-6" style={tier.tag ? "color: #a09cbe;" : "color: #b8b2d8;"}>{tier.name}</p>
 
-          <div class="mb-1">
-            <span class="font-serif text-4xl text-navy">{tier.price}</span>
+          <div class="mb-6">
+            <span class:list={["font-serif text-5xl md:text-6xl", tier.tag ? "text-cream" : "text-navy"]}>{tier.price}</span>
+            <p class:list={["font-mono text-xs mt-2", tier.tag ? "opacity-50" : "text-navy-muted"]}>{tier.period}</p>
           </div>
-          <p class="text-xs text-navy-muted mb-6">{tier.period}</p>
 
-          <p class="text-sm font-medium text-navy mb-1">{tier.subtitle}</p>
-          <p class="text-sm text-navy-muted mb-8 leading-relaxed">{tier.description}</p>
+          <p class:list={["text-sm font-medium mb-1", tier.tag ? "text-cream" : "text-navy"]}>{tier.subtitle}</p>
+          <p class:list={["text-sm mb-8 leading-relaxed", tier.tag ? "opacity-60" : "text-navy-muted"]}>{tier.description}</p>
 
-          <ul class="flex flex-col gap-2 mb-10 flex-1">
+          <ul class="flex flex-col gap-3 mb-10 flex-1">
             {tier.includes.map((item) => (
-              <li class="flex items-start gap-2 text-sm text-navy-muted">
-                <span class="mt-1 shrink-0 w-3.5 h-3.5 rounded-full border border-coral flex items-center justify-center">
-                  <span class="w-1.5 h-1.5 rounded-full bg-coral block"></span>
-                </span>
+              <li class:list={["flex items-start gap-3 text-sm leading-relaxed", tier.tag ? "opacity-80" : "text-navy-muted"]}>
+                <span class="text-coral shrink-0 mt-0.5">→</span>
                 {item}
               </li>
             ))}
           </ul>
 
-          <a
-            href="/workshop"
-            class="mt-auto inline-flex items-center justify-center px-5 py-3 rounded bg-navy text-cream text-sm font-medium hover:bg-navy-deep transition-colors"
-          >
-            Book the workshop
+          <a href="/sprint"
+            class:list={[
+              "mt-auto inline-flex items-center justify-center px-5 py-3 rounded-sm text-sm font-medium transition-colors",
+              tier.tag
+                ? "bg-coral text-cream hover:bg-coral-deep"
+                : "bg-navy text-cream hover:bg-navy-deep"
+            ]}>
+            Book the sprint
           </a>
         </div>
       ))}
     </div>
 
-    <!-- Strikethrough line -->
-    <p class="mt-10 text-center text-sm text-navy-muted">
-      <s class="opacity-50">Workshop kickoff €1,500</s>
-      {" "}→{" "}
-      <strong class="text-navy font-medium">free with a 6-month sign.</strong>
-    </p>
+    <div class="mt-10 flex flex-col md:flex-row md:items-center md:justify-between gap-4 border-t pt-8" style="border-color: #d8d0a8;">
+      <p class="font-serif text-xl text-navy">Same team, for years. Continuity is the product.</p>
+      <p class="font-mono text-xs text-navy-muted">
+        <s class="opacity-40">Sprint €6,250</s> → full credit toward month 1 if you sign within 14 days.
+      </p>
+    </div>
   </div>
 </section>

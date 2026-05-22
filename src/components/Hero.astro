@@ -1,56 +1,89 @@
 ---
-// Hero — brief §5 Home.Hero + STAAS_SITE_COPY.md §Home.Hero
 ---
 
-<section class="relative overflow-hidden bg-cream">
-  <!-- Decorative blobs -->
-  <div
-    class="pointer-events-none absolute -top-24 -right-32 w-[480px] h-[480px] rounded-full opacity-60"
-    style="background: #F8DA8A; filter: blur(80px);"
-    aria-hidden="true"
-  ></div>
-  <div
-    class="pointer-events-none absolute top-40 -left-24 w-[320px] h-[320px] rounded-full opacity-50"
-    style="background: #F4C4DC; filter: blur(64px);"
-    aria-hidden="true"
-  ></div>
+<section class="bg-navy-deep text-cream relative overflow-hidden">
 
-  <div class="relative mx-auto max-w-[1180px] px-6 pt-28 pb-24 md:pt-36 md:pb-32">
-    <!-- Eyebrow -->
-    <p class="text-xs font-medium tracking-widest uppercase text-coral mb-6">
-      Startup as a Service
-    </p>
+  <!-- Subtle dot grid texture -->
+  <div class="pointer-events-none absolute inset-0 opacity-[0.035]"
+    style="background-image: radial-gradient(#F2ECCA 1px, transparent 1px); background-size: 32px 32px;"
+    aria-hidden="true"></div>
 
-    <!-- H1 -->
-    <h1 class="font-serif text-5xl md:text-7xl text-navy leading-[1.05] tracking-tight max-w-3xl mb-6">
-      Experts have never been<br />
-      this <em class="not-italic text-coral">affordable.</em>
-    </h1>
+  <div class="relative mx-auto max-w-[1180px] px-6 pt-32 pb-0 md:pt-40">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-end">
 
-    <!-- Subhead -->
-    <p class="text-xl text-navy-muted max-w-xl mb-3 leading-relaxed">
-      A senior product and engineering team, on subscription — for the build that comes after the demo.
-    </p>
+      <!-- Left: copy -->
+      <div class="pb-24 md:pb-32">
 
-    <!-- Body line -->
-    <p class="text-base text-navy-muted max-w-xl mb-10 leading-relaxed">
-      The team you call when AI got you to a prototype, but you need a real product.
-    </p>
+        <h1 class="font-serif text-6xl md:text-7xl lg:text-8xl text-cream leading-[1.0] tracking-tight mb-6">
+          Startup as a Service.
+        </h1>
 
-    <!-- CTAs -->
-    <div class="flex flex-col sm:flex-row gap-4">
-      <a
-        href="#pricing"
-        class="inline-flex items-center justify-center px-7 py-3.5 rounded bg-navy text-cream text-sm font-medium hover:bg-navy-deep transition-colors"
-      >
-        See pricing
-      </a>
-      <a
-        href="/workshop"
-        class="inline-flex items-center justify-center px-7 py-3.5 rounded bg-coral text-cream text-sm font-medium hover:bg-coral-deep transition-colors"
-      >
-        Book the workshop
-      </a>
+        <p class="font-serif text-xl md:text-2xl leading-snug mb-6 max-w-md" style="color: #a09cbe;">
+          Senior product and engineering, without the hiring.
+        </p>
+
+        <p class="text-base leading-relaxed mb-10 max-w-md" style="color: #6b6690;">
+          A founding-level team on subscription. We validate your direction, build the product, and ship it — without equity, recruitment lag, or junior handoffs.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="/sprint"
+            class="inline-flex items-center justify-center px-7 py-3.5 rounded-sm bg-coral text-cream text-sm font-medium hover:bg-coral-deep transition-colors">
+            Start with the Sprint →
+          </a>
+          <a href="#pricing"
+            class="inline-flex items-center justify-center px-7 py-3.5 rounded-sm text-sm font-medium transition-colors"
+            style="border: 1px solid #3d3870; color: #6b6690;">
+            See pricing
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: work showcase — real case study images -->
+      <div class="hidden md:flex gap-3 self-end items-end pb-0">
+        <!-- Tall left image -->
+        <div class="flex-1 relative rounded overflow-hidden" style="aspect-ratio: 3/4;">
+          <img
+            src="/case-studies/five-minute-journal.jpg"
+            alt="Five Minute Journal — App of the Day"
+            class="w-full h-full object-cover"
+          />
+          <div class="absolute inset-0 flex flex-col justify-end p-5"
+            style="background: linear-gradient(to top, rgba(31,27,74,0.92) 0%, rgba(31,27,74,0.2) 60%, transparent 100%);">
+            <p class="font-mono text-xs text-coral mb-1">App of the Day</p>
+            <p class="text-cream text-sm font-medium leading-tight">Five Minute Journal</p>
+            <p class="font-mono text-xs mt-1" style="color: #a09cbe;">60k MAU · 4.8★</p>
+          </div>
+        </div>
+        <!-- Right column — two stacked images -->
+        <div class="flex flex-col gap-3" style="flex: 0 0 48%;">
+          <div class="relative rounded overflow-hidden" style="aspect-ratio: 4/3;">
+            <img
+              src="/case-studies/doctors-kitchen.jpg"
+              alt="The Doctor's Kitchen"
+              class="w-full h-full object-cover"
+            />
+            <div class="absolute inset-0 flex flex-col justify-end p-4"
+              style="background: linear-gradient(to top, rgba(31,27,74,0.92) 0%, transparent 60%);">
+              <p class="font-mono text-xs text-coral mb-1">Apple Editorial</p>
+              <p class="text-cream text-xs font-medium">Doctor's Kitchen</p>
+            </div>
+          </div>
+          <div class="relative rounded overflow-hidden" style="aspect-ratio: 4/3;">
+            <img
+              src="/case-studies/allens-camera.jpg"
+              alt="Allen's Camera"
+              class="w-full h-full object-cover"
+            />
+            <div class="absolute inset-0 flex flex-col justify-end p-4"
+              style="background: linear-gradient(to top, rgba(31,27,74,0.92) 0%, transparent 60%);">
+              <p class="font-mono text-xs text-coral mb-1">10× online revenue</p>
+              <p class="text-cream text-xs font-medium">Allen's Camera</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>

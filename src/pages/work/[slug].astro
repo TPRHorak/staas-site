@@ -42,14 +42,10 @@ const { Content } = await render(work);
           </h1>
           <p class="text-base text-navy-muted">{work.data.oneLine}</p>
         </div>
-        <div class="shrink-0 flex flex-col gap-3 md:items-end">
-          <p class="text-xs font-medium tracking-widest uppercase text-navy-muted">Partnership</p>
-          <p class="text-sm text-navy font-medium">{work.data.partnership}</p>
-          <div class="flex flex-wrap gap-2 md:justify-end">
-            {work.data.awards.map((award) => (
-              <span class="text-xs px-2 py-1 bg-yellow-soft text-navy rounded font-medium">{award}</span>
-            ))}
-          </div>
+        <div class="shrink-0 flex flex-wrap gap-2 md:justify-end self-end">
+          {work.data.awards.map((award) => (
+            <span class="text-xs px-2 py-1 bg-yellow-soft text-navy rounded font-medium">{award}</span>
+          ))}
         </div>
       </div>
     </div>
@@ -75,8 +71,8 @@ const { Content } = await render(work);
     <div class="mx-auto max-w-[1180px] px-6">
       <p class="font-serif text-3xl text-cream mb-8">Ready to build yours?</p>
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-        <a href="/workshop" class="inline-flex items-center justify-center px-8 py-4 rounded bg-coral text-cream text-sm font-medium hover:bg-coral-deep transition-colors">
-          Book the workshop
+        <a href="/sprint" class="inline-flex items-center justify-center px-8 py-4 rounded bg-coral text-cream text-sm font-medium hover:bg-coral-deep transition-colors">
+          Book the sprint
         </a>
         <a href="/work" class="text-sm text-cream opacity-60 hover:opacity-100 transition-opacity">
           ← Back to all work

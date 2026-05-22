@@ -1,0 +1,107 @@
+---
+const steps = [
+  {
+    n: "01",
+    title: "Start with the Sprint.",
+    sub: "Two weeks. €6,250. No commitment beyond it.",
+    bullets: [
+      "Map your goals, your users, and the biggest risk in the plan",
+      "Prototype the strongest approach, test it with five real users",
+      "Pick a path: one feature live, or a clear strategy for the build",
+      "You leave with working software and a written direction doc",
+    ],
+    note: "Full credit toward month 1 if you sign within 14 days.",
+  },
+  {
+    n: "02",
+    title: "Onboard in a week.",
+    sub: "No ramp-up theatre.",
+    bullets: [
+      "Senior team fully across codebase and Sprint findings",
+      "First subscription sprint scoped before day five",
+      "Second feature in design before week one closes",
+      "Existing codebase audited, debt flagged, priorities set",
+    ],
+    note: "The Sprint was the discovery. We build from there.",
+  },
+  {
+    n: "03",
+    title: "Ship every two weeks.",
+    sub: "Working software, not status emails.",
+    bullets: [
+      "End-to-end features on a two-week cadence",
+      "Full release cycle: beta, App Store, production",
+      "Weekly call, direct access to the engineers building",
+      "You know what's coming before it's built",
+    ],
+    note: "Most teams spend 90 days on a discovery doc. We ship in that time.",
+  },
+  {
+    n: "04",
+    title: "Learn and plan what's next.",
+    sub: "Every cycle is smarter than the last.",
+    bullets: [
+      "Beta users in the product inside 30 days",
+      "Sprint 2 planned against what they actually do",
+      "Pause up to 60 days if you need to, no penalty",
+      "Same people on your product — no rotation, no handover",
+    ],
+    note: "We don't disappear after launch. That's when the work starts.",
+  },
+];
+---
+
+<section class="py-24 md:py-[120px]" style="background: #1F1B4A;">
+  <div class="mx-auto max-w-[1180px] px-6">
+
+    <p class="font-mono text-xs text-coral mb-10 tracking-wider">// from_sprint_to_shipping</p>
+
+    <div class="flex flex-col md:flex-row md:items-end gap-6 mb-20">
+      <h2 class="font-serif text-5xl md:text-6xl lg:text-7xl text-cream leading-[1.0] tracking-tight max-w-2xl">
+        From first call to live product.
+      </h2>
+      <p class="text-base max-w-sm leading-relaxed md:ml-auto md:text-right shrink-0" style="color: #a09cbe;">
+        Four steps. No surprises. Here's what we do and when.
+      </p>
+    </div>
+
+    <!-- 2×2 card grid — distinct from SLS row-table -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-px rounded overflow-hidden" style="background: #3d3870;">
+      {steps.map((step) => (
+        <div class="p-8 md:p-10 flex flex-col gap-6" style="background: #2B2660;">
+          <!-- Step number + title -->
+          <div class="flex items-start gap-5">
+            <span class="font-mono text-5xl text-coral font-bold leading-none shrink-0">{step.n}</span>
+            <div>
+              <p class="font-serif text-xl text-cream leading-snug">{step.title}</p>
+              <p class="font-mono text-xs mt-1" style="color: #575280;">{step.sub}</p>
+            </div>
+          </div>
+          <!-- Bullets -->
+          <ul class="flex flex-col gap-3 border-t border-b py-6" style="border-color: #3d3870;">
+            {step.bullets.map((b) => (
+              <li class="flex items-start gap-3 text-sm leading-relaxed" style="color: #a09cbe;">
+                <span class="text-coral mt-0.5 shrink-0">→</span>
+                {b}
+              </li>
+            ))}
+          </ul>
+          <!-- Note -->
+          <p class="font-mono text-xs leading-relaxed" style="color: #575280;">{step.note}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-12 flex flex-col sm:flex-row gap-4">
+      <a href="/sprint"
+        class="inline-flex items-center justify-center px-7 py-3.5 rounded-sm bg-coral text-cream text-sm font-medium hover:bg-coral-deep transition-colors">
+        Book the Sprint →
+      </a>
+      <a href="mailto:workshop@allshapes.io"
+        class="inline-flex items-center justify-center px-7 py-3.5 rounded-sm text-sm font-medium transition-colors"
+        style="border: 1px solid #3d3870; color: #a09cbe;">
+        Or just email us
+      </a>
+    </div>
+  </div>
+</section>

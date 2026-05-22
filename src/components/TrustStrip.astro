@@ -1,23 +1,21 @@
 ---
-const items = [
-  "4.8★ avg App Store rating",
-  "25,000+ five-star reviews",
-  "10-year longest partnership",
-  "Regular App of the Day features",
+const stats = [
+  { number: "4.8★", label: "avg App Store rating" },
+  { number: "25k+", label: "five-star reviews" },
+  { number: "10yr", label: "longest partnership" },
+  { number: "∞", label: "App of the Day features" },
 ];
 ---
 
-<div class="border-y border-cream-deep bg-cream-deep">
-  <div class="mx-auto max-w-[1180px] px-6 py-4">
-    <ul class="flex flex-wrap justify-center gap-x-8 gap-y-2">
-      {items.map((item, i) => (
-        <li class="flex items-center gap-8">
-          <span class="text-sm font-medium text-navy">{item}</span>
-          {i < items.length - 1 && (
-            <span class="hidden sm:inline text-navy-muted" aria-hidden="true">·</span>
-          )}
-        </li>
+<div class="bg-navy border-y border-navy-deep">
+  <div class="mx-auto max-w-[1180px] px-6 py-10 md:py-14">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-0 md:divide-x" style="border-color: #3d3870;">
+      {stats.map((s) => (
+        <div class="flex flex-col items-center text-center md:px-8">
+          <span class="font-serif text-4xl md:text-5xl text-coral mb-2">{s.number}</span>
+          <span class="text-xs font-medium tracking-widest uppercase" style="color: #a09cbe;">{s.label}</span>
+        </div>
       ))}
-    </ul>
+    </div>
   </div>
 </div>

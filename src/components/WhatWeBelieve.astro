@@ -1,0 +1,57 @@
+---
+const believes = [
+  { title: "Judgement over speed.", body: "AI made code cheap. Senior taste got rare. We sell both." },
+  { title: "Right-sizing.", body: "Build the cheapest thing that scales. Tell you what not to build." },
+  { title: "The change in their life is the product.", body: "Real-life impact → customer success → retention → LTV. That order matters." },
+  { title: "Same team, for years.", body: "Continuity is the product. Seniors who learn your business stay on it." },
+  { title: "Published pricing. No equity.", body: "Rates on the website. Founder keeps the cap table." },
+];
+
+const wonts = [
+  { title: "Discovery theatre.", body: "Quarter-long decks pretending to be planning." },
+  { title: "Up-selling complexity.", body: "AI features when a database does the job." },
+  { title: "Optimising for DAU.", body: "Vanity metrics that don't track the user's life getting better." },
+  { title: "Rotating juniors.", body: "Senior pitches; juniors execute; you find out in month four." },
+  { title: "Equity for execution.", body: "Venture studios that take 30% for the team." },
+];
+---
+
+<section class="py-24 md:py-[120px]" style="background: #2B2660;">
+  <div class="mx-auto max-w-[1180px] px-6">
+
+    <p class="font-mono text-xs mb-10 tracking-wider" style="color: #575280;">// what_we_believe</p>
+
+    <h2 class="font-serif text-5xl md:text-6xl text-cream leading-tight tracking-tight max-w-xl mb-4">
+      What we do.<br/>What we don't.
+    </h2>
+    <p class="text-base mb-16 max-w-md leading-relaxed" style="color: #a09cbe;">
+      Hire us if these match. Don't if they don't.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-px rounded overflow-hidden" style="background: #3d3870;">
+
+      <!-- LEFT: We do — cream/light panel -->
+      <div class="p-8 md:p-10 flex flex-col gap-0" style="background: #F2ECCA;">
+        <p class="font-sans font-semibold text-xs uppercase tracking-widest mb-8" style="color: #2B2660;">We do</p>
+        {believes.map((item, i) => (
+          <div class:list={["py-5", i < believes.length - 1 ? "border-b" : ""]} style="border-color: #d8d0a8;">
+            <p class="font-serif text-xl text-navy mb-1">{item.title}</p>
+            <p class="text-sm leading-relaxed" style="color: #6b6690;">{item.body}</p>
+          </div>
+        ))}
+      </div>
+
+      <!-- RIGHT: We don't — dark panel, strikethrough titles -->
+      <div class="p-8 md:p-10 flex flex-col gap-0" style="background: #1F1B4A;">
+        <p class="font-sans font-semibold text-xs uppercase tracking-widest mb-8" style="color: #E34C39;">We don't</p>
+        {wonts.map((item, i) => (
+          <div class:list={["py-5", i < wonts.length - 1 ? "border-b" : ""]} style="border-color: #3d3870;">
+            <p class="font-serif text-xl line-through mb-1" style="color: #575280; text-decoration-color: #E34C39;">{item.title}</p>
+            <p class="text-sm leading-relaxed" style="color: #575280;">{item.body}</p>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </div>
+</section>
