@@ -1,4 +1,33 @@
 ---
+// Wall of tiles — repeats + stagger so it feels like an endless gallery
+// Each column scrolls a different distance to give the feel of depth.
+const colA = [
+  { src: "/case-studies/five-minute-journal.jpg", label: "App of the Day", title: "Five Minute Journal" },
+  { src: "/case-studies/rnt-fitness.jpg", label: "Premium coaching", title: "RNT Fitness" },
+  { src: "/case-studies/doctors-kitchen.jpg", label: "Apple Editorial", title: "Doctor's Kitchen" },
+  { src: "/case-studies/unapp.jpg", label: "Multi-tenant SaaS", title: "Unapp" },
+];
+
+const colB = [
+  { src: "/case-studies/doctors-kitchen.jpg", label: "Daily habit", title: "Doctor's Kitchen" },
+  { src: "/case-studies/allens-camera.jpg", label: "10× revenue", title: "Allen's Camera" },
+  { src: "/case-studies/five-minute-journal.jpg", label: "60k MAU · 4.8★", title: "Five Minute Journal" },
+  { src: "/case-studies/rnt-fitness.jpg", label: "Multi-platform", title: "RNT Fitness" },
+];
+
+const colC = [
+  { src: "/case-studies/rnt-fitness.jpg", label: "Coaching SaaS", title: "RNT Fitness" },
+  { src: "/case-studies/unapp.jpg", label: "B2B platform", title: "Unapp" },
+  { src: "/case-studies/allens-camera.jpg", label: "22% higher AOV", title: "Allen's Camera" },
+  { src: "/case-studies/doctors-kitchen.jpg", label: "Subscription content", title: "Doctor's Kitchen" },
+];
+
+const colD = [
+  { src: "/case-studies/allens-camera.jpg", label: "197% growth in carts", title: "Allen's Camera" },
+  { src: "/case-studies/five-minute-journal.jpg", label: "Daily habit", title: "Five Minute Journal" },
+  { src: "/case-studies/unapp.jpg", label: "Multi-tenant", title: "Unapp" },
+  { src: "/case-studies/doctors-kitchen.jpg", label: "Health & nutrition", title: "Doctor's Kitchen" },
+];
 ---
 
 <section class="bg-navy-deep text-cream relative overflow-hidden">
@@ -9,10 +38,10 @@
     aria-hidden="true"></div>
 
   <div class="relative mx-auto max-w-[1180px] px-6 pt-32 pb-0 md:pt-40">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-end">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-end relative">
 
       <!-- Left: copy -->
-      <div class="pb-24 md:pb-32">
+      <div class="pb-24 md:pb-32 relative z-30">
 
         <p class="font-mono text-xs tracking-wider mb-8" style="color: #a09cbe;">
           Startup as a Service · <span class="text-cream">by All Shapes</span>
@@ -48,51 +77,73 @@
         </p>
       </div>
 
-      <!-- Right: work showcase — real case study images -->
-      <div class="hidden md:flex gap-3 self-end items-end pb-0">
-        <!-- Tall left image -->
-        <div class="flex-1 relative rounded overflow-hidden" style="aspect-ratio: 3/4;">
-          <img
-            src="/case-studies/five-minute-journal.jpg"
-            alt="Five Minute Journal — App of the Day"
-            class="w-full h-full object-cover"
-          />
-          <div class="absolute inset-0 flex flex-col justify-end p-5"
-            style="background: linear-gradient(to top, rgba(31,27,74,0.92) 0%, rgba(31,27,74,0.2) 60%, transparent 100%);">
-            <p class="font-mono text-xs text-coral mb-1">App of the Day · Daily habit</p>
-            <p class="text-cream text-sm font-medium leading-tight">Five Minute Journal</p>
-            <p class="font-mono text-xs mt-1" style="color: #a09cbe;">60k MAU · 4.8★ · 10 years and counting</p>
-          </div>
-        </div>
-        <!-- Right column — two stacked images -->
-        <div class="flex flex-col gap-3" style="flex: 0 0 48%;">
-          <div class="relative rounded overflow-hidden" style="aspect-ratio: 4/3;">
-            <img
-              src="/case-studies/doctors-kitchen.jpg"
-              alt="The Doctor's Kitchen"
-              class="w-full h-full object-cover"
-            />
-            <div class="absolute inset-0 flex flex-col justify-end p-4"
-              style="background: linear-gradient(to top, rgba(31,27,74,0.92) 0%, transparent 60%);">
-              <p class="font-mono text-xs text-coral mb-1">Apple Editorial</p>
-              <p class="text-cream text-xs font-medium">Doctor's Kitchen</p>
+      <!-- Right column placeholder so grid still flexes; the wall itself is positioned absolutely below -->
+      <div class="hidden md:block"></div>
+    </div>
+  </div>
+
+  <!-- Bleeding wall of tiles — absolutely positioned, extends past the right viewport edge -->
+  <div class="hidden md:block absolute top-0 right-0 bottom-0 pointer-events-none z-10" style="width: 55%;" aria-hidden="true">
+    <!-- Fade left edge into the navy bg so the wall blends into the text column -->
+    <div class="absolute inset-y-0 left-0 z-20 pointer-events-none"
+      style="width: 240px; background: linear-gradient(to right, #1F1B4A 0%, rgba(31,27,74,0.95) 40%, rgba(31,27,74,0) 100%);"></div>
+    <!-- Fade bottom edge into the next section -->
+    <div class="absolute inset-x-0 bottom-0 z-20 pointer-events-none h-32"
+      style="background: linear-gradient(to bottom, rgba(31,27,74,0) 0%, #1F1B4A 100%);"></div>
+
+    <div class="absolute inset-0 grid grid-cols-4 gap-3 p-4 pt-24 pl-12">
+      <!-- Each column staggered vertically -->
+      <div class="flex flex-col gap-3" style="transform: translateY(0);">
+        {colA.map((t) => (
+          <div class="relative rounded overflow-hidden shrink-0" style="aspect-ratio: 4/5;">
+            <img src={t.src} alt={t.title} class="w-full h-full object-cover" loading="lazy" />
+            <div class="absolute inset-0 flex flex-col justify-end p-3"
+              style="background: linear-gradient(to top, rgba(31,27,74,0.92) 0%, rgba(31,27,74,0.1) 55%, transparent 100%);">
+              <p class="font-mono text-[10px] text-coral leading-tight">{t.label}</p>
+              <p class="text-cream text-xs font-medium leading-tight mt-0.5">{t.title}</p>
             </div>
           </div>
-          <div class="relative rounded overflow-hidden" style="aspect-ratio: 4/3;">
-            <img
-              src="/case-studies/allens-camera.jpg"
-              alt="Allen's Camera"
-              class="w-full h-full object-cover"
-            />
-            <div class="absolute inset-0 flex flex-col justify-end p-4"
-              style="background: linear-gradient(to top, rgba(31,27,74,0.92) 0%, transparent 60%);">
-              <p class="font-mono text-xs text-coral mb-1">10× online revenue</p>
-              <p class="text-cream text-xs font-medium">Allen's Camera</p>
-            </div>
-          </div>
-        </div>
+        ))}
       </div>
 
+      <div class="flex flex-col gap-3" style="transform: translateY(-40px);">
+        {colB.map((t) => (
+          <div class="relative rounded overflow-hidden shrink-0" style="aspect-ratio: 4/5;">
+            <img src={t.src} alt={t.title} class="w-full h-full object-cover" loading="lazy" />
+            <div class="absolute inset-0 flex flex-col justify-end p-3"
+              style="background: linear-gradient(to top, rgba(31,27,74,0.92) 0%, rgba(31,27,74,0.1) 55%, transparent 100%);">
+              <p class="font-mono text-[10px] text-coral leading-tight">{t.label}</p>
+              <p class="text-cream text-xs font-medium leading-tight mt-0.5">{t.title}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="flex flex-col gap-3" style="transform: translateY(-10px);">
+        {colC.map((t) => (
+          <div class="relative rounded overflow-hidden shrink-0" style="aspect-ratio: 4/5;">
+            <img src={t.src} alt={t.title} class="w-full h-full object-cover" loading="lazy" />
+            <div class="absolute inset-0 flex flex-col justify-end p-3"
+              style="background: linear-gradient(to top, rgba(31,27,74,0.92) 0%, rgba(31,27,74,0.1) 55%, transparent 100%);">
+              <p class="font-mono text-[10px] text-coral leading-tight">{t.label}</p>
+              <p class="text-cream text-xs font-medium leading-tight mt-0.5">{t.title}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="flex flex-col gap-3" style="transform: translateY(-60px);">
+        {colD.map((t) => (
+          <div class="relative rounded overflow-hidden shrink-0" style="aspect-ratio: 4/5;">
+            <img src={t.src} alt={t.title} class="w-full h-full object-cover" loading="lazy" />
+            <div class="absolute inset-0 flex flex-col justify-end p-3"
+              style="background: linear-gradient(to top, rgba(31,27,74,0.92) 0%, rgba(31,27,74,0.1) 55%, transparent 100%);">
+              <p class="font-mono text-[10px] text-coral leading-tight">{t.label}</p>
+              <p class="text-cream text-xs font-medium leading-tight mt-0.5">{t.title}</p>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   </div>
 </section>
