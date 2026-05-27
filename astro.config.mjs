@@ -5,7 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://staas.allshapes.io',
+  site: 'https://startupasaservice.co',
   vite: {
     plugins: [tailwindcss()]
   }
