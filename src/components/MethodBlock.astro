@@ -1,48 +1,49 @@
 ---
-// Brief §5 Home, section 6 — Slide-5, three-column method explanation
+// Deck Section 05 — The method
 const columns = [
   {
-    title: "Senior judgement, at the top",
+    n: "01",
+    title: "Senior judgement, at the top.",
     body: "Every line of code, every product decision, reviewed by a senior who has shipped products people actually use.",
   },
   {
-    title: "AI agents in parallel underneath",
+    n: "02",
+    title: "AI agents in parallel underneath.",
     body: "Multi-agent workflows do the routine work — boilerplate, tests, infrastructure, documentation. Faster than humans, cheaper than headcount.",
   },
   {
-    title: "Expert review is the bottleneck we own",
+    n: "03",
+    title: "Expert review is the bottleneck we own.",
     body: "That's the part the market is short on. It's why a lean senior team out-ships a 20-person agency in 2026.",
   },
 ];
 ---
 
-<section class="bg-cream py-24 md:py-[120px]">
+<section class="bg-cream-deep py-24 md:py-[120px]">
   <div class="mx-auto max-w-[1180px] px-6">
     <!-- Eyebrow -->
-    <p class="text-xs font-medium tracking-widest uppercase text-coral mb-6">
-      Section 03 · The method
+    <p class="text-xs font-medium tracking-widest uppercase text-coral mb-8">
+      The method
     </p>
 
     <!-- H2 -->
-    <h2 class="font-serif text-4xl md:text-5xl text-navy leading-tight tracking-tight max-w-2xl mb-16">
+    <h2 class="font-serif text-5xl md:text-6xl lg:text-7xl text-navy leading-[1.0] tracking-tight max-w-3xl mb-20">
       Senior people, with AI doing the heavy lifting.
     </h2>
 
     <!-- Three columns -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-16">
-      {columns.map((col, i) => (
-        <div class="border-t-2 pt-6" style="border-color: #2B2660;">
-          <span class="text-xs font-medium tracking-widest uppercase text-navy-muted mb-4 block">
-            0{i + 1}
-          </span>
-          <h3 class="font-sans font-medium text-base text-navy mb-3 leading-snug">{col.title}</h3>
+      {columns.map((col) => (
+        <div class="border-t-2 pt-8" style="border-color: #2B2660;">
+          <span class="font-serif text-5xl text-coral block mb-6">{col.n}</span>
+          <h3 class="font-sans font-medium text-lg text-navy mb-4 leading-snug">{col.title}</h3>
           <p class="text-sm text-navy-muted leading-relaxed">{col.body}</p>
         </div>
       ))}
     </div>
 
     <!-- Closing line -->
-    <p class="text-base font-serif text-navy-muted max-w-2xl leading-relaxed">
+    <p class="font-serif text-2xl md:text-3xl text-navy-muted max-w-2xl leading-snug">
       AI made code cheap. Senior judgement got rare.{" "}
       <span class="text-navy">The teams that win combine both.</span>
     </p>

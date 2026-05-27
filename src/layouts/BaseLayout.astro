@@ -38,11 +38,13 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? "https://staas.al
     <!-- Favicon placeholder -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-    <!-- Google Fonts -->
+    <!-- Fonts: Recoleta (self-hosted) + Inter (system) -->
+    <link rel="preload" href="/fonts/recoleta-regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/recoleta-semibold.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
 
@@ -54,5 +56,62 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? "https://staas.al
       <slot />
     </main>
     <Footer />
+
+    <!-- Preview password gate -->
+    <script>
+      (function () {
+        const PW = 'allshapes';
+        const KEY = 'as_preview_ok';
+        if (sessionStorage.getItem(KEY) === PW) return;
+
+        document.body.style.overflow = 'hidden';
+
+        const gate = document.createElement('div');
+        gate.id = 'pw-gate';
+        gate.style.cssText = [
+          'position:fixed;inset:0;z-index:9999',
+          'background:#1F1B4A',
+          'display:flex;align-items:center;justify-content:center',
+        ].join(';');
+
+        gate.innerHTML = `
+          <div style="width:100%;max-width:360px;padding:2.5rem 2rem;text-align:center;">
+            <p style="font-family:Georgia,serif;font-size:1.75rem;color:#F2ECCA;margin:0 0 0.4rem;">All Shapes</p>
+            <p style="font-family:monospace;font-size:0.7rem;color:#575280;letter-spacing:0.1em;margin:0 0 2rem;">// preview</p>
+            <input id="pw-input" type="password" placeholder="Password"
+              style="display:block;width:100%;box-sizing:border-box;padding:0.75rem 1rem;
+                     background:#2B2660;border:1px solid #3d3870;color:#F2ECCA;
+                     font-size:0.875rem;border-radius:2px;outline:none;margin-bottom:0.75rem;" />
+            <button id="pw-btn"
+              style="display:block;width:100%;padding:0.75rem 1rem;
+                     background:#E34C39;color:#F2ECCA;font-size:0.875rem;
+                     font-weight:500;border:none;border-radius:2px;cursor:pointer;">
+              Enter →
+            </button>
+            <p id="pw-err" style="color:#E34C39;font-size:0.75rem;margin-top:0.75rem;display:none;">
+              Incorrect password.
+            </p>
+          </div>
+        `;
+
+        document.body.appendChild(gate);
+
+        function attempt() {
+          const val = (document.getElementById('pw-input') as HTMLInputElement).value;
+          if (val === PW) {
+            sessionStorage.setItem(KEY, PW);
+            gate.remove();
+            document.body.style.overflow = '';
+          } else {
+            (document.getElementById('pw-err') as HTMLElement).style.display = 'block';
+          }
+        }
+
+        document.getElementById('pw-btn')!.addEventListener('click', attempt);
+        (document.getElementById('pw-input') as HTMLInputElement).addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') attempt();
+        });
+      })();
+    </script>
   </body>
 </html>

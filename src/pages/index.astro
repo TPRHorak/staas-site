@@ -1,52 +1,35 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
-import TrustStrip from '../components/TrustStrip.astro';
-import AntiPositioning from '../components/AntiPositioning.astro';
-import OfferBlock from '../components/OfferBlock.astro';
-import MethodBlock from '../components/MethodBlock.astro';
+import ClientTicker from '../components/ClientTicker.astro';
+import WhyAllShapes from '../components/WhyAllShapes.astro';
+import HowWeStart from '../components/HowWeStart.astro';
+import WhoItsFor from '../components/WhoItsFor.astro';
 import PricingTiers from '../components/PricingTiers.astro';
-import RiskReversal from '../components/RiskReversal.astro';
-import Testimonials from '../components/Testimonials.astro';
+import BookFlow from '../components/BookFlow.astro';
 import SelectedWork from '../components/SelectedWork.astro';
-import RelationalLens from '../components/RelationalLens.astro';
-import NotesShelf from '../components/NotesShelf.astro';
+import Testimonials from '../components/Testimonials.astro';
+import AboutTeam from '../components/AboutTeam.astro';
+import WhatWeBelieve from '../components/WhatWeBelieve.astro';
 import FAQ from '../components/FAQ.astro';
-import AskClaude from '../components/AskClaude.astro';
 import FinalCTA from '../components/FinalCTA.astro';
 ---
 
 <BaseLayout
-  title="Startup as a Service — Experts have never been this affordable"
-  description="A senior product and engineering team, on subscription — for the build that comes after the demo."
+  title="Startup as a Service — by All Shapes. The senior team that builds products to be loved."
+  description="Customers don't meet your company — they meet your product. All Shapes is the senior team behind Five Minute Journal and The Doctor's Kitchen, switched on for your startup."
 >
-  <!-- 1. Nav (in BaseLayout) -->
-  <!-- 2. Hero -->
   <Hero />
-  <!-- 3. Trust strip -->
-  <TrustStrip />
-  <!-- 4. Anti-positioning -->
-  <AntiPositioning />
-  <!-- 5. Offer block -->
-  <OfferBlock />
-  <!-- 6. Method -->
-  <MethodBlock />
-  <!-- 7. Pricing + risk reversal -->
+  <ClientTicker />
+  <WhyAllShapes />
+  <HowWeStart />
+  <WhoItsFor />
   <PricingTiers />
-  <RiskReversal />
-  <!-- 8. Testimonials -->
-  <Testimonials />
-  <!-- 9. Selected work -->
+  <BookFlow />
   <SelectedWork />
-  <!-- 10. Relational lens -->
-  <RelationalLens />
-  <!-- 11. Notes shelf -->
-  <NotesShelf />
-  <!-- 12. FAQ -->
+  <Testimonials />
+  <AboutTeam />
+  <WhatWeBelieve />
   <FAQ />
-  <!-- 13. Ask Claude / ChatGPT -->
-  <AskClaude />
-  <!-- 14. Final CTA -->
   <FinalCTA />
-  <!-- 15. Footer (in BaseLayout) -->
 </BaseLayout>

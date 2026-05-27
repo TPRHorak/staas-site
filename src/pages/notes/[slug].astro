@@ -1,7 +1,10 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
-import { render } from 'astro:content';
+
+// Old per-note pages were replaced by the Substack-powered /notes index.
+// We keep this route alive only to 301-redirect any old URL straight to
+// Substack. The static notes content collection is still loaded so the
+// build emits one HTML file per legacy slug (for SEO redirect coverage).
 
 export async function getStaticPaths() {
   const notes = await getCollection('notes');
@@ -11,65 +14,28 @@ export async function getStaticPaths() {
   }));
 }
 
-const { note } = Astro.props;
-const { Content } = await render(note);
-const initials = note.data.author.split(' ').map((n: string) => n[0]).join('').slice(0, 2).toUpperCase();
+const SUBSTACK_HOME = 'https://tomhorak.substack.com/';
 ---
 
-<BaseLayout
-  title={`${note.data.title} — Startup as a Service`}
-  description={note.data.excerpt}
->
-  <!-- Header -->
-  <section class="bg-cream pt-28 pb-12 md:pt-36 md:pb-16">
-    <div class="mx-auto max-w-[720px] px-6">
-      <a href="/notes" class="text-xs font-medium tracking-widest uppercase text-coral hover:text-coral-deep transition-colors mb-8 inline-block">
-        ← Notes
-      </a>
-      <h1 class="font-serif text-4xl md:text-5xl text-navy leading-tight tracking-tight mb-8">
-        {note.data.title}
-      </h1>
-      <!-- Byline -->
-      <div class="flex items-center gap-3">
-        <div class="w-9 h-9 rounded-full bg-cream-deep flex items-center justify-center text-xs font-medium text-navy shrink-0">
-          {initials}
-        </div>
-        <div>
-          <p class="text-sm font-medium text-navy">{note.data.author}</p>
-          <p class="text-xs text-navy-muted">{note.data.authorRole} · {note.data.readingTime} · {note.data.publishedAt}</p>
-        </div>
-      </div>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="refresh" content={`0; url=${SUBSTACK_HOME}`} />
+    <link rel="canonical" href={SUBSTACK_HOME} />
+    <title>Moved — read on Substack</title>
+    <meta name="robots" content="noindex" />
+    <style>
+      body { font-family: ui-sans-serif, system-ui, sans-serif; background: #F2ECCA; color: #1F1B4A; }
+      .wrap { max-width: 540px; margin: 8rem auto; padding: 0 1.5rem; text-align: center; }
+      a { color: #E34C39; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <p>The notes now live on Substack.</p>
+      <p>Taking you there…</p>
+      <p><a href={SUBSTACK_HOME}>tomhorak.substack.com →</a></p>
     </div>
-  </section>
-
-  <!-- Body -->
-  <section class="bg-cream pb-24 md:pb-32">
-    <div class="mx-auto max-w-[720px] px-6">
-      <div class="prose prose-navy max-w-none
-        prose-headings:font-sans prose-headings:font-medium prose-headings:text-navy
-        prose-p:text-navy-muted prose-p:leading-relaxed prose-p:text-base
-        prose-strong:text-navy prose-strong:font-medium
-        prose-em:not-italic prose-em:text-coral
-        prose-li:text-navy-muted prose-li:text-base
-        prose-a:text-coral prose-a:no-underline hover:prose-a:underline
-      ">
-        <Content />
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer CTA -->
-  <section class="bg-cream-deep py-16 text-center">
-    <div class="mx-auto max-w-[1180px] px-6">
-      <p class="font-serif text-2xl text-navy mb-6">AI got you the prototype. We'll build the product.</p>
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-        <a href="/workshop" class="inline-flex items-center justify-center px-7 py-3.5 rounded bg-coral text-cream text-sm font-medium hover:bg-coral-deep transition-colors">
-          Book the workshop
-        </a>
-        <a href="mailto:workshop@allshapes.io" class="text-sm text-navy-muted hover:text-navy transition-colors">
-          workshop@allshapes.io
-        </a>
-      </div>
-    </div>
-  </section>
-</BaseLayout>
+  </body>
+</html>

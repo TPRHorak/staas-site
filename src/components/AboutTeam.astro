@@ -1,0 +1,86 @@
+---
+const team = [
+  {
+    name: "Thomas Horak",
+    role: "CEO & Co-Founder",
+    since: "since 2015",
+    bio: "15 years running product and engineering across consumer apps, SaaS, and ecommerce. Built All Shapes into the team behind some of the App Store's most recognised consumer products — Five Minute Journal, The Doctor's Kitchen, RNT Fitness. Thomas leads strategy, client relationships, and every meaningful product decision. He also hosts the Changing Shapes podcast — interviewing the founders building today.",
+    focus: "Product strategy · Client relationships · Pricing and scope",
+    contact: "thomas@allshapes.io",
+    linkedin: "https://www.linkedin.com/in/thomas-horak/",
+  },
+  {
+    name: "Callum McLennan",
+    role: "Operations & Co-Founder",
+    since: "since 2015",
+    bio: "Callum has run the operational side of All Shapes for a decade — how projects are scoped, staffed, and delivered, and how clients experience working with us. If a Sprint runs smoothly, that's Callum.",
+    focus: "Operations · Delivery · Client experience",
+    contact: null,
+    linkedin: "https://www.linkedin.com/in/callummclennan/",
+  },
+  {
+    name: "Jakub Heglas",
+    role: "Lead Engineer",
+    since: "engineering lead",
+    bio: "Jakub leads engineering across All Shapes products — iOS, Android, web, and backend, from App-of-the-Day consumer apps to multi-tenant SaaS platforms serving thousands of users. Every architectural decision goes through Jakub. If there's a technical risk in your product, he'll find it.",
+    focus: "Architecture · Multi-platform engineering · Technical review",
+    contact: null,
+    linkedin: "https://www.linkedin.com/in/jakub-heglas/",
+  },
+];
+---
+
+<section class="bg-cream py-24 md:py-[120px]">
+  <div class="mx-auto max-w-[1180px] px-6">
+
+    <p class="font-mono text-xs text-coral mb-10 tracking-wider">// about_us</p>
+
+    <h2 class="font-serif text-5xl md:text-6xl text-navy leading-tight tracking-tight max-w-xl mb-6">
+      The people behind the product.
+    </h2>
+    <p class="text-base text-navy-muted max-w-lg mb-20 leading-relaxed">
+      Founded by Thomas and Callum — a decade of building together. Jakub leads engineering. Every client. Every line of code. That's us.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-px rounded overflow-hidden" style="background: #d8d0a8;">
+      {team.map((person) => (
+        <div class="bg-cream p-8 md:p-12 flex flex-col gap-6">
+          <!-- Header -->
+          <div class="flex items-start justify-between">
+            <div>
+              <p class="font-serif text-3xl text-navy">{person.name}</p>
+              <p class="text-sm text-navy-muted mt-1">{person.role}</p>
+            </div>
+            <span class="font-mono text-xs shrink-0 mt-1" style="color: #b8b2d8;">// {person.since}</span>
+          </div>
+
+          <!-- Bio -->
+          <p class="text-sm text-navy-muted leading-relaxed border-t border-cream-deep pt-6">{person.bio}</p>
+
+          <!-- Focus -->
+          <div class="border-t border-cream-deep pt-6">
+            <p class="font-mono text-xs text-coral mb-2">focus</p>
+            <p class="text-sm text-navy-muted">{person.focus}</p>
+          </div>
+
+          <div class="flex flex-col gap-2 mt-auto pt-2">
+            {person.contact && (
+              <a href={`mailto:${person.contact}`} class="font-mono text-xs text-coral hover:underline">
+                {person.contact} →
+              </a>
+            )}
+            {person.linkedin && (
+              <a href={person.linkedin} target="_blank" rel="noopener noreferrer" class="font-mono text-xs text-navy-muted hover:text-coral transition-colors">
+                LinkedIn →
+              </a>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <p class="mt-8 font-mono text-xs" style="color: #b8b2d8;">
+      // UK and Europe-based. We do not offshore. Every decision — that's us.
+    </p>
+  </div>
+</section>

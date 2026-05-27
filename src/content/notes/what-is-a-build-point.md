@@ -27,12 +27,12 @@ Some calibration:
 - A redesign of an existing screen with new components — 1–2 points.
 - App Store submission with a marketing screenshot pack — 2 points.
 
-Launch tier is 18 build points / month. Scale is 36. In practice that buys you 4–8 shipped features in a month, depending on shape. Not "started." Shipped. On staging by Wednesday, on production by Friday or the following Tuesday, used by real users the week after.
+A typical month of subscription work runs to a couple of dozen points — enough for 4–8 shipped features, depending on shape. Not "started." Shipped. On staging by Wednesday, on production by Friday or the following Tuesday, used by real users the week after.
 
 Two things to know about how points work in practice.
 
 **They don't roll over.** Unused points expire at the end of the month. This is intentional. We'd rather ship something — even something small — than bank IOUs. If you have a quiet month, pause; we'd rather you do that than feel like you wasted a payment.
 
-**They're a conversation, not a contract.** If a feature looks like 3 points at the start of the sprint and turns out to be 5, we tell you on Tuesday, not on Friday. You decide whether to drop scope, pull from next sprint, or move up a tier. We've never had this conversation go badly, because nobody likes a surprise invoice and we know it.
+**They're a conversation, not a contract.** If a feature looks like 3 points at the start of the sprint and turns out to be 5, we tell you on Tuesday, not on Friday. You decide whether to drop scope, pull from next sprint, or rescope. We've never had this conversation go badly, because nobody likes a surprise invoice and we know it.
 
 The build point isn't a perfect unit. But it makes scope conversations honest, and honesty is most of what's missing in this industry.

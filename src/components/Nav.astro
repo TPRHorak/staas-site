@@ -9,10 +9,10 @@ const currentPath = Astro.url.pathname;
 ---
 
 <header class="sticky top-0 z-50 bg-cream border-b border-cream-deep">
-  <div class="mx-auto max-w-[1180px] px-6 flex items-center justify-between h-16">
+  <div class="mx-auto max-w-[1180px] px-6 flex items-center justify-between h-20">
     <!-- Logo -->
     <a href="/" class="flex items-center gap-3 shrink-0">
-      <img src="/logos/acs_logo_clean.png" alt="All Shapes" class="h-7 w-auto" />
+      <img src="/logos/all_shapes_logo.png" alt="All Shapes" class="h-9 md:h-10 w-auto" />
     </a>
 
     <!-- Nav links -->
@@ -32,10 +32,10 @@ const currentPath = Astro.url.pathname;
 
     <!-- CTA -->
     <a
-      href="/workshop"
+      href="/book"
       class="hidden md:inline-flex items-center px-4 py-2 rounded bg-coral text-cream text-sm font-medium hover:bg-coral-deep transition-colors"
     >
-      Book the workshop
+      Book a Sprint
     </a>
 
     <!-- Mobile menu toggle (progressive enhancement — JS-free open/close via checkbox) -->
@@ -55,10 +55,10 @@ const currentPath = Astro.url.pathname;
       </a>
     ))}
     <a
-      href="/workshop"
+      href="/book"
       class="inline-flex items-center justify-center px-4 py-2 rounded bg-coral text-cream text-sm font-medium hover:bg-coral-deep transition-colors"
     >
-      Book the workshop
+      Book a Sprint
     </a>
   </nav>
 </header>

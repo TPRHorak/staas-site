@@ -1,56 +1,149 @@
 ---
-// Hero — brief §5 Home.Hero + STAAS_SITE_COPY.md §Home.Hero
+// Wall of tiles — each tile is a distinct screenshot from the All Shapes portfolio.
+// No repeats. Each column staggered for depth.
+const colA = [
+  { src: "/case-studies/fmj-hero.jpg", label: "App of the Day", title: "Five Minute Journal" },
+  { src: "/case-studies/tdk-aotd.jpg", label: "Apple Editorial", title: "Doctor's Kitchen" },
+  { src: "/case-studies/rnt-hero.jpg", label: "Premium coaching", title: "RNT Fitness" },
+  { src: "/case-studies/acs-hero.jpg", label: "10× online revenue", title: "Allen's Camera" },
+];
+
+const colB = [
+  { src: "/case-studies/tdk-overview.png", label: "Daily habit", title: "Doctor's Kitchen" },
+  { src: "/case-studies/fmj-overview.jpg", label: "60k MAU · 4.8★", title: "Five Minute Journal" },
+  { src: "/case-studies/rnt-feed.png", label: "Multi-platform", title: "RNT Fitness" },
+  { src: "/case-studies/unp-hero.jpg", label: "Novel interaction", title: "Unapp" },
+];
+
+const colC = [
+  { src: "/case-studies/rnt-profiles.jpg", label: "Multi-tenant SaaS", title: "RNT Fitness" },
+  { src: "/case-studies/acs-after.jpg", label: "22% higher AOV", title: "Allen's Camera" },
+  { src: "/case-studies/sales-made-simple.png", label: "250% ROI", title: "Sales Made Simple" },
+  { src: "/case-studies/doctors-kitchen.jpg", label: "Subscription content", title: "Doctor's Kitchen" },
+];
+
+const colD = [
+  { src: "/case-studies/unp-overview.jpg", label: "Multi-service", title: "Unapp" },
+  { src: "/case-studies/five-minute-journal.jpg", label: "Habit-forming", title: "Five Minute Journal" },
+  { src: "/case-studies/allens-camera.jpg", label: "197% growth in carts", title: "Allen's Camera" },
+  { src: "/case-studies/rnt-fitness.jpg", label: "Cohort coaching", title: "RNT Fitness" },
+];
 ---
 
-<section class="relative overflow-hidden bg-cream">
-  <!-- Decorative blobs -->
-  <div
-    class="pointer-events-none absolute -top-24 -right-32 w-[480px] h-[480px] rounded-full opacity-60"
-    style="background: #F8DA8A; filter: blur(80px);"
-    aria-hidden="true"
-  ></div>
-  <div
-    class="pointer-events-none absolute top-40 -left-24 w-[320px] h-[320px] rounded-full opacity-50"
-    style="background: #F4C4DC; filter: blur(64px);"
-    aria-hidden="true"
-  ></div>
+<section class="bg-navy-deep text-cream relative overflow-hidden">
 
-  <div class="relative mx-auto max-w-[1180px] px-6 pt-28 pb-24 md:pt-36 md:pb-32">
-    <!-- Eyebrow -->
-    <p class="text-xs font-medium tracking-widest uppercase text-coral mb-6">
-      Startup as a Service
-    </p>
+  <!-- Subtle dot grid texture -->
+  <div class="pointer-events-none absolute inset-0 opacity-[0.035]"
+    style="background-image: radial-gradient(#F2ECCA 1px, transparent 1px); background-size: 32px 32px;"
+    aria-hidden="true"></div>
 
-    <!-- H1 -->
-    <h1 class="font-serif text-5xl md:text-7xl text-navy leading-[1.05] tracking-tight max-w-3xl mb-6">
-      Experts have never been<br />
-      this <em class="not-italic text-coral">affordable.</em>
-    </h1>
+  <div class="relative mx-auto max-w-[1180px] px-6 pt-32 pb-0 md:pt-40">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-end relative">
 
-    <!-- Subhead -->
-    <p class="text-xl text-navy-muted max-w-xl mb-3 leading-relaxed">
-      A senior product and engineering team, on subscription — for the build that comes after the demo.
-    </p>
+      <!-- Left: copy -->
+      <div class="pb-24 md:pb-32 relative z-30">
 
-    <!-- Body line -->
-    <p class="text-base text-navy-muted max-w-xl mb-10 leading-relaxed">
-      The team you call when AI got you to a prototype, but you need a real product.
-    </p>
+        <p class="font-mono text-xs tracking-wider mb-8" style="color: #a09cbe;">
+          Startup as a Service · <span class="text-cream">by All Shapes</span>
+        </p>
 
-    <!-- CTAs -->
-    <div class="flex flex-col sm:flex-row gap-4">
-      <a
-        href="#pricing"
-        class="inline-flex items-center justify-center px-7 py-3.5 rounded bg-navy text-cream text-sm font-medium hover:bg-navy-deep transition-colors"
-      >
-        See pricing
-      </a>
-      <a
-        href="/workshop"
-        class="inline-flex items-center justify-center px-7 py-3.5 rounded bg-coral text-cream text-sm font-medium hover:bg-coral-deep transition-colors"
-      >
-        Book the workshop
-      </a>
+        <h1 class="font-serif text-5xl md:text-5xl lg:text-6xl text-cream leading-[1.05] tracking-tight mb-8">
+          Customers don't meet your company. <span class="text-coral">They meet your product.</span>
+        </h1>
+
+        <p class="text-base leading-relaxed mb-4 max-w-md" style="color: #a09cbe;">
+          So the product is the relationship — and we build it to be loved.
+        </p>
+
+        <p class="text-base leading-relaxed mb-10 max-w-md" style="color: #8c87b0;">
+          All Shapes is the senior team behind Five Minute Journal and The Doctor's Kitchen, switched on for your startup.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="/book"
+            class="inline-flex items-center justify-center px-7 py-3.5 rounded-sm bg-coral text-cream text-sm font-medium hover:bg-coral-deep transition-colors">
+            Start with a Sprint →
+          </a>
+          <a href="/sprint"
+            class="inline-flex items-center justify-center px-7 py-3.5 rounded-sm text-sm font-medium transition-colors"
+            style="border: 1px solid #3d3870; color: #a09cbe;">
+            How it works
+          </a>
+        </div>
+
+        <p class="mt-10 font-mono text-xs leading-relaxed" style="color: #575280;">
+          Hosted by Thomas Horak — 15 years building startups,<br class="hidden md:block"/>
+          and <a href="https://www.youtube.com/@ChangingShapesPodcast" target="_blank" rel="noopener noreferrer" class="text-cream hover:text-coral transition-colors underline-offset-2 hover:underline">a podcast full of the founders doing it now →</a>
+        </p>
+      </div>
+
+      <!-- Right column placeholder so grid still flexes; the wall itself is positioned absolutely below -->
+      <div class="hidden md:block"></div>
+    </div>
+  </div>
+
+  <!-- Bleeding wall of tiles — absolutely positioned, extends past the right viewport edge -->
+  <div class="hidden md:block absolute top-0 right-0 bottom-0 pointer-events-none z-10" style="width: 55%;" aria-hidden="true">
+    <!-- Fade left edge into the navy bg so the wall blends into the text column -->
+    <div class="absolute inset-y-0 left-0 z-20 pointer-events-none"
+      style="width: 240px; background: linear-gradient(to right, #1F1B4A 0%, rgba(31,27,74,0.95) 40%, rgba(31,27,74,0) 100%);"></div>
+    <!-- Fade bottom edge into the next section -->
+    <div class="absolute inset-x-0 bottom-0 z-20 pointer-events-none h-32"
+      style="background: linear-gradient(to bottom, rgba(31,27,74,0) 0%, #1F1B4A 100%);"></div>
+
+    <div class="absolute inset-0 grid grid-cols-4 gap-3 p-4 pt-24 pl-12">
+      <!-- Each column staggered vertically -->
+      <div class="flex flex-col gap-3" style="transform: translateY(0);">
+        {colA.map((t) => (
+          <div class="relative rounded overflow-hidden shrink-0" style="aspect-ratio: 4/5;">
+            <img src={t.src} alt={t.title} class="w-full h-full object-cover" loading="lazy" />
+            <div class="absolute inset-0 flex flex-col justify-end p-3"
+              style="background: linear-gradient(to top, rgba(31,27,74,0.92) 0%, rgba(31,27,74,0.1) 55%, transparent 100%);">
+              <p class="font-mono text-[10px] text-coral leading-tight">{t.label}</p>
+              <p class="text-cream text-xs font-medium leading-tight mt-0.5">{t.title}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="flex flex-col gap-3" style="transform: translateY(-40px);">
+        {colB.map((t) => (
+          <div class="relative rounded overflow-hidden shrink-0" style="aspect-ratio: 4/5;">
+            <img src={t.src} alt={t.title} class="w-full h-full object-cover" loading="lazy" />
+            <div class="absolute inset-0 flex flex-col justify-end p-3"
+              style="background: linear-gradient(to top, rgba(31,27,74,0.92) 0%, rgba(31,27,74,0.1) 55%, transparent 100%);">
+              <p class="font-mono text-[10px] text-coral leading-tight">{t.label}</p>
+              <p class="text-cream text-xs font-medium leading-tight mt-0.5">{t.title}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="flex flex-col gap-3" style="transform: translateY(-10px);">
+        {colC.map((t) => (
+          <div class="relative rounded overflow-hidden shrink-0" style="aspect-ratio: 4/5;">
+            <img src={t.src} alt={t.title} class="w-full h-full object-cover" loading="lazy" />
+            <div class="absolute inset-0 flex flex-col justify-end p-3"
+              style="background: linear-gradient(to top, rgba(31,27,74,0.92) 0%, rgba(31,27,74,0.1) 55%, transparent 100%);">
+              <p class="font-mono text-[10px] text-coral leading-tight">{t.label}</p>
+              <p class="text-cream text-xs font-medium leading-tight mt-0.5">{t.title}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="flex flex-col gap-3" style="transform: translateY(-60px);">
+        {colD.map((t) => (
+          <div class="relative rounded overflow-hidden shrink-0" style="aspect-ratio: 4/5;">
+            <img src={t.src} alt={t.title} class="w-full h-full object-cover" loading="lazy" />
+            <div class="absolute inset-0 flex flex-col justify-end p-3"
+              style="background: linear-gradient(to top, rgba(31,27,74,0.92) 0%, rgba(31,27,74,0.1) 55%, transparent 100%);">
+              <p class="font-mono text-[10px] text-coral leading-tight">{t.label}</p>
+              <p class="text-cream text-xs font-medium leading-tight mt-0.5">{t.title}</p>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   </div>
 </section>

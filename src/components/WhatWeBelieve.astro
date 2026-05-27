@@ -1,0 +1,98 @@
+---
+const pairs = [
+  {
+    doTitle: "Judgement over speed.",
+    doBody: "AI made code cheap. Senior taste got rare. We sell both.",
+    dontTitle: "Discovery theatre.",
+    dontBody: "Quarter-long decks pretending to be planning.",
+  },
+  {
+    doTitle: "Right-sizing.",
+    doBody: "Build the cheapest thing that scales. Tell you what not to build.",
+    dontTitle: "Up-selling complexity.",
+    dontBody: "AI features when a database does the job.",
+  },
+  {
+    doTitle: "The change in their life is the product.",
+    doBody: "Real-life impact → customer success → retention → LTV. That order matters.",
+    dontTitle: "Optimising for DAU.",
+    dontBody: "Vanity metrics that don't track the user's life getting better.",
+  },
+  {
+    doTitle: "Daily-use is a craft.",
+    doBody: "Subscription apps, habit-forming products, daily tools. Ten years of getting people to come back tomorrow.",
+    dontTitle: "Optimising for launch.",
+    dontBody: "A great launch day. An empty app by Q2.",
+  },
+  {
+    doTitle: "Same team, for years.",
+    doBody: "Continuity is the product. Seniors who learn your business stay on it.",
+    dontTitle: "Rotating juniors.",
+    dontBody: "Senior pitches; juniors execute; you find out in month four.",
+  },
+  {
+    doTitle: "No equity. No lock-in theatre.",
+    doBody: "Fixed fee. Founder keeps the cap table. We earn the next sprint by being worth it.",
+    dontTitle: "Equity for execution.",
+    dontBody: "Venture studios that take 30% for the team.",
+  },
+];
+---
+
+<section class="py-24 md:py-[120px]" style="background: #2B2660;">
+  <div class="mx-auto max-w-[1180px] px-6">
+
+    <p class="font-mono text-xs mb-10 tracking-wider" style="color: #575280;">// what_we_believe</p>
+
+    <h2 class="font-serif text-5xl md:text-6xl text-cream leading-tight tracking-tight max-w-xl mb-4">
+      What we do.<br/>What we don't.
+    </h2>
+    <p class="text-base mb-16 max-w-md leading-relaxed" style="color: #a09cbe;">
+      Hire us if these match. Don't if they don't.
+    </p>
+
+    <!--
+      Single 2-col grid. CSS grid auto-flow places one DO cell next to its
+      DON'T cell on each row, and `grid-auto-rows: 1fr` (achieved here by
+      letting cells size to content within a single grid) keeps the do/don't
+      pair horizontally aligned by row height. Subtle internal border-bottom
+      dividers between rows (cream-deep on the left column, navy-border on
+      the right) — the bolder gap-px frame is gone.
+    -->
+    <div class="grid grid-cols-1 md:grid-cols-2 rounded overflow-hidden">
+
+      <!-- Header row -->
+      <div class="px-8 md:px-10 py-5" style="background: #F2ECCA; border-bottom: 1px solid #d8d0a8;">
+        <p class="font-sans font-semibold text-xs uppercase tracking-widest" style="color: #2B2660;">We do</p>
+      </div>
+      <div class="px-8 md:px-10 py-5" style="background: #1F1B4A; border-bottom: 1px solid #3d3870;">
+        <p class="font-sans font-semibold text-xs uppercase tracking-widest" style="color: #E34C39;">We don't</p>
+      </div>
+
+      {pairs.map((pair, i) => {
+        const last = i === pairs.length - 1;
+        return (
+          <>
+            <!-- DO -->
+            <div
+              class="px-8 md:px-10 py-6 flex flex-col gap-1.5"
+              style={`background: #F2ECCA; ${last ? '' : 'border-bottom: 1px solid #d8d0a8;'}`}
+            >
+              <p class="font-serif text-xl text-navy leading-snug">{pair.doTitle}</p>
+              <p class="text-sm leading-relaxed" style="color: #6b6690;">{pair.doBody}</p>
+            </div>
+            <!-- DON'T -->
+            <div
+              class="px-8 md:px-10 py-6 flex flex-col gap-1.5"
+              style={`background: #1F1B4A; ${last ? '' : 'border-bottom: 1px solid #3d3870;'}`}
+            >
+              <p class="font-serif text-xl line-through leading-snug" style="color: #575280; text-decoration-color: #E34C39;">{pair.dontTitle}</p>
+              <p class="text-sm leading-relaxed" style="color: #575280;">{pair.dontBody}</p>
+            </div>
+          </>
+        );
+      })}
+    </div>
+
+  </div>
+</section>

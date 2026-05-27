@@ -1,112 +1,90 @@
 ---
-// Brief §5 Home §7 — Move #2. Copy from STAAS_SITE_COPY.md §Pricing
-const tiers = [
-  {
-    name: "Launch",
-    price: "€12,500",
-    period: "/ month",
-    tag: null,
-    subtitle: "Single-user products",
-    description: "Apps, tools, subscription products.",
-    includes: [
-      "18 build points / month",
-      "Senior product + engineering",
-      "Maintenance during quiet phases",
-      "3-month minimum, pause up to 60 days",
-    ],
-  },
-  {
-    name: "Scale",
-    price: "€19,500",
-    period: "/ month",
-    tag: "Most common",
-    subtitle: "B2B, marketplaces, shared data",
-    description: "Coaching platforms, multi-tenant SaaS.",
-    includes: [
-      "36 build points / month",
-      "Multi-tenant architecture work",
-      "Permission, data, role design",
-      "6-month minimum",
-    ],
-  },
-  {
-    name: "Embed",
-    price: "€17.5–25.5k",
-    period: "/ month, on top of base tier",
-    tag: null,
-    subtitle: "Strategic time, embedded",
-    description: "Tom or Callum as part of your founding team.",
-    includes: [
-      "Everything in base tiers",
-      "Strategic product decisions",
-      "Investor + sales support",
-      "6-month minimum",
-    ],
-  },
-];
 ---
 
-<section id="pricing" class="bg-cream-deep py-24 md:py-[120px]">
+<section id="pricing" class="py-24 md:py-[120px]" style="background: #ECE4B8;">
   <div class="mx-auto max-w-[1180px] px-6">
-    <!-- Eyebrow -->
-    <p class="text-xs font-medium tracking-widest uppercase text-coral mb-6">
-      Section 04 · What it costs
-    </p>
 
-    <!-- H2 -->
-    <h2 class="font-serif text-4xl md:text-5xl text-navy leading-tight tracking-tight max-w-lg mb-16">
-      Three ways to engage.
-    </h2>
+    <p class="font-mono text-xs mb-10 tracking-wider" style="color: #575280;">// first_engagement</p>
 
-    <!-- Tier cards -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      {tiers.map((tier) => (
-        <div class:list={[
-          "relative flex flex-col rounded bg-cream p-8 border",
-          tier.tag ? "border-navy" : "border-cream-deep"
-        ]}>
-          {tier.tag && (
-            <span class="absolute -top-3 left-6 px-3 py-1 bg-navy text-cream text-xs font-medium rounded tracking-wide">
-              {tier.tag}
-            </span>
-          )}
-
-          <p class="text-xs font-medium tracking-widest uppercase text-navy-muted mb-4">{tier.name}</p>
-
-          <div class="mb-1">
-            <span class="font-serif text-4xl text-navy">{tier.price}</span>
-          </div>
-          <p class="text-xs text-navy-muted mb-6">{tier.period}</p>
-
-          <p class="text-sm font-medium text-navy mb-1">{tier.subtitle}</p>
-          <p class="text-sm text-navy-muted mb-8 leading-relaxed">{tier.description}</p>
-
-          <ul class="flex flex-col gap-2 mb-10 flex-1">
-            {tier.includes.map((item) => (
-              <li class="flex items-start gap-2 text-sm text-navy-muted">
-                <span class="mt-1 shrink-0 w-3.5 h-3.5 rounded-full border border-coral flex items-center justify-center">
-                  <span class="w-1.5 h-1.5 rounded-full bg-coral block"></span>
-                </span>
-                {item}
-              </li>
-            ))}
-          </ul>
-
-          <a
-            href="/workshop"
-            class="mt-auto inline-flex items-center justify-center px-5 py-3 rounded bg-navy text-cream text-sm font-medium hover:bg-navy-deep transition-colors"
-          >
-            Book the workshop
-          </a>
-        </div>
-      ))}
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-6">
+      <h2 class="font-serif text-5xl md:text-6xl text-navy leading-tight tracking-tight max-w-xl">
+        One low-risk way in.
+      </h2>
+      <p class="text-sm text-navy-muted md:text-right shrink-0 max-w-xs">
+        Start with a Sprint — a fixed, two-week piece of real work. We decide together what comes after.
+      </p>
     </div>
 
-    <!-- Strikethrough line -->
-    <p class="mt-10 text-center text-sm text-navy-muted">
-      <s class="opacity-50">Workshop kickoff €1,500</s>
-      {" "}→{" "}
-      <strong class="text-navy font-medium">free with a 6-month sign.</strong>
-    </p>
+    <div class="mb-16 h-px" style="background: #d8d0a8;"></div>
+
+    <!-- The Sprint — single, framed card -->
+    <div class="grid grid-cols-1 md:grid-cols-[1.4fr_1fr] gap-px rounded overflow-hidden" style="background: #d8d0a8;">
+
+      <!-- Left: the offer -->
+      <div class="bg-navy text-cream p-10 md:p-12 flex flex-col">
+        <p class="font-mono text-xs mb-6" style="color: #a09cbe;">// the_sprint</p>
+
+        <div class="mb-8 flex items-baseline gap-4 flex-wrap">
+          <span class="font-serif text-6xl md:text-7xl text-cream">€6,250</span>
+          <span class="font-mono text-xs" style="color: #a09cbe;">two weeks · one real outcome</span>
+        </div>
+
+        <p class="text-base leading-relaxed mb-8 max-w-md" style="color: #d8d2ee;">
+          A scoped, fixed-price engagement. You leave with working software or a tested prototype plus a buildable plan. No commitment beyond it.
+        </p>
+
+        <ul class="flex flex-col gap-3 mb-10 flex-1">
+          <li class="flex items-start gap-3 text-sm leading-relaxed" style="color: #a09cbe;">
+            <span class="text-coral shrink-0 mt-0.5">→</span>
+            Day 0 meet-and-greet — Day 1 starts as real work
+          </li>
+          <li class="flex items-start gap-3 text-sm leading-relaxed" style="color: #a09cbe;">
+            <span class="text-coral shrink-0 mt-0.5">→</span>
+            Week 1: map, prototype, test with five real users
+          </li>
+          <li class="flex items-start gap-3 text-sm leading-relaxed" style="color: #a09cbe;">
+            <span class="text-coral shrink-0 mt-0.5">→</span>
+            Week 2: build one feature live, or prove the plan
+          </li>
+          <li class="flex items-start gap-3 text-sm leading-relaxed" style="color: #a09cbe;">
+            <span class="text-coral shrink-0 mt-0.5">→</span>
+            Senior team, in your Slack — no juniors, no handoffs
+          </li>
+        </ul>
+
+        <a href="/book"
+          class="inline-flex items-center justify-center px-6 py-3.5 rounded-sm bg-coral text-cream text-sm font-medium hover:bg-coral-deep transition-colors self-start">
+          Book a Sprint →
+        </a>
+
+        <p class="font-mono text-xs mt-6" style="color: #575280;">
+          // Full credit toward month 1 if you continue within 14 days.
+        </p>
+      </div>
+
+      <!-- Right: what comes after -->
+      <div class="bg-cream p-10 md:p-12 flex flex-col">
+        <p class="font-mono text-xs mb-6" style="color: #b8b2d8;">// after_the_sprint</p>
+
+        <p class="font-serif text-2xl md:text-3xl text-navy leading-snug mb-6">
+          Tailored to your product, scoped with you.
+        </p>
+
+        <p class="text-sm text-navy-muted leading-relaxed mb-6">
+          If it's working, we move into an ongoing arrangement — sized to your product and your pace. We'll price it with you directly, once we both know what we're building.
+        </p>
+
+        <p class="text-sm text-navy-muted leading-relaxed mb-6">
+          No lock-in theatre. We earn the next sprint by being worth it — not by trapping you in a contract.
+        </p>
+
+        <p class="mt-auto font-serif text-lg text-navy leading-snug border-t pt-6" style="border-color: #d8d0a8;">
+          Same team, for years.<br/>
+          <span class="text-navy-muted">Continuity is the product.</span>
+        </p>
+      </div>
+
+    </div>
+
   </div>
 </section>
