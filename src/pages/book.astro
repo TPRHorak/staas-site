@@ -11,6 +11,11 @@ const ndaRaw = fs.readFileSync(ndaPath, 'utf8');
 // Strip frontmatter
 const ndaBody = ndaRaw.replace(/^---[\s\S]*?---\s*/m, '');
 const ndaHtml = marked.parse(ndaBody);
+
+// Build the absolute "thanks" URL from whichever origin we're rendered on.
+// Falls back to the production URL when Astro.url isn't available at build time.
+const origin = Astro.url?.origin || (Astro.site ? new URL(Astro.site).origin : 'https://staas.allshapes.io');
+const nextUrl = `${origin}/book/thanks`;
 ---
 
 <BaseLayout
@@ -46,22 +51,31 @@ const ndaHtml = marked.parse(ndaBody);
     <div class="mx-auto max-w-[820px] px-6">
 
       <!--
-        Netlify Forms wiring:
-        - name + data-netlify + bot-field honeypot
-        - hidden form-name input mirrors the form name (required on POST)
-        - action posts to /book/thanks on success (Astro page below)
+        Form backend: FormSubmit.co — zero signup. Submissions arrive as
+        formatted email at workshop@allshapes.io. First submission triggers
+        a one-time confirmation email; click the link to activate, then it
+        works forever. No API keys, no servers.
+
+        Hidden controls:
+          _subject   — email subject line
+          _next      — redirect URL after success
+          _template  — readable table format for the email body
+          _captcha   — disable FormSubmit's reCAPTCHA (the honeypot below
+                       handles bots)
+          _honey     — FormSubmit's built-in honeypot field
       -->
       <form
         name="staas-booking"
         method="POST"
-        action="/book/thanks"
-        data-netlify="true"
-        data-netlify-honeypot="bot-field"
+        action="https://formsubmit.co/workshop@allshapes.io"
         class="flex flex-col gap-0"
       >
-        <input type="hidden" name="form-name" value="staas-booking" />
-        <p class="hidden">
-          <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+        <input type="hidden" name="_subject" value="New Sprint booking via staas-site" />
+        <input type="hidden" name="_next" value={nextUrl} />
+        <input type="hidden" name="_template" value="table" />
+        <input type="hidden" name="_captcha" value="false" />
+        <p class="hidden" aria-hidden="true">
+          <label>Don't fill this out if you're human: <input name="_honey" tabindex="-1" autocomplete="off" /></label>
         </p>
 
         <!-- STEP 1 — Pick engagement -->
@@ -363,6 +377,15 @@ const ndaHtml = marked.parse(ndaBody);
           show(parseInt(btn.dataset.prev, 10));
         });
       });
+
+      // Patch FormSubmit's _next to the current origin so previews redirect
+      // to their own /book/thanks page rather than to production.
+      if (form) {
+        form.addEventListener('submit', () => {
+          const nextField = form.querySelector('input[name="_next"]');
+          if (nextField) nextField.value = window.location.origin + '/book/thanks';
+        });
+      }
     })();
   </script>
 
