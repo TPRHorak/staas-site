@@ -26,6 +26,10 @@ const work = defineCollection({
     awards: z.array(z.string()),
     icp: z.string(),
     order: z.number(),
+    // Optional: if set, the work card on /work links out to this URL
+    // and the inner /work/[slug] page is still generated but acts as a
+    // light landing that points to this external case study.
+    external: z.string().optional(),
   }),
 });
 
