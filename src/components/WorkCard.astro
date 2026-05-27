@@ -5,20 +5,38 @@ interface Props {
   hero: string;
   oneLine: string;
   awards: string[];
+  external?: string;
 }
-const { title, slug, hero, oneLine, awards } = Astro.props;
+const { title, slug, hero, oneLine, awards, external } = Astro.props;
+
+const href = external ?? `/work/${slug}`;
+const isExternal = !!external;
+const linkAttrs = isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {};
+// Welbeck only has a small square brand icon, not a wide hero. Render
+// the image with object-contain on a navy backdrop instead of cropping it.
+const iconOnly = slug === "welbeck-health";
 ---
 
 <a
-  href={`/work/${slug}`}
+  href={href}
+  {...linkAttrs}
   class="group flex flex-col rounded overflow-hidden border border-cream-deep hover:border-navy transition-colors bg-cream"
 >
   <!-- Hero image -->
-  <div class="aspect-[4/3] bg-cream-deep overflow-hidden">
+  <div
+    class:list={[
+      "aspect-[4/3] overflow-hidden",
+      iconOnly ? "" : "bg-cream-deep",
+    ]}
+    style={iconOnly ? "background: #1F1B4A;" : undefined}
+  >
     <img
       src={hero}
       alt={title}
-      class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
+      class:list={[
+        "w-full h-full group-hover:scale-[1.02] transition-transform duration-500",
+        iconOnly ? "object-contain p-14" : "object-cover",
+      ]}
       loading="lazy"
       onerror="this.style.display='none'; this.parentElement.classList.add('flex','items-center','justify-center'); this.parentElement.innerHTML += '<span class=\'text-navy-muted text-sm\'>' + this.alt + '</span>'"
     />
@@ -26,7 +44,12 @@ const { title, slug, hero, oneLine, awards } = Astro.props;
 
   <!-- Content -->
   <div class="p-6 flex flex-col flex-1">
-    <h3 class="font-sans font-medium text-base text-navy mb-1">{title}</h3>
+    <h3 class="font-sans font-medium text-base text-navy mb-1">
+      {title}
+      {isExternal && (
+        <span class="font-mono text-xs text-coral ml-2">↗</span>
+      )}
+    </h3>
     <p class="text-sm text-navy-muted mb-4 leading-relaxed flex-1">{oneLine}</p>
 
     <!-- Award badges -->

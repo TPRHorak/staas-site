@@ -1,32 +1,20 @@
 ---
-// Wall of tiles — each tile is a distinct screenshot from the All Shapes portfolio.
-// No repeats. Each column staggered for depth.
+// Two-column wall of WIDE case-study hero shots from allshapes.io.
+// All images are ~2:1 ratio so they fit the tile aspect (16:10) with
+// minimal crop — no more squashed portrait crops.
+// Each column staggered for depth; the wall bleeds past the right viewport edge.
 const colA = [
   { src: "/case-studies/fmj-hero.jpg", label: "App of the Day", title: "Five Minute Journal" },
   { src: "/case-studies/tdk-aotd.jpg", label: "Apple Editorial", title: "Doctor's Kitchen" },
-  { src: "/case-studies/rnt-hero.jpg", label: "Premium coaching", title: "RNT Fitness" },
+  { src: "/case-studies/rnt-hero.jpg", label: "Premium coaching SaaS", title: "RNT Fitness" },
   { src: "/case-studies/acs-hero.jpg", label: "10× online revenue", title: "Allen's Camera" },
 ];
 
 const colB = [
-  { src: "/case-studies/tdk-overview.png", label: "Daily habit", title: "Doctor's Kitchen" },
+  { src: "/case-studies/tdk-overview.png", label: "Daily habit · subscription", title: "Doctor's Kitchen" },
   { src: "/case-studies/fmj-overview.jpg", label: "60k MAU · 4.8★", title: "Five Minute Journal" },
-  { src: "/case-studies/rnt-feed.png", label: "Multi-platform", title: "RNT Fitness" },
-  { src: "/case-studies/unp-hero.jpg", label: "Novel interaction", title: "Unapp" },
-];
-
-const colC = [
-  { src: "/case-studies/rnt-profiles.jpg", label: "Multi-tenant SaaS", title: "RNT Fitness" },
-  { src: "/case-studies/acs-after.jpg", label: "22% higher AOV", title: "Allen's Camera" },
-  { src: "/case-studies/sales-made-simple.png", label: "250% ROI", title: "Sales Made Simple" },
-  { src: "/case-studies/doctors-kitchen.jpg", label: "Subscription content", title: "Doctor's Kitchen" },
-];
-
-const colD = [
-  { src: "/case-studies/unp-overview.jpg", label: "Multi-service", title: "Unapp" },
-  { src: "/case-studies/five-minute-journal.jpg", label: "Habit-forming", title: "Five Minute Journal" },
-  { src: "/case-studies/allens-camera.jpg", label: "197% growth in carts", title: "Allen's Camera" },
-  { src: "/case-studies/rnt-fitness.jpg", label: "Cohort coaching", title: "RNT Fitness" },
+  { src: "/case-studies/sales-made-simple.png", label: "250% ROI · B2B CPQ", title: "Sales Made Simple" },
+  { src: "/case-studies/unp-hero.jpg", label: "Novel interaction model", title: "Unapp" },
 ];
 ---
 
@@ -82,64 +70,39 @@ const colD = [
     </div>
   </div>
 
-  <!-- Bleeding wall of tiles — absolutely positioned, extends past the right viewport edge -->
-  <div class="hidden md:block absolute top-0 right-0 bottom-0 pointer-events-none z-10" style="width: 55%;" aria-hidden="true">
+  <!-- Bleeding wall of WIDE tiles — absolutely positioned, extends past the right viewport edge -->
+  <div class="hidden md:block absolute top-0 right-0 bottom-0 pointer-events-none z-10" style="width: 58%;" aria-hidden="true">
     <!-- Fade left edge into the navy bg so the wall blends into the text column -->
     <div class="absolute inset-y-0 left-0 z-20 pointer-events-none"
-      style="width: 240px; background: linear-gradient(to right, #1F1B4A 0%, rgba(31,27,74,0.95) 40%, rgba(31,27,74,0) 100%);"></div>
+      style="width: 260px; background: linear-gradient(to right, #1F1B4A 0%, rgba(31,27,74,0.95) 40%, rgba(31,27,74,0) 100%);"></div>
     <!-- Fade bottom edge into the next section -->
     <div class="absolute inset-x-0 bottom-0 z-20 pointer-events-none h-32"
       style="background: linear-gradient(to bottom, rgba(31,27,74,0) 0%, #1F1B4A 100%);"></div>
 
-    <div class="absolute inset-0 grid grid-cols-4 gap-3 p-4 pt-24 pl-12">
-      <!-- Each column staggered vertically -->
-      <div class="flex flex-col gap-3" style="transform: translateY(0);">
+    <!-- Two columns of wide tiles. Aspect 16:10 ~ 1.6:1 — close enough to the
+         source ratio (~2:1) that crops are minimal. -->
+    <div class="absolute inset-0 grid grid-cols-2 gap-5 p-6 pt-24 pl-16">
+      <div class="flex flex-col gap-5" style="transform: translateY(0);">
         {colA.map((t) => (
-          <div class="relative rounded overflow-hidden shrink-0" style="aspect-ratio: 4/5;">
+          <div class="relative rounded-md overflow-hidden shrink-0 shadow-lg" style="aspect-ratio: 16/10;">
             <img src={t.src} alt={t.title} class="w-full h-full object-cover" loading="lazy" />
-            <div class="absolute inset-0 flex flex-col justify-end p-3"
-              style="background: linear-gradient(to top, rgba(31,27,74,0.92) 0%, rgba(31,27,74,0.1) 55%, transparent 100%);">
-              <p class="font-mono text-[10px] text-coral leading-tight">{t.label}</p>
-              <p class="text-cream text-xs font-medium leading-tight mt-0.5">{t.title}</p>
+            <div class="absolute inset-0 flex flex-col justify-end p-5"
+              style="background: linear-gradient(to top, rgba(31,27,74,0.92) 0%, rgba(31,27,74,0.05) 55%, transparent 100%);">
+              <p class="font-mono text-[11px] text-coral leading-tight uppercase tracking-wider">{t.label}</p>
+              <p class="text-cream text-base font-medium leading-tight mt-1">{t.title}</p>
             </div>
           </div>
         ))}
       </div>
 
-      <div class="flex flex-col gap-3" style="transform: translateY(-40px);">
+      <div class="flex flex-col gap-5" style="transform: translateY(-80px);">
         {colB.map((t) => (
-          <div class="relative rounded overflow-hidden shrink-0" style="aspect-ratio: 4/5;">
+          <div class="relative rounded-md overflow-hidden shrink-0 shadow-lg" style="aspect-ratio: 16/10;">
             <img src={t.src} alt={t.title} class="w-full h-full object-cover" loading="lazy" />
-            <div class="absolute inset-0 flex flex-col justify-end p-3"
-              style="background: linear-gradient(to top, rgba(31,27,74,0.92) 0%, rgba(31,27,74,0.1) 55%, transparent 100%);">
-              <p class="font-mono text-[10px] text-coral leading-tight">{t.label}</p>
-              <p class="text-cream text-xs font-medium leading-tight mt-0.5">{t.title}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <div class="flex flex-col gap-3" style="transform: translateY(-10px);">
-        {colC.map((t) => (
-          <div class="relative rounded overflow-hidden shrink-0" style="aspect-ratio: 4/5;">
-            <img src={t.src} alt={t.title} class="w-full h-full object-cover" loading="lazy" />
-            <div class="absolute inset-0 flex flex-col justify-end p-3"
-              style="background: linear-gradient(to top, rgba(31,27,74,0.92) 0%, rgba(31,27,74,0.1) 55%, transparent 100%);">
-              <p class="font-mono text-[10px] text-coral leading-tight">{t.label}</p>
-              <p class="text-cream text-xs font-medium leading-tight mt-0.5">{t.title}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <div class="flex flex-col gap-3" style="transform: translateY(-60px);">
-        {colD.map((t) => (
-          <div class="relative rounded overflow-hidden shrink-0" style="aspect-ratio: 4/5;">
-            <img src={t.src} alt={t.title} class="w-full h-full object-cover" loading="lazy" />
-            <div class="absolute inset-0 flex flex-col justify-end p-3"
-              style="background: linear-gradient(to top, rgba(31,27,74,0.92) 0%, rgba(31,27,74,0.1) 55%, transparent 100%);">
-              <p class="font-mono text-[10px] text-coral leading-tight">{t.label}</p>
-              <p class="text-cream text-xs font-medium leading-tight mt-0.5">{t.title}</p>
+            <div class="absolute inset-0 flex flex-col justify-end p-5"
+              style="background: linear-gradient(to top, rgba(31,27,74,0.92) 0%, rgba(31,27,74,0.05) 55%, transparent 100%);">
+              <p class="font-mono text-[11px] text-coral leading-tight uppercase tracking-wider">{t.label}</p>
+              <p class="text-cream text-base font-medium leading-tight mt-1">{t.title}</p>
             </div>
           </div>
         ))}
