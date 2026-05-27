@@ -8,6 +8,7 @@ const works = [
     hero: "/case-studies/five-minute-journal.jpg",
     oneLine: "The daily gratitude app. 60k MAU, 4.8★.",
     awards: ["App of the Day", "4.8★", "25k+ reviews", "60k MAU"],
+    iconOnly: false,
   },
   {
     title: "The Doctor's Kitchen",
@@ -15,6 +16,7 @@ const works = [
     hero: "/case-studies/doctors-kitchen.jpg",
     oneLine: "Dr Rupy's evidence-based recipe platform.",
     awards: ["Apple editorial", "App of the Day", "4.8★", "500+ recipes"],
+    iconOnly: false,
   },
   {
     title: "RNT Fitness",
@@ -22,6 +24,7 @@ const works = [
     hero: "/case-studies/rnt-fitness.jpg",
     oneLine: "Premium coaching SaaS. Multi-tenant from day one.",
     awards: ["Multi-platform", "Multi-tenant", "Cohort-driven"],
+    iconOnly: false,
   },
   {
     title: "Allen's Camera",
@@ -29,6 +32,25 @@ const works = [
     hero: "/case-studies/allens-camera.jpg",
     oneLine: "10× online revenue. Philadelphia's most trusted camera store.",
     awards: ["10× revenue", "22% higher AOV", "197% more carts"],
+    iconOnly: false,
+  },
+  {
+    title: "Welbeck Health",
+    slug: "welbeck-health",
+    hero: "/case-studies/welbeck-health.jpg",
+    oneLine: "Private-hospital network. Five micro-sites unified into one role-aware platform.",
+    awards: ["GDPR-grade", "Role-aware SSO", "GP referral 7× faster", "13-week delivery"],
+    iconOnly: true,
+    external: "https://allshapes.io/work/welbeck-health/",
+  },
+  {
+    title: "Sales Made Simple",
+    slug: "sales-made-simple",
+    hero: "/case-studies/sales-made-simple.png",
+    oneLine: "AI-powered CPQ for HVAC, plumbing and electrical distributors.",
+    awards: ["250% ROI", "90% shorter sales cycle", "AI sales agent", "B2B CPQ"],
+    iconOnly: false,
+    external: "https://www.sms-cpq.com/",
   },
 ];
 ---
@@ -48,27 +70,39 @@ const works = [
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-px rounded overflow-hidden" style="background: #3d3870;">
-      {works.map((work) => (
-        <a href={`/work/${work.slug}`} class="group block relative overflow-hidden" style="aspect-ratio: 4/3;">
-          <img
-            src={work.hero}
-            alt={work.title}
-            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-          />
-          <!-- Overlay -->
-          <div class="absolute inset-0 flex flex-col justify-end p-8"
-            style="background: linear-gradient(to top, rgba(31,27,74,0.95) 0%, rgba(31,27,74,0.4) 50%, transparent 100%);">
-            <p class="font-mono text-xs text-coral mb-2">{work.awards[0]}</p>
-            <h3 class="font-serif text-2xl text-cream mb-2">{work.title}</h3>
-            <p class="text-sm" style="color: #a09cbe;">{work.oneLine}</p>
-            <div class="flex flex-wrap gap-2 mt-4">
-              {work.awards.slice(1).map((a) => (
-                <span class="font-mono text-xs px-2 py-1 rounded-sm" style="background: #3d3870; color: #a09cbe;">{a}</span>
-              ))}
+      {works.map((work) => {
+        const href = work.external ? work.external : `/work/${work.slug}`;
+        const isExternal = !!work.external;
+        return (
+          <a
+            href={href}
+            {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+            class="group block relative overflow-hidden"
+            style="aspect-ratio: 4/3; background: #1F1B4A;"
+          >
+            <img
+              src={work.hero}
+              alt={work.title}
+              class:list={[
+                "w-full h-full transition-transform duration-500 group-hover:scale-105",
+                work.iconOnly ? "object-contain p-16" : "object-cover",
+              ]}
+            />
+            <!-- Overlay -->
+            <div class="absolute inset-0 flex flex-col justify-end p-8"
+              style="background: linear-gradient(to top, rgba(31,27,74,0.95) 0%, rgba(31,27,74,0.4) 50%, transparent 100%);">
+              <p class="font-mono text-xs text-coral mb-2">{work.awards[0]}</p>
+              <h3 class="font-serif text-2xl text-cream mb-2">{work.title}</h3>
+              <p class="text-sm" style="color: #a09cbe;">{work.oneLine}</p>
+              <div class="flex flex-wrap gap-2 mt-4">
+                {work.awards.slice(1).map((a) => (
+                  <span class="font-mono text-xs px-2 py-1 rounded-sm" style="background: #3d3870; color: #a09cbe;">{a}</span>
+                ))}
+              </div>
             </div>
-          </div>
-        </a>
-      ))}
+          </a>
+        );
+      })}
     </div>
   </div>
 </section>
