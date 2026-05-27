@@ -51,32 +51,47 @@ const pairs = [
       Hire us if these match. Don't if they don't.
     </p>
 
-    <!-- Paired grid: each row is a do + don't, aligned -->
-    <div class="rounded overflow-hidden" style="background: #3d3870;">
+    <!--
+      Single 2-col grid. CSS grid auto-flow places one DO cell next to its
+      DON'T cell on each row, and `grid-auto-rows: 1fr` (achieved here by
+      letting cells size to content within a single grid) keeps the do/don't
+      pair horizontally aligned by row height. Subtle internal border-bottom
+      dividers between rows (cream-deep on the left column, navy-border on
+      the right) — the bolder gap-px frame is gone.
+    -->
+    <div class="grid grid-cols-1 md:grid-cols-2 rounded overflow-hidden">
+
       <!-- Header row -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-px" style="background: #3d3870;">
-        <div class="px-8 md:px-10 py-5" style="background: #F2ECCA;">
-          <p class="font-sans font-semibold text-xs uppercase tracking-widest" style="color: #2B2660;">We do</p>
-        </div>
-        <div class="px-8 md:px-10 py-5" style="background: #1F1B4A;">
-          <p class="font-sans font-semibold text-xs uppercase tracking-widest" style="color: #E34C39;">We don't</p>
-        </div>
+      <div class="px-8 md:px-10 py-5" style="background: #F2ECCA; border-bottom: 1px solid #d8d0a8;">
+        <p class="font-sans font-semibold text-xs uppercase tracking-widest" style="color: #2B2660;">We do</p>
+      </div>
+      <div class="px-8 md:px-10 py-5" style="background: #1F1B4A; border-bottom: 1px solid #3d3870;">
+        <p class="font-sans font-semibold text-xs uppercase tracking-widest" style="color: #E34C39;">We don't</p>
       </div>
 
-      {pairs.map((pair, i) => (
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-px mt-px" style="background: #3d3870;">
-          <!-- DO -->
-          <div class="px-8 md:px-10 py-6 flex flex-col gap-1.5" style="background: #F2ECCA;">
-            <p class="font-serif text-xl text-navy leading-snug">{pair.doTitle}</p>
-            <p class="text-sm leading-relaxed" style="color: #6b6690;">{pair.doBody}</p>
-          </div>
-          <!-- DON'T -->
-          <div class="px-8 md:px-10 py-6 flex flex-col gap-1.5" style="background: #1F1B4A;">
-            <p class="font-serif text-xl line-through leading-snug" style="color: #575280; text-decoration-color: #E34C39;">{pair.dontTitle}</p>
-            <p class="text-sm leading-relaxed" style="color: #575280;">{pair.dontBody}</p>
-          </div>
-        </div>
-      ))}
+      {pairs.map((pair, i) => {
+        const last = i === pairs.length - 1;
+        return (
+          <>
+            <!-- DO -->
+            <div
+              class="px-8 md:px-10 py-6 flex flex-col gap-1.5"
+              style={`background: #F2ECCA; ${last ? '' : 'border-bottom: 1px solid #d8d0a8;'}`}
+            >
+              <p class="font-serif text-xl text-navy leading-snug">{pair.doTitle}</p>
+              <p class="text-sm leading-relaxed" style="color: #6b6690;">{pair.doBody}</p>
+            </div>
+            <!-- DON'T -->
+            <div
+              class="px-8 md:px-10 py-6 flex flex-col gap-1.5"
+              style={`background: #1F1B4A; ${last ? '' : 'border-bottom: 1px solid #3d3870;'}`}
+            >
+              <p class="font-serif text-xl line-through leading-snug" style="color: #575280; text-decoration-color: #E34C39;">{pair.dontTitle}</p>
+              <p class="text-sm leading-relaxed" style="color: #575280;">{pair.dontBody}</p>
+            </div>
+          </>
+        );
+      })}
     </div>
 
   </div>
