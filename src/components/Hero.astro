@@ -1,21 +1,12 @@
 ---
-// H16 — only the three high-impact projects (Five Minute Journal,
-// Doctor's Kitchen, RNT Fitness). Each column shows two screenshots of
-// the same product so the wall still feels rich without diluting the
-// portfolio with weaker visuals.
-const colA = [
-  { src: "/case-studies/fmj-hero.jpg", label: "App of the Day", title: "Five Minute Journal" },
-  { src: "/case-studies/tdk-aotd.jpg", label: "Apple Editorial", title: "Doctor's Kitchen" },
-  { src: "/case-studies/rnt-hero.jpg", label: "Premium coaching SaaS", title: "RNT Fitness" },
-  { src: "/case-studies/fmj-overview.jpg", label: "60k MAU · 4.8★", title: "Five Minute Journal" },
-];
+import { APPS } from '../data/apps';
 
-const colB = [
-  { src: "/case-studies/tdk-overview.png", label: "Daily habit · subscription", title: "Doctor's Kitchen" },
-  { src: "/case-studies/rnt-feed.png", label: "Multi-tenant SaaS", title: "RNT Fitness" },
-  { src: "/case-studies/fmj-hero.jpg", label: "Habit-forming product", title: "Five Minute Journal" },
-  { src: "/case-studies/rnt-profiles.jpg", label: "Cohort coaching", title: "RNT Fitness" },
-];
+// Two vertical columns of app icons — 5 tiles each. Each column is
+// staggered so they don't line up horizontally; both are taller than
+// the hero section so the top and bottom tiles get clipped by the
+// section's overflow-hidden.
+const colA = [APPS[0], APPS[1], APPS[2], APPS[3], APPS[4]];
+const colB = [APPS[5], APPS[6], APPS[7], APPS[8], APPS[9]];
 ---
 
 <section class="bg-navy-deep text-cream relative overflow-hidden">
@@ -70,40 +61,32 @@ const colB = [
     </div>
   </div>
 
-  <!-- Bleeding wall of WIDE tiles — absolutely positioned, extends past the right viewport edge -->
-  <div class="hidden md:block absolute top-0 right-0 bottom-0 pointer-events-none z-10" style="width: 58%;" aria-hidden="true">
+  <!-- Two vertical columns of square app icons, bleeding past the
+       right edge of the viewport. Each column holds 5 tiles — both
+       columns are taller than the hero section, so the top and bottom
+       tiles get clipped naturally by the section's overflow-hidden. -->
+  <div class="hidden md:block absolute top-0 right-0 bottom-0 pointer-events-none z-10" style="width: 38%;" aria-hidden="true">
     <!-- Fade left edge into the navy bg so the wall blends into the text column -->
     <div class="absolute inset-y-0 left-0 z-20 pointer-events-none"
-      style="width: 260px; background: linear-gradient(to right, #1F1B4A 0%, rgba(31,27,74,0.95) 40%, rgba(31,27,74,0) 100%);"></div>
-    <!-- Fade bottom edge into the next section -->
-    <div class="absolute inset-x-0 bottom-0 z-20 pointer-events-none h-32"
-      style="background: linear-gradient(to bottom, rgba(31,27,74,0) 0%, #1F1B4A 100%);"></div>
+      style="width: 200px; background: linear-gradient(to right, #1F1B4A 0%, rgba(31,27,74,0.95) 40%, rgba(31,27,74,0) 100%);"></div>
 
-    <!-- Two columns of wide tiles. Aspect 16:10 ~ 1.6:1 — close enough to the
-         source ratio (~2:1) that crops are minimal. -->
-    <div class="absolute inset-0 grid grid-cols-2 gap-5 p-6 pt-24 pl-16">
-      <div class="flex flex-col gap-5" style="transform: translateY(0);">
-        {colA.map((t) => (
-          <div class="relative rounded-md overflow-hidden shrink-0 shadow-lg" style="aspect-ratio: 16/10;">
-            <img src={t.src} alt={t.title} class="w-full h-full object-cover" loading="lazy" />
-            <div class="absolute inset-0 flex flex-col justify-end p-5"
-              style="background: linear-gradient(to top, rgba(31,27,74,0.92) 0%, rgba(31,27,74,0.05) 55%, transparent 100%);">
-              <p class="text-[11px] text-coral leading-tight uppercase tracking-[0.16em]">{t.label}</p>
-              <p class="text-cream text-base font-medium leading-tight mt-1">{t.title}</p>
-            </div>
+    <!-- Two-column grid. Tiles are square, big, and stacked tall
+         enough that the columns spill past the section bounds. -->
+    <div class="absolute inset-0 grid grid-cols-2 gap-5 p-6 pt-0 pl-14">
+      <div class="flex flex-col gap-5" style="transform: translateY(-90px);">
+        {colA.map((app) => (
+          <div class="relative rounded-2xl overflow-hidden shrink-0 shadow-lg"
+            style="aspect-ratio: 1/1; background: #2B2660; border: 1px solid #3d3870;">
+            <img src={app.icon} alt="" class="w-full h-full object-cover" loading="lazy" />
           </div>
         ))}
       </div>
 
-      <div class="flex flex-col gap-5" style="transform: translateY(-80px);">
-        {colB.map((t) => (
-          <div class="relative rounded-md overflow-hidden shrink-0 shadow-lg" style="aspect-ratio: 16/10;">
-            <img src={t.src} alt={t.title} class="w-full h-full object-cover" loading="lazy" />
-            <div class="absolute inset-0 flex flex-col justify-end p-5"
-              style="background: linear-gradient(to top, rgba(31,27,74,0.92) 0%, rgba(31,27,74,0.05) 55%, transparent 100%);">
-              <p class="text-[11px] text-coral leading-tight uppercase tracking-[0.16em]">{t.label}</p>
-              <p class="text-cream text-base font-medium leading-tight mt-1">{t.title}</p>
-            </div>
+      <div class="flex flex-col gap-5" style="transform: translateY(20px);">
+        {colB.map((app) => (
+          <div class="relative rounded-2xl overflow-hidden shrink-0 shadow-lg"
+            style="aspect-ratio: 1/1; background: #2B2660; border: 1px solid #3d3870;">
+            <img src={app.icon} alt="" class="w-full h-full object-cover" loading="lazy" />
           </div>
         ))}
       </div>
