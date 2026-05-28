@@ -59,13 +59,13 @@ export const APPS: App[] = [
   {
     name: "MB",
     url: "https://allshapes.io",
-    icon: "/apps/mb.svg",
+    icon: "/apps/mb.png",
   },
   // Column 2
   {
     name: "Unapp",
     url: "https://www.crunchbase.com/organization/unapp",
-    icon: "/apps/unapp.svg",
+    icon: "/apps/unapp.jpeg",
   },
   {
     name: "The Food Medic Hub",
