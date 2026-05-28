@@ -1,14 +1,12 @@
 ---
-import { APPS, FEATURED_INDEX } from '../data/apps';
+import { APPS, FEATURED_INDEX, COL_LENGTHS } from '../data/apps';
 
-// Explicit column distribution. APPS is ordered so:
-//   col 0 = items 0..2 (3 tiles)
-//   col 1 = items 3..6 (4 tiles — FMJ centred at item 4, MB trailing at item 6)
-//   col 2 = items 7..9 (3 tiles)
+// Slice the flat APPS list into three columns. The data is ordered to
+// flow directly into 5 / 6 / 5 tiles.
 const cols = [
-  APPS.slice(0, 3),
-  APPS.slice(3, 7),
-  APPS.slice(7, 10),
+  APPS.slice(0, COL_LENGTHS[0]),
+  APPS.slice(COL_LENGTHS[0], COL_LENGTHS[0] + COL_LENGTHS[1]),
+  APPS.slice(COL_LENGTHS[0] + COL_LENGTHS[1]),
 ];
 ---
 
@@ -59,18 +57,30 @@ const cols = [
         </p>
       </div>
 
-      <!-- Right: corner wedge of app icons. The whole wall is tilted
-           and oversized so its corners slip past the section bounds —
-           the section's overflow-hidden does the clipping. No mask
-           fade, no links, no hover state. Pure decorative composition. -->
+      <!-- Right: oversized tilted plane of app tiles. The plane is
+           larger than its column AND vertically longer than the hero,
+           so its corners bleed past the section's overflow-hidden box.
+           Ghost (placeholder) tiles imply "many more" without faking
+           specific apps. -->
       <div class="app-wall" aria-hidden="true">
         <div class="app-wall__plane">
-          <div class="grid grid-cols-3 gap-3 md:gap-4">
+          <div class="grid grid-cols-3 gap-3 md:gap-4 items-start">
             {cols.map((col, ci) => (
               <ul class={`app-col app-col--${ci}`} role="list">
-                {col.map((app) => {
-                  const globalIndex = APPS.indexOf(app);
+                {col.map((app, i) => {
+                  // Compute the global index so we can mark the
+                  // featured FMJ tile from the flat APPS list.
+                  let globalIndex = 0;
+                  for (let k = 0; k < ci; k++) globalIndex += cols[k].length;
+                  globalIndex += i;
                   const isFeatured = globalIndex === FEATURED_INDEX;
+                  if (app.placeholder) {
+                    return (
+                      <li class="app-tile app-tile--ghost">
+                        <div class="block relative overflow-hidden rounded-xl" style="aspect-ratio: 1/1;"></div>
+                      </li>
+                    );
+                  }
                   return (
                     <li class={`app-tile ${isFeatured ? 'app-tile--featured' : ''}`}>
                       <div class="block relative overflow-hidden rounded-xl"
@@ -99,25 +109,26 @@ const cols = [
   /* ---- Wedge plane ---- */
 
   .app-wall {
-    /* Limit how far the plane can spill outside its column on the right.
-       The hero <section> already has overflow-hidden so anything that
-       falls past the section edge gets cleanly clipped. */
     position: relative;
+    /* Local clipping — defensive; the parent section already clips. */
     overflow: visible;
+    /* Constrain the plane's "anchor" to the column's height so the
+       bottom rows fall off the section's natural bottom edge. */
+    align-self: stretch;
+    min-height: 100%;
   }
 
   .app-wall__plane {
-    /* Tilt the entire grid as if it sits on a slightly rotated plane,
-       à la Apple's product compositions. Negative degree raises the
-       right edge. */
-    transform: rotate(-7deg);
-    transform-origin: 40% 40%;
-    /* Scale up slightly so the rotated grid's bounding box guarantees
-       the corners reach the section's clip line. */
-    width: 110%;
-    /* Push to the right so the right edge dives off the section into
-       the clipped void. */
-    margin-left: -2%;
+    /* Bigger than the column AND tilted harder so the corners bleed
+       past the section box. The section's overflow-hidden then makes
+       a clean wedge cut. */
+    transform: rotate(-9deg) translate(2%, -2%);
+    transform-origin: 35% 40%;
+    width: 124%;
+    margin-left: -8%;
+    /* Pull the top a bit so the upper ghost tiles bleed off the top
+       edge as well as the right and bottom. */
+    margin-top: -3rem;
   }
 
   /* ---- Columns ---- */
@@ -136,8 +147,8 @@ const cols = [
 
   /* Stagger each column vertically — magazine wave inside the tilted plane */
   .app-col--0 { transform: translateY(0); }
-  .app-col--1 { transform: translateY(-36px); }
-  .app-col--2 { transform: translateY(12px); }
+  .app-col--1 { transform: translateY(-44px); }
+  .app-col--2 { transform: translateY(20px); }
 
   /* ---- Tiles ---- */
 
@@ -147,19 +158,28 @@ const cols = [
     box-shadow: 0 12px 28px -14px rgba(0, 0, 0, 0.55);
   }
 
-  .app-icon {
-    /* Full colour — Apple-style. No filter. */
-    display: block;
+  .app-icon { display: block; }
+
+  /* Ghosts — empty translucent tiles. Read as "and more, not shown." */
+  .app-tile--ghost > div {
+    background: rgba(43, 38, 96, 0.55);
+    border: 1px dashed rgba(207, 202, 229, 0.18);
+    box-shadow: none;
+    /* Soft dot pattern hints at "icon goes here" without being literal */
+    background-image: radial-gradient(rgba(242, 236, 202, 0.07) 1.5px, transparent 1.5px);
+    background-size: 14px 14px;
+    background-position: center;
+    background-repeat: round;
   }
 
-  /* Featured (Five Minute Journal) — soft coral ring to anchor the eye. */
+  /* Featured (Five Minute Journal) — coral ring anchors the centre. */
   .app-tile--featured > div {
     box-shadow: 0 10px 28px -10px rgba(227, 76, 57, 0.55),
                 0 0 0 1.5px rgba(227, 76, 57, 0.5);
     border-color: rgba(227, 76, 57, 0.4);
   }
 
-  /* ---- Mobile — drop the tilt so the wall sits flat and centred ---- */
+  /* ---- Mobile — drop the tilt + ghosts, show real tiles flat ---- */
   @media (max-width: 768px) {
     .app-wall__plane {
       transform: none;
@@ -170,5 +190,8 @@ const cols = [
     .app-col--0 { transform: translateY(0); }
     .app-col--1 { transform: translateY(-20px); }
     .app-col--2 { transform: translateY(8px); }
+    /* Hide ghosts on small screens — they read as "missing" on mobile
+       where the bleed effect doesn't sell. */
+    .app-tile--ghost { display: none; }
   }
 </style>
