@@ -12,8 +12,19 @@ export type App = {
   icon: string;
 };
 
+// Grid is laid out as three columns. Tom asked for an additional "MB"
+// tile at the bottom of the middle column so the wall feels like it
+// keeps going past the fade — the irregular bottom edge plus the
+// edge-fade mask sells the "many more" feel.
+//
+// COL 0          COL 1                COL 2
+// Doctor's K.    Get Closer           Unapp
+// Habits         Five Minute Journal  Food Medic
+// RNT Pro        Mindful Affirms      MyGearVault
+//                MB
+
 export const APPS: App[] = [
-  // Row 1
+  // Column 0
   {
     name: "The Doctor's Kitchen",
     url: "https://apps.apple.com/us/app/the-doctors-kitchen/id1568122827",
@@ -29,7 +40,7 @@ export const APPS: App[] = [
     url: "https://apps.apple.com/us/app/rnt-pro/id6444022902",
     icon: "/apps/rnt-pro.png",
   },
-  // Row 2 — Five Minute Journal in the centre
+  // Column 1 — Five Minute Journal central, MB trailing at the bottom
   {
     name: "Get Closer",
     url: "https://apps.apple.com/us/app/get-closer-question-games/id1595567160",
@@ -45,7 +56,12 @@ export const APPS: App[] = [
     url: "https://apps.apple.com/us/app/mindful-daily-affirmations/id1627457758",
     icon: "/apps/affirmations.png",
   },
-  // Row 3
+  {
+    name: "MB",
+    url: "https://allshapes.io",
+    icon: "/apps/mb.svg",
+  },
+  // Column 2
   {
     name: "Unapp",
     url: "https://www.crunchbase.com/organization/unapp",
@@ -63,5 +79,5 @@ export const APPS: App[] = [
   },
 ];
 
-/** Index in the grid that gets featured styling (Five Minute Journal). */
+/** Tile that gets featured styling (Five Minute Journal). */
 export const FEATURED_INDEX = 4;

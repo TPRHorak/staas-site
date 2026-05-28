@@ -1,11 +1,15 @@
 ---
 import { APPS, FEATURED_INDEX } from '../data/apps';
 
-// Re-shape the flat list into three columns so we can stagger each
-// column's vertical offset independently. Five Minute Journal sits in
-// the middle of column 2 — i.e. data index 4 maps to column 2 row 2.
-const cols: typeof APPS[] = [[], [], []];
-APPS.forEach((app, i) => { cols[i % 3].push(app); });
+// Explicit column distribution. APPS is ordered so:
+//   col 0 = items 0..2 (3 tiles)
+//   col 1 = items 3..6 (4 tiles — FMJ centred at item 4, MB trailing at item 6)
+//   col 2 = items 7..9 (3 tiles)
+const cols = [
+  APPS.slice(0, 3),
+  APPS.slice(3, 7),
+  APPS.slice(7, 10),
+];
 ---
 
 <section class="bg-navy-deep text-cream relative overflow-hidden">
@@ -107,17 +111,14 @@ APPS.forEach((app, i) => { cols[i % 3].push(app); });
   /* ---- Layout ---- */
 
   .app-wall {
-    /* Edge-fade mask. Black = visible, transparent = faded. A radial-ish
-       composite that pulls the corners toward the navy background so it
-       suggests there are more apps just beyond the frame. */
+    /* Left/right crisp — the wall fills the column edge-to-edge.
+       Top/bottom fade wide so the staggered columns dissolve into
+       navy. The wider bottom fade is what sells the "continues"
+       feel, especially with the trailing MB tile. */
     -webkit-mask-image:
-      linear-gradient(to right, transparent 0%, black 18%, black 82%, transparent 100%),
-      linear-gradient(to bottom, transparent 0%, black 14%, black 86%, transparent 100%);
-    -webkit-mask-composite: source-in;
+      linear-gradient(to bottom, transparent 0%, black 22%, black 76%, transparent 100%);
             mask-image:
-      linear-gradient(to right, transparent 0%, black 18%, black 82%, transparent 100%),
-      linear-gradient(to bottom, transparent 0%, black 14%, black 86%, transparent 100%);
-            mask-composite: intersect;
+      linear-gradient(to bottom, transparent 0%, black 22%, black 76%, transparent 100%);
   }
 
   .app-col {
