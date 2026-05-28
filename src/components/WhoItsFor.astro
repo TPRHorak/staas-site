@@ -40,16 +40,19 @@ const profiles = [
     <!-- 3-column card grid, distinct from row-table layout -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-px rounded overflow-hidden" style="background: #d8d0a8;">
       {profiles.map((p) => (
-        <div class="bg-cream p-8 md:p-10 flex flex-col justify-between gap-8 min-h-[360px]">
-          <!-- Top: number + tag -->
-          <div>
+        <div class="bg-cream p-8 md:p-10 flex flex-col gap-8 min-h-[360px]">
+          <!-- Top: number + tag (grows to fill) -->
+          <div class="flex-1">
             <p class="font-serif text-4xl text-coral leading-none mb-6">{p.n}</p>
             <p class="font-serif text-2xl text-navy leading-snug mb-4">{p.tag}</p>
             <p class="font-sans font-medium text-sm text-navy mb-3 leading-snug">{p.headline}</p>
             <p class="text-sm text-navy-muted leading-relaxed">{p.body}</p>
           </div>
-          <!-- Bottom: aside -->
-          <p class="text-sm border-t border-cream-deep pt-6 italic" style="color: #8c87b0;">{p.aside}</p>
+          <!-- Bottom: aside — fixed-height slot so the border-t aligns
+               across all cards regardless of how the body wraps. -->
+          <div class="border-t border-cream-deep pt-6 min-h-[4.5rem] flex items-start">
+            <p class="text-sm italic leading-snug" style="color: #8c87b0;">{p.aside}</p>
+          </div>
         </div>
       ))}
     </div>

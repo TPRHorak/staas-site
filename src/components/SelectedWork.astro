@@ -1,33 +1,25 @@
 ---
-import WorkCard from './WorkCard.astro';
-
-// H16 — trimmed to the three high-impact projects. Allen's Camera,
-// Welbeck Health and Sales Made Simple removed (weak public visuals,
-// don't earn the space here — they still get told in person).
+// Cards modelled on allshapes.io: 16:9 landscape, rounded, full-bleed
+// image, gradient overlay, title-only — no metric chips or one-liner
+// cluttering the read. The proof is the image.
 const works = [
   {
     title: "Five Minute Journal",
     slug: "five-minute-journal",
     hero: "/case-studies/fmj-hero.jpg",
-    oneLine: "The daily gratitude app. 60k MAU, 4.8★.",
-    awards: ["App of the Day", "4.8★", "25k+ reviews", "60k MAU"],
-    iconOnly: false,
+    eyebrow: "App of the Day · 60k MAU",
   },
   {
     title: "The Doctor's Kitchen",
     slug: "doctors-kitchen",
     hero: "/case-studies/tdk-aotd.jpg",
-    oneLine: "Dr Rupy's evidence-based recipe platform.",
-    awards: ["Apple editorial", "App of the Day", "4.8★", "500+ recipes"],
-    iconOnly: false,
+    eyebrow: "Apple Editorial · 4.8★",
   },
   {
     title: "RNT Fitness",
     slug: "rnt-fitness",
     hero: "/case-studies/rnt-hero.jpg",
-    oneLine: "Premium coaching SaaS. Multi-tenant from day one.",
-    awards: ["Multi-platform", "Multi-tenant", "Cohort-driven"],
-    iconOnly: false,
+    eyebrow: "Premium coaching SaaS",
   },
 ];
 ---
@@ -36,7 +28,7 @@ const works = [
   <div class="mx-auto max-w-[1180px] px-6">
 
     <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-16">
-      <h2 class="font-serif text-5xl md:text-6xl text-cream leading-tight tracking-tight max-w-lg">
+      <h2 class="font-serif text-5xl md:text-6xl lg:text-7xl text-cream leading-[1.15] tracking-tight max-w-2xl">
         Apps people actually open.
       </h2>
       <a href="/work" class="text-sm text-coral hover:underline shrink-0">
@@ -44,40 +36,29 @@ const works = [
       </a>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-px rounded overflow-hidden" style="background: #3d3870;">
-      {works.map((work) => {
-        const href = work.external ? work.external : `/work/${work.slug}`;
-        const isExternal = !!work.external;
-        return (
-          <a
-            href={href}
-            {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-            class="group block relative overflow-hidden"
-            style="aspect-ratio: 4/3; background: #1F1B4A;"
-          >
-            <img
-              src={work.hero}
-              alt={work.title}
-              class:list={[
-                "w-full h-full transition-transform duration-500 group-hover:scale-105",
-                work.iconOnly ? "object-contain p-16" : "object-cover",
-              ]}
-            />
-            <!-- Overlay -->
-            <div class="absolute inset-0 flex flex-col justify-end p-8"
-              style="background: linear-gradient(to top, rgba(31,27,74,0.95) 0%, rgba(31,27,74,0.4) 50%, transparent 100%);">
-              <p class="text-xs uppercase tracking-widest text-coral mb-2">{work.awards[0]}</p>
-              <h3 class="font-serif text-2xl text-cream mb-2">{work.title}</h3>
-              <p class="text-sm" style="color: #a09cbe;">{work.oneLine}</p>
-              <div class="flex flex-wrap gap-2 mt-4">
-                {work.awards.slice(1).map((a) => (
-                  <span class="text-xs px-2 py-1 rounded-sm" style="background: #3d3870; color: #cfcae5;">{a}</span>
-                ))}
-              </div>
-            </div>
-          </a>
-        );
-      })}
+    <!-- 3-column grid on desktop, 1-column on mobile. Wider gap so each
+         card breathes — no gap-px frame any more. -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+      {works.map((work) => (
+        <a
+          href={`/work/${work.slug}`}
+          class="group block relative overflow-hidden rounded-xl"
+          style="aspect-ratio: 16/10; background: #2B2660;"
+        >
+          <img
+            src={work.hero}
+            alt={work.title}
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            loading="lazy"
+          />
+          <!-- Bottom gradient + title only -->
+          <div class="absolute inset-0 flex flex-col justify-end p-6 md:p-7"
+            style="background: linear-gradient(to top, rgba(31,27,74,0.96) 0%, rgba(31,27,74,0.55) 40%, rgba(31,27,74,0.05) 70%, transparent 100%);">
+            <p class="text-xs uppercase tracking-widest text-coral mb-2">{work.eyebrow}</p>
+            <h3 class="font-serif text-2xl md:text-3xl text-cream leading-[1.1]">{work.title}</h3>
+          </div>
+        </a>
+      ))}
     </div>
   </div>
 </section>
