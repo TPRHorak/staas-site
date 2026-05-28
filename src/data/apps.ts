@@ -29,70 +29,57 @@ export type App = {
 // (ghost bottom)    MB                    (ghost)
 //                   (ghost bottom)
 
-const G = (): App => ({ name: "ghost", placeholder: true });
+// Two rows of five — laid out so FMJ sits in row 1, position 3 (centre).
+// Surrounded by the apps with the strongest visual identity so the wall
+// reads well at small tile size.
+//
+// Row 1: TDK     · Habits  · FMJ ★   · Affirms  · Get Closer
+// Row 2: RNT Pro · Unapp   · MGV     · Food Med · MB
 
 export const APPS: App[] = [
-  // -- Column 0 --
+  // Row 1
   {
     name: "The Doctor's Kitchen",
-    url: "https://apps.apple.com/us/app/the-doctors-kitchen/id1568122827",
     icon: "/apps/doctors-kitchen.png",
   },
-  G(),
   {
     name: "Intelligent Change Habits",
-    url: "https://apps.apple.com/us/app/intelligent-change-habits/id1594401415",
     icon: "/apps/habits.png",
   },
   {
-    name: "RNT Pro",
-    url: "https://apps.apple.com/us/app/rnt-pro/id6444022902",
-    icon: "/apps/rnt-pro.png",
-  },
-  G(),
-  // -- Column 1 — FMJ central, MB trailing --
-  G(),
-  {
-    name: "Get Closer",
-    url: "https://apps.apple.com/us/app/get-closer-question-games/id1595567160",
-    icon: "/apps/get-closer.png",
-  },
-  {
     name: "Five Minute Journal",
-    url: "https://apps.apple.com/us/app/5-minute-journal-daily-diary/id1062945251",
     icon: "/apps/five-minute-journal.png",
   },
   {
     name: "Mindful Daily Affirmations",
-    url: "https://apps.apple.com/us/app/mindful-daily-affirmations/id1627457758",
     icon: "/apps/affirmations.png",
   },
   {
-    name: "MB",
-    icon: "/apps/mb.png",
+    name: "Get Closer",
+    icon: "/apps/get-closer.png",
   },
-  G(),
-  // -- Column 2 --
-  G(),
+  // Row 2
+  {
+    name: "RNT Pro",
+    icon: "/apps/rnt-pro.png",
+  },
   {
     name: "Unapp",
     icon: "/apps/unapp.jpeg",
   },
   {
+    name: "MyGearVault",
+    icon: "/apps/mygearvault.png",
+  },
+  {
     name: "The Food Medic Hub",
-    url: "https://hub.thefoodmedic.co.uk/",
     icon: "/apps/food-medic.png",
   },
   {
-    name: "MyGearVault",
-    url: "https://apps.apple.com/us/app/mygearvault/id1106860868",
-    icon: "/apps/mygearvault.png",
+    name: "MB",
+    icon: "/apps/mb.png",
   },
-  G(),
 ];
 
-/** Index in the flat list that gets the featured styling (FMJ). */
-export const FEATURED_INDEX = 7;
-
-/** Per-column slicing. APPS is ordered to flow into these directly. */
-export const COL_LENGTHS = [5, 6, 5] as const;
+/** Position of the featured tile (FMJ) in the flat list — row 1, col 3. */
+export const FEATURED_INDEX = 2;
