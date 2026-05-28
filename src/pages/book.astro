@@ -1,5 +1,13 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { SPRINTS, PRICE_PER_SPRINT, SPRINT_DURATION } from '../data/sprints';
+
+// Group sprints by bucket so the form renders Design / Strategy / Build sections.
+const byBucket = SPRINTS.reduce((acc, s) => {
+  (acc[s.bucket] ||= []).push(s);
+  return acc;
+}, {} as Record<string, typeof SPRINTS>);
+const buckets = ["Design", "Strategy", "Build"] as const;
 
 // Import the NDA markdown content
 import { marked } from 'marked';
@@ -25,8 +33,7 @@ const nextUrl = `${origin}/book/thanks`;
   <!-- Page header -->
   <section class="bg-navy-deep text-cream pt-32 pb-12 md:pt-40 md:pb-16">
     <div class="mx-auto max-w-[820px] px-6">
-      <p class="font-mono text-xs tracking-wider mb-6" style="color: #a09cbe;">// book_a_sprint</p>
-      <h1 class="font-serif text-5xl md:text-6xl text-cream leading-[1.05] tracking-tight mb-6">
+      <h1 class="font-serif text-5xl md:text-6xl text-cream leading-[1.2] tracking-tight mb-6">
         Start with a Sprint.
       </h1>
       <p class="text-lg leading-relaxed max-w-xl" style="color: #a09cbe;">
@@ -40,8 +47,8 @@ const nextUrl = `${origin}/book/thanks`;
         <span class="h-1 flex-1 rounded-sm transition-colors" data-step-bar="3" style="background: #3d3870;"></span>
         <span class="h-1 flex-1 rounded-sm transition-colors" data-step-bar="4" style="background: #3d3870;"></span>
       </div>
-      <p class="font-mono text-xs mt-3" style="color: #575280;">
-        <span data-step-current>1</span> of 4 · <span data-step-label>What do you need</span>
+      <p class="text-xs uppercase tracking-widest mt-3" style="color: #a09cbe;">
+        Step <span data-step-current>1</span> of 4 · <span data-step-label>What do you need</span>
       </p>
     </div>
   </section>
@@ -78,28 +85,37 @@ const nextUrl = `${origin}/book/thanks`;
           <label>Don't fill this out if you're human: <input name="_honey" tabindex="-1" autocomplete="off" /></label>
         </p>
 
-        <!-- STEP 1 — Pick engagement -->
-        <fieldset data-step="1" class="border-0 p-0 m-0 flex flex-col gap-6">
+        <!-- STEP 1 — Pick a Sprint (H7) -->
+        <fieldset data-step="1" class="border-0 p-0 m-0 flex flex-col gap-8">
           <legend class="font-serif text-3xl md:text-4xl text-navy leading-snug mb-2">
-            What do you need?
+            Which Sprint fits your moment?
           </legend>
-          <p class="text-sm text-navy-muted -mt-4 mb-2">Pick one. You can change direction at Day 0 if it turns out the other fits better.</p>
+          <p class="text-sm text-navy-muted -mt-6 mb-2">
+            Five sprints. {SPRINT_DURATION} each. {PRICE_PER_SPRINT} flat. Pick the one closest to where you are — we'll confirm on Day&nbsp;0 if a different one fits better.
+          </p>
 
-          <label class="flex gap-4 items-start p-6 rounded border cursor-pointer transition-colors hover:border-coral" style="border-color: #d8d0a8;">
-            <input type="radio" name="engagement" value="sprint-feature" required class="mt-1.5 accent-coral" />
-            <span class="flex-1">
-              <span class="font-serif text-xl text-navy block">Sprint — build a feature</span>
-              <span class="text-sm text-navy-muted block mt-1">Two weeks. €6,250. You leave with one small, scoped feature live in production.</span>
-            </span>
-          </label>
-
-          <label class="flex gap-4 items-start p-6 rounded border cursor-pointer transition-colors hover:border-coral" style="border-color: #d8d0a8;">
-            <input type="radio" name="engagement" value="sprint-plan" class="mt-1.5 accent-coral" />
-            <span class="flex-1">
-              <span class="font-serif text-xl text-navy block">Sprint — prove the plan</span>
-              <span class="text-sm text-navy-muted block mt-1">Two weeks. €6,250. You leave with a tested prototype and a buildable plan any team could execute.</span>
-            </span>
-          </label>
+          {buckets.map((bucket) => (
+            <div class="flex flex-col gap-4">
+              <p class="text-xs uppercase tracking-widest text-coral">{bucket}</p>
+              {byBucket[bucket]?.map((s) => (
+                <label class="flex gap-4 items-start p-6 rounded border cursor-pointer transition-colors hover:border-coral" style="border-color: #d8d0a8;">
+                  <input type="radio" name="engagement" value={s.id} required class="mt-1.5 accent-coral" />
+                  <span class="flex-1">
+                    <span class="font-serif text-xl text-navy block leading-snug">{s.name}</span>
+                    <span class="text-sm italic text-navy-muted block mt-1.5">"{s.anchor}"</span>
+                    <ul class="mt-3 flex flex-col gap-1">
+                      {s.alsoFor.map((line) => (
+                        <li class="flex items-start gap-2 text-sm text-navy-muted leading-snug">
+                          <span class="text-coral shrink-0">→</span>
+                          {line}
+                        </li>
+                      ))}
+                    </ul>
+                  </span>
+                </label>
+              ))}
+            </div>
+          ))}
 
           <label class="flex gap-4 items-start p-6 rounded border cursor-pointer transition-colors hover:border-coral" style="border-color: #d8d0a8;">
             <input type="radio" name="engagement" value="not-sure" class="mt-1.5 accent-coral" />
@@ -109,7 +125,11 @@ const nextUrl = `${origin}/book/thanks`;
             </span>
           </label>
 
-          <div class="flex justify-end mt-4">
+          <p class="text-xs text-navy-muted">
+            Run two sprints across buckets and the first one's cost credits forward.
+          </p>
+
+          <div class="flex justify-end mt-2">
             <button type="button" data-next="2" class="inline-flex items-center justify-center px-7 py-3.5 rounded-sm bg-coral text-cream text-sm font-medium hover:bg-coral-deep transition-colors">
               Next →
             </button>
@@ -125,25 +145,25 @@ const nextUrl = `${origin}/book/thanks`;
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <label class="flex flex-col gap-1.5">
-              <span class="font-mono text-xs text-navy-muted">// your name</span>
+              <span class="text-xs uppercase tracking-widest text-navy-muted">Your name</span>
               <input type="text" name="name" required autocomplete="name" placeholder="Jane Smith"
                 class="px-4 py-3 rounded border bg-cream-deep text-navy text-base focus:outline-none focus:border-coral"
                 style="border-color: #d8d0a8;" />
             </label>
             <label class="flex flex-col gap-1.5">
-              <span class="font-mono text-xs text-navy-muted">// email</span>
+              <span class="text-xs uppercase tracking-widest text-navy-muted">Email</span>
               <input type="email" name="email" required autocomplete="email" placeholder="jane@company.com"
                 class="px-4 py-3 rounded border bg-cream-deep text-navy text-base focus:outline-none focus:border-coral"
                 style="border-color: #d8d0a8;" />
             </label>
             <label class="flex flex-col gap-1.5">
-              <span class="font-mono text-xs text-navy-muted">// company</span>
+              <span class="text-xs uppercase tracking-widest text-navy-muted">Company</span>
               <input type="text" name="company" required autocomplete="organization" placeholder="Your company"
                 class="px-4 py-3 rounded border bg-cream-deep text-navy text-base focus:outline-none focus:border-coral"
                 style="border-color: #d8d0a8;" />
             </label>
             <label class="flex flex-col gap-1.5">
-              <span class="font-mono text-xs text-navy-muted">// role</span>
+              <span class="text-xs uppercase tracking-widest text-navy-muted">Role</span>
               <input type="text" name="role" autocomplete="organization-title" placeholder="Founder, CEO, Head of Product…"
                 class="px-4 py-3 rounded border bg-cream-deep text-navy text-base focus:outline-none focus:border-coral"
                 style="border-color: #d8d0a8;" />
@@ -151,14 +171,14 @@ const nextUrl = `${origin}/book/thanks`;
           </div>
 
           <label class="flex flex-col gap-1.5">
-            <span class="font-mono text-xs text-navy-muted">// what are you building (one or two lines)</span>
+            <span class="text-xs uppercase tracking-widest text-navy-muted">What are you building (one or two lines)</span>
             <textarea name="product" required rows="3" placeholder="A subscription app for…"
               class="px-4 py-3 rounded border bg-cream-deep text-navy text-base focus:outline-none focus:border-coral resize-y"
               style="border-color: #d8d0a8;"></textarea>
           </label>
 
           <label class="flex flex-col gap-1.5">
-            <span class="font-mono text-xs text-navy-muted">// where are you now</span>
+            <span class="text-xs uppercase tracking-widest text-navy-muted">Where are you now</span>
             <select name="stage" required
               class="px-4 py-3 rounded border bg-cream-deep text-navy text-base focus:outline-none focus:border-coral"
               style="border-color: #d8d0a8;">
@@ -172,7 +192,7 @@ const nextUrl = `${origin}/book/thanks`;
           </label>
 
           <label class="flex flex-col gap-1.5">
-            <span class="font-mono text-xs text-navy-muted">// anything else we should know (optional)</span>
+            <span class="text-xs uppercase tracking-widest text-navy-muted">Anything else we should know (optional)</span>
             <textarea name="notes" rows="3" placeholder="Codebase URL, deck link, audience size, timing…"
               class="px-4 py-3 rounded border bg-cream-deep text-navy text-base focus:outline-none focus:border-coral resize-y"
               style="border-color: #d8d0a8;"></textarea>
@@ -202,14 +222,14 @@ const nextUrl = `${origin}/book/thanks`;
           <details class="rounded border bg-cream-deep" style="border-color: #d8d0a8;">
             <summary class="cursor-pointer px-6 py-4 flex items-center justify-between text-sm font-medium text-navy list-none">
               <span class="flex items-center gap-3">
-                <span class="font-mono text-xs text-coral">// nda</span>
+                <span class="text-xs uppercase tracking-widest text-coral">NDA</span>
                 Mutual NDA (read in full)
               </span>
-              <span class="font-mono text-xs text-navy-muted">expand ↓</span>
+              <span class="text-xs text-navy-muted">expand ↓</span>
             </summary>
             <div class="prose-nda max-h-[420px] overflow-y-auto px-6 py-4 text-sm leading-relaxed text-navy-muted border-t" style="border-color: #d8d0a8;" set:html={ndaHtml}></div>
-            <div class="px-6 py-3 border-t flex items-center justify-between text-xs font-mono" style="border-color: #d8d0a8; color: #575280;">
-              <span>// Horak Consulting GmbH — All Shapes</span>
+            <div class="px-6 py-3 border-t flex items-center justify-between text-xs" style="border-color: #d8d0a8; color: #575280;">
+              <span>Horak Consulting GmbH · All Shapes</span>
               <a href="/legal/All-Shapes-NDA.docx" download class="text-coral hover:underline">Download .docx →</a>
             </div>
           </details>
@@ -257,8 +277,8 @@ const nextUrl = `${origin}/book/thanks`;
             <!-- filled in by JS -->
           </div>
 
-          <p class="font-mono text-xs leading-relaxed" style="color: #575280;">
-            // By submitting you confirm the information is accurate and that you've accepted the NDA + Terms above.
+          <p class="text-sm leading-relaxed" style="color: #8c87b0;">
+            By submitting you confirm the information is accurate and that you've accepted the NDA and Terms above.
           </p>
 
           <div class="flex justify-between gap-4 mt-4">
@@ -279,8 +299,8 @@ const nextUrl = `${origin}/book/thanks`;
   <!-- Trust footer -->
   <section class="py-12" style="background: #ECE4B8;">
     <div class="mx-auto max-w-[820px] px-6 flex flex-col md:flex-row gap-4 md:items-center md:justify-between">
-      <p class="font-mono text-xs" style="color: #575280;">
-        // Scheduling ping-pong shouldn't be the thing in your way.
+      <p class="text-sm" style="color: #575280;">
+        Scheduling ping-pong shouldn't be the thing in your way.
       </p>
       <p class="text-sm text-navy-muted">
         Rather just chat first?
@@ -356,8 +376,8 @@ const nextUrl = `${origin}/book/thanks`;
         review.innerHTML = rows
           .map(
             ([k, v]) =>
-              '<div class="flex gap-4"><span class="font-mono text-xs w-32 shrink-0 text-coral">// ' +
-              k.toLowerCase().replace(/\s+/g, '_') +
+              '<div class="flex gap-4"><span class="text-xs uppercase tracking-widest w-32 shrink-0 text-coral mt-0.5">' +
+              k +
               '</span><span class="text-navy">' +
               String(v || '').replace(/</g, '&lt;') +
               '</span></div>'

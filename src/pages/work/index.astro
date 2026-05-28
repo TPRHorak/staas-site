@@ -3,8 +3,19 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import WorkCard from '../../components/WorkCard.astro';
 import { getCollection } from 'astro:content';
 
+// H16 — trim the public portfolio to the three projects that pull
+// their weight visually. Other case studies still exist as content
+// (their /work/<slug> pages stay live) but they're filtered out of
+// the index until the assets earn their place.
+const ALLOWED = new Set([
+  'five-minute-journal',
+  'doctors-kitchen',
+  'rnt-fitness',
+]);
 const allWork = await getCollection('work');
-const works = allWork.sort((a, b) => a.data.order - b.data.order);
+const works = allWork
+  .filter((w) => ALLOWED.has(w.data.slug))
+  .sort((a, b) => a.data.order - b.data.order);
 ---
 
 <BaseLayout

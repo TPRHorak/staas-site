@@ -3,12 +3,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import ClientTicker from '../components/ClientTicker.astro';
 import WhyAllShapes from '../components/WhyAllShapes.astro';
+import SelectedWork from '../components/SelectedWork.astro';
+import Testimonials from '../components/Testimonials.astro';
 import HowWeStart from '../components/HowWeStart.astro';
 import WhoItsFor from '../components/WhoItsFor.astro';
 import PricingTiers from '../components/PricingTiers.astro';
 import BookFlow from '../components/BookFlow.astro';
-import SelectedWork from '../components/SelectedWork.astro';
-import Testimonials from '../components/Testimonials.astro';
 import AboutTeam from '../components/AboutTeam.astro';
 import WhatWeBelieve from '../components/WhatWeBelieve.astro';
 import FAQ from '../components/FAQ.astro';
@@ -22,12 +22,17 @@ import FinalCTA from '../components/FinalCTA.astro';
   <Hero />
   <ClientTicker />
   <WhyAllShapes />
+
+  <!-- H5 — proof moved up: portfolio + testimonials sit directly under
+       the "AI made building software cheap" section so the work does
+       the selling before How it works / Who it's for / Pricing. -->
+  <SelectedWork />
+  <Testimonials />
+
   <HowWeStart />
   <WhoItsFor />
   <PricingTiers />
   <BookFlow />
-  <SelectedWork />
-  <Testimonials />
   <AboutTeam />
   <WhatWeBelieve />
   <FAQ />

@@ -5,10 +5,8 @@ const steps = [
     title: "Start with a Sprint.",
     sub: "Two weeks. €6,250. One real outcome.",
     bullets: [
-      "Book in a few clicks — terms and NDA handled in the same flow",
-      "Map your goals, your users, and the biggest risk in the plan",
-      "Prototype the strongest approach, test it with five real users",
-      "Leave with working software or a tested prototype plus a buildable plan",
+      "Map your goals, your users, and the biggest risk in the plan.",
+      "Leave with working software, or a tested prototype with a buildable plan.",
     ],
     note: "Full credit toward month 1 if you continue within 14 days.",
   },
@@ -17,10 +15,8 @@ const steps = [
     title: "Onboard in a week.",
     sub: "No ramp-up theatre.",
     bullets: [
-      "Senior team fully across codebase and Sprint findings",
-      "First subscription sprint scoped before day five",
-      "Second feature in design before week one closes",
-      "Existing codebase audited, debt flagged, priorities set",
+      "Senior team across your codebase and Sprint findings by day three.",
+      "First proper sprint scoped, debt flagged, priorities set.",
     ],
     note: "The Sprint was the discovery. We build from there.",
   },
@@ -29,10 +25,9 @@ const steps = [
     title: "Ship every two weeks.",
     sub: "Working software, in your Slack.",
     bullets: [
-      "End-to-end features on a two-week cadence",
-      "Shared Slack channel with the senior team building the work",
-      "Full release cycle: beta, App Store, production",
-      "Time-boxed access — not a calendar full of status meetings",
+      "End-to-end features on a two-week cadence.",
+      "Shared Slack with the senior team — no status meetings.",
+      "Full release cycle: beta, App Store, production.",
     ],
     note: "Most teams spend 90 days on a discovery doc. We ship in that time.",
   },
@@ -41,10 +36,8 @@ const steps = [
     title: "Learn and plan what's next.",
     sub: "Every cycle is smarter than the last.",
     bullets: [
-      "Beta users in the product inside 30 days",
-      "Next sprint planned against what they actually do",
-      "Same people on your product — no rotation, no handover",
-      "Quiet phases handled — security patches, App Store, small fixes",
+      "Next sprint planned against what users actually do, not what we assumed.",
+      "Same team on your product, for years.",
     ],
     note: "We don't disappear after launch. That's when the work starts.",
   },
@@ -54,10 +47,8 @@ const steps = [
 <section id="how-it-works" class="py-24 md:py-[120px]" style="background: #1F1B4A;">
   <div class="mx-auto max-w-[1180px] px-6">
 
-    <p class="font-mono text-xs mb-10 tracking-wider" style="color: #575280;">// no_fuss</p>
-
     <div class="flex flex-col md:flex-row md:items-end gap-6 mb-12">
-      <h2 class="font-serif text-5xl md:text-6xl lg:text-7xl text-cream leading-[1.0] tracking-tight max-w-2xl">
+      <h2 class="font-serif text-5xl md:text-6xl lg:text-7xl text-cream leading-[1.2] tracking-tight max-w-2xl">
         The in-house team that isn't in-house.
       </h2>
       <p class="text-base max-w-sm leading-relaxed md:ml-auto md:text-right shrink-0" style="color: #a09cbe;">
@@ -75,10 +66,10 @@ const steps = [
         <div class="p-8 md:p-10 flex flex-col gap-6" style="background: #2B2660;">
           <!-- Step number + title -->
           <div class="flex items-start gap-5">
-            <span class="font-mono text-5xl text-coral font-bold leading-none shrink-0">{step.n}</span>
+            <span class="font-serif text-5xl text-coral leading-none shrink-0">{step.n}</span>
             <div>
               <p class="font-serif text-xl text-cream leading-snug">{step.title}</p>
-              <p class="font-mono text-xs mt-1" style="color: #575280;">{step.sub}</p>
+              <p class="text-sm mt-1.5" style="color: #a09cbe;">{step.sub}</p>
             </div>
           </div>
           <!-- Bullets -->
@@ -91,7 +82,7 @@ const steps = [
             ))}
           </ul>
           <!-- Note -->
-          <p class="font-mono text-xs leading-relaxed" style="color: #575280;">{step.note}</p>
+          <p class="text-sm leading-relaxed" style="color: #8c87b0;">{step.note}</p>
         </div>
       ))}
     </div>
@@ -106,10 +97,10 @@ const steps = [
         class="inline-flex items-center justify-center px-7 py-3.5 rounded-sm bg-coral text-cream text-sm font-medium hover:bg-coral-deep transition-colors">
         Book a Sprint →
       </a>
-      <a href="mailto:workshop@allshapes.io"
+      <a href="mailto:workshop@allshapes.io?subject=Hello%20from%20startupasaservice.co"
         class="inline-flex items-center justify-center px-7 py-3.5 rounded-sm text-sm font-medium transition-colors"
-        style="border: 1px solid #3d3870; color: #a09cbe;">
-        Or just email us
+        style="border: 1px solid #3d3870; color: #cfcae5;">
+        Get in touch
       </a>
     </div>
   </div>
