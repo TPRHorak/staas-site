@@ -1,20 +1,19 @@
 ---
+// H16 — portfolio trimmed to the three high-impact projects. The
+// generic capability tags below them give the ticker enough breadth.
 const clients = [
   "Five Minute Journal",
   "The Doctor's Kitchen",
   "RNT Fitness",
-  "Allen's Camera",
-  "MyGear Vault",
-  "Welbeck Health",
   "iOS",
   "Android",
   "SaaS",
-  "Ecommerce",
   "Consumer Apps",
   "Healthcare",
   "Fitness",
   "Nutrition",
   "Productivity",
+  "Subscription",
 ];
 
 // Duplicate for seamless loop
@@ -25,7 +24,7 @@ const doubled = [...clients, ...clients];
   <div class="ticker-track flex items-center gap-0 whitespace-nowrap" style="width: max-content;">
     {doubled.map((item, i) => (
       <span class="inline-flex items-center gap-8 px-8">
-        <span class="font-mono text-xs tracking-widest uppercase" style="color: #a09cbe;">{item}</span>
+        <span class="text-xs tracking-[0.18em] uppercase" style="color: #cfcae5;">{item}</span>
         <span class="text-coral text-xs" aria-hidden="true">✦</span>
       </span>
     ))}

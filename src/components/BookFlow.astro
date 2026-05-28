@@ -10,8 +10,6 @@ const steps = [
 <section class="py-24 md:py-[120px]" style="background: #2B2660;">
   <div class="mx-auto max-w-[1180px] px-6">
 
-    <p class="font-mono text-xs mb-10 tracking-wider" style="color: #575280;">// starting</p>
-
     <div class="flex flex-col md:flex-row md:items-end gap-6 mb-12">
       <h2 class="font-serif text-5xl md:text-6xl lg:text-7xl text-cream leading-[1.02] tracking-tight max-w-3xl">
         Starting takes moments,<br/>
@@ -26,15 +24,15 @@ const steps = [
     <ol class="grid grid-cols-1 md:grid-cols-4 gap-px rounded overflow-hidden" style="background: #3d3870;">
       {steps.map((s) => (
         <li class="p-8 md:p-10 flex flex-col gap-3" style="background: #1F1B4A;">
-          <span class="font-mono text-3xl text-coral font-bold leading-none">{s.n}</span>
+          <span class="font-serif text-4xl text-coral leading-none">{s.n}</span>
           <p class="font-serif text-xl text-cream leading-snug">{s.label}</p>
           <p class="text-sm leading-relaxed" style="color: #a09cbe;">{s.body}</p>
         </li>
       ))}
     </ol>
 
-    <p class="mt-12 font-mono text-xs leading-relaxed max-w-xl" style="color: #575280;">
-      // Scheduling ping-pong shouldn't be the thing in your way. Reach out for a chat if you'd rather — workshop@allshapes.io.
+    <p class="mt-12 text-sm leading-relaxed max-w-xl" style="color: #a09cbe;">
+      Scheduling ping-pong shouldn't be the thing in your way. Reach out for a chat if you'd rather — <a href="mailto:workshop@allshapes.io" class="text-cream hover:text-coral transition-colors underline-offset-2 hover:underline">workshop@allshapes.io</a>.
     </p>
   </div>
 </section>

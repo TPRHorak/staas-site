@@ -1,225 +1,28 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-
-/**
- * Pull recent posts from the Changing Shapes Podcast Substack at build time.
- *
- * Source: https://tomhorak.substack.com/feed
- * Each card links out to the Substack post (no local /notes/[slug] anymore).
- *
- * Graceful fallback: if the feed is unreachable at build time, we render a
- * single "Read on Substack" card so the section never breaks the build.
- */
-
-const FEED_URL = 'https://tomhorak.substack.com/feed';
-const SUBSTACK_HOME = 'https://tomhorak.substack.com/';
-
-type Item = {
-  title: string;
-  link: string;
-  pubDate: string;
-  description: string;
-  image: string | null;
-};
-
-function unwrapCdata(s: string): string {
-  return s
-    .replace(/^\s*<!\[CDATA\[/, '')
-    .replace(/\]\]>\s*$/, '')
-    .trim();
-}
-
-function decodeEntities(s: string): string {
-  return s
-    .replace(/&amp;/g, '&')
-    .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '>')
-    .replace(/&quot;/g, '"')
-    .replace(/&#39;/g, "'")
-    .replace(/&#x27;/g, "'");
-}
-
-function stripHtml(s: string): string {
-  return s.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
-}
-
-function pluck(itemXml: string, tag: string): string {
-  const m = itemXml.match(new RegExp(`<${tag}[^>]*>([\\s\\S]*?)<\\/${tag}>`, 'i'));
-  return m ? unwrapCdata(m[1]) : '';
-}
-
-function extractChannelImage(xml: string): string | null {
-  // <channel><image><url>...</url></image>
-  const m = xml.match(/<channel[^>]*>[\s\S]*?<image>[\s\S]*?<url>([^<]+)<\/url>/);
-  return m ? m[1].trim() : null;
-}
-
-function extractItems(xml: string, fallbackImg: string | null): Item[] {
-  const items: Item[] = [];
-  const blocks = xml.split('<item>').slice(1);
-  for (const raw of blocks) {
-    const end = raw.indexOf('</item>');
-    if (end === -1) continue;
-    const itemXml = raw.slice(0, end);
-
-    const title = decodeEntities(pluck(itemXml, 'title'));
-    const link = pluck(itemXml, 'link');
-    const pubDate = pluck(itemXml, 'pubDate');
-    const description = stripHtml(decodeEntities(pluck(itemXml, 'description')));
-
-    // Pick the first hero image from content:encoded — skip Substack
-    // "embedded publication" recommendation logos and small inline icons.
-    // We want images that look like post hero shots (typically wide).
-    let image: string | null = null;
-    const imgMatches = [...itemXml.matchAll(/<img\b([^>]*)>/gi)];
-    for (const m of imgMatches) {
-      const tag = m[1] || '';
-      if (/class="[^"]*embedded-publication-logo/.test(tag)) continue;
-      const srcMatch = tag.match(/\bsrc="([^"]+)"/i);
-      if (!srcMatch) continue;
-      const src = srcMatch[1];
-      // Prefer wide post images
-      if (/w_1456|w_1100|w_800/.test(src) || /substack-post-media/.test(src)) {
-        image = src;
-        break;
-      }
-      if (!image) image = src;
-    }
-    if (!image) image = fallbackImg;
-
-    items.push({ title, link, pubDate, description, image });
-  }
-  return items;
-}
-
-let posts: Item[] = [];
-let feedError: string | null = null;
-
-try {
-  const res = await fetch(FEED_URL, {
-    headers: { 'User-Agent': 'staas-site (Astro build)' },
-  });
-  if (!res.ok) throw new Error(`HTTP ${res.status}`);
-  const xml = await res.text();
-  const channelImg = extractChannelImage(xml);
-  posts = extractItems(xml, channelImg).slice(0, 12);
-} catch (e: any) {
-  feedError = e?.message || 'unknown';
-}
-
-function formatDate(s: string): string {
-  if (!s) return '';
-  const d = new Date(s);
-  if (Number.isNaN(d.getTime())) return '';
-  return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
-}
+// /notes was renamed to /publications (H17). Anyone hitting an old
+// shared /notes link gets bounced via meta-refresh.
+const TARGET = '/publications';
 ---
 
-<BaseLayout
-  title="Notes — Changing Shapes Podcast"
-  description="Conversations with founders, designers, and operators about the products that shape how we live. Hosted by Thomas Horak."
->
-  <!-- Header -->
-  <section class="bg-cream pt-28 pb-16 md:pt-36 md:pb-20">
-    <div class="mx-auto max-w-[1180px] px-6">
-      <p class="font-mono text-xs tracking-wider text-coral mb-6">// notes</p>
-      <h1 class="font-serif text-5xl md:text-7xl text-navy leading-tight tracking-tight max-w-3xl mb-6">
-        Conversations<br/>
-        <span style="color: #575280;">with the founders building today.</span>
-      </h1>
-      <p class="text-xl text-navy-muted max-w-2xl leading-relaxed mb-8">
-        The tools we build shape how we live, connect, and see the world. But behind every product is a person who believed it should exist — and a reason why. Thomas talks to them on the <strong class="text-navy">Changing Shapes</strong> podcast.
-      </p>
-      <div class="flex flex-col sm:flex-row gap-4">
-        <a
-          href={SUBSTACK_HOME}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center justify-center px-7 py-3.5 rounded-sm bg-coral text-cream text-sm font-medium hover:bg-coral-deep transition-colors"
-        >
-          Subscribe on Substack →
-        </a>
-        <a
-          href="https://www.youtube.com/@ChangingShapesPodcast"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center justify-center px-7 py-3.5 rounded-sm text-sm font-medium transition-colors"
-          style="border: 1px solid #d8d0a8; color: #575280;"
-        >
-          Watch on YouTube
-        </a>
-      </div>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="refresh" content={`0; url=${TARGET}`} />
+    <link rel="canonical" href={TARGET} />
+    <title>Moved — Publications</title>
+    <meta name="robots" content="noindex" />
+    <style>
+      body { font-family: ui-sans-serif, system-ui, sans-serif; background: #F2ECCA; color: #1F1B4A; }
+      .wrap { max-width: 540px; margin: 8rem auto; padding: 0 1.5rem; text-align: center; }
+      a { color: #E34C39; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <p>Notes is now Publications.</p>
+      <p>Taking you there…</p>
+      <p><a href={TARGET}>Continue →</a></p>
     </div>
-  </section>
-
-  <!-- Episodes grid -->
-  <section class="bg-cream-deep py-16 md:py-24">
-    <div class="mx-auto max-w-[1180px] px-6">
-
-      {posts.length > 0 ? (
-        <>
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {posts.map((p) => (
-              <a
-                href={p.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="group flex flex-col rounded p-8 bg-cream border transition-colors hover:border-coral min-h-[280px]"
-                style="border-color: #d8d0a8;"
-              >
-                <p class="font-mono text-xs mb-4" style="color: #b8b2d8;">
-                  {formatDate(p.pubDate)}
-                </p>
-                <h3 class="font-serif text-xl text-navy leading-snug group-hover:text-coral transition-colors mb-4">
-                  {p.title}
-                </h3>
-                <p class="text-sm text-navy-muted leading-relaxed line-clamp-4 flex-1">
-                  {p.description}
-                </p>
-                <p class="font-mono text-xs text-coral mt-6">
-                  Read on Substack →
-                </p>
-              </a>
-            ))}
-          </div>
-
-          <p class="mt-12 text-sm text-navy-muted">
-            More on{' '}
-            <a href={SUBSTACK_HOME} target="_blank" rel="noopener noreferrer" class="text-coral hover:underline">tomhorak.substack.com →</a>
-          </p>
-        </>
-      ) : (
-        <div class="rounded border p-10 bg-cream" style="border-color: #d8d0a8;">
-          <p class="font-serif text-2xl text-navy mb-4">Latest episodes are over on Substack.</p>
-          <p class="text-sm text-navy-muted mb-6">
-            (We pull recent episodes from the Substack feed at build time — the feed wasn't reachable on this build{feedError ? `: ${feedError}` : ''}.)
-          </p>
-          <a
-            href={SUBSTACK_HOME}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center justify-center px-7 py-3.5 rounded-sm bg-coral text-cream text-sm font-medium hover:bg-coral-deep transition-colors"
-          >
-            Open the podcast on Substack →
-          </a>
-        </div>
-      )}
-
-    </div>
-  </section>
-</BaseLayout>
-
-<style>
-  .line-clamp-3 {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-  .line-clamp-4 {
-    display: -webkit-box;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-</style>
+  </body>
+</html>

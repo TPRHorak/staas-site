@@ -30,8 +30,6 @@ const testimonials = [
 <section class="py-24 md:py-[120px]" style="background: #ECE4B8;">
   <div class="mx-auto max-w-[1180px] px-6">
 
-    <p class="font-mono text-xs text-coral mb-10 tracking-wider">// from_founders</p>
-
     <h2 class="font-serif text-5xl md:text-6xl text-navy leading-tight tracking-tight max-w-lg mb-16">
       What they said.
     </h2>
@@ -54,7 +52,7 @@ const testimonials = [
             </div>
             <div>
               <p class="text-sm font-medium text-navy">{t.name}</p>
-              <p class="font-mono text-xs mt-1 text-navy-muted">{t.role}</p>
+              <p class="text-xs mt-1 text-navy-muted">{t.role}</p>
             </div>
           </div>
           <!-- Quote col -->
@@ -64,7 +62,7 @@ const testimonials = [
             </blockquote>
             <div class="flex flex-wrap gap-2">
               {t.metrics.map((m) => (
-                <span class="font-mono text-xs px-2 py-1 rounded-sm text-navy-muted" style="background: #F2ECCA;">
+                <span class="text-xs px-2 py-1 rounded-sm text-navy" style="background: #F2ECCA;">
                   {m}
                 </span>
               ))}

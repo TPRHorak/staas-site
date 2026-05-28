@@ -33,8 +33,6 @@ const team = [
 <section class="bg-cream py-24 md:py-[120px]">
   <div class="mx-auto max-w-[1180px] px-6">
 
-    <p class="font-mono text-xs text-coral mb-10 tracking-wider">// about_us</p>
-
     <h2 class="font-serif text-5xl md:text-6xl text-navy leading-tight tracking-tight max-w-xl mb-6">
       The people behind the product.
     </h2>
@@ -51,7 +49,7 @@ const team = [
               <p class="font-serif text-3xl text-navy">{person.name}</p>
               <p class="text-sm text-navy-muted mt-1">{person.role}</p>
             </div>
-            <span class="font-mono text-xs shrink-0 mt-1" style="color: #b8b2d8;">// {person.since}</span>
+            <span class="text-xs shrink-0 mt-1.5 uppercase tracking-wider" style="color: #b8b2d8;">{person.since}</span>
           </div>
 
           <!-- Bio -->
@@ -59,18 +57,18 @@ const team = [
 
           <!-- Focus -->
           <div class="border-t border-cream-deep pt-6">
-            <p class="font-mono text-xs text-coral mb-2">focus</p>
+            <p class="text-xs uppercase tracking-widest text-coral mb-2">Focus</p>
             <p class="text-sm text-navy-muted">{person.focus}</p>
           </div>
 
           <div class="flex flex-col gap-2 mt-auto pt-2">
             {person.contact && (
-              <a href={`mailto:${person.contact}`} class="font-mono text-xs text-coral hover:underline">
+              <a href={`mailto:${person.contact}`} class="text-sm text-coral hover:underline">
                 {person.contact} →
               </a>
             )}
             {person.linkedin && (
-              <a href={person.linkedin} target="_blank" rel="noopener noreferrer" class="font-mono text-xs text-navy-muted hover:text-coral transition-colors">
+              <a href={person.linkedin} target="_blank" rel="noopener noreferrer" class="text-sm text-navy-muted hover:text-coral transition-colors">
                 LinkedIn →
               </a>
             )}
@@ -79,8 +77,8 @@ const team = [
       ))}
     </div>
 
-    <p class="mt-8 font-mono text-xs" style="color: #b8b2d8;">
-      // UK and Europe-based. We do not offshore. Every decision — that's us.
+    <p class="mt-8 text-sm" style="color: #8c87b0;">
+      UK and Europe-based. We do not offshore. Every decision — that's us.
     </p>
   </div>
 </section>

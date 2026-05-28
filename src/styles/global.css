@@ -54,6 +54,12 @@ body {
   margin: 0;
 }
 
+/* H14 — text-wrap: pretty avoids orphan single-word last lines on
+   headings and longer paragraphs. Cheap, no-JS, browser-native. */
+h1, h2, h3, h4, h5, h6, p, li {
+  text-wrap: pretty;
+}
+
 h1, h2, h3 {
   font-family: 'Recoleta', Georgia, serif;
   letter-spacing: -0.02em;
