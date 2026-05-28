@@ -7,7 +7,7 @@ updated: "2026-05-27"
 
 **BETWEEN**
 
-1. **HORAK CONSULTING GMBH** (All Shapes) incorporated and registered in Germany with Company Registration Number HRB 32350 — Augsburg 86179, whose registered office is at Thomastrasse 9A, Augsburg, 86179 Germany ("Horak Consulting"); and
+1. **HORAK CONSULTING GMBH** (All Shapes) incorporated and registered in Germany with Company Registration Number HRB 32350 — Augsburg, whose registered office is at Beim Glaspalast 5, 86153 Augsburg, Germany ("Horak Consulting"); and
 
 2. **YOU** (the "Company"), as identified in the booking form to which this NDA is attached.
 

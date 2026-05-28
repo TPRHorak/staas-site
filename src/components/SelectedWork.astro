@@ -1,31 +1,36 @@
 ---
-// Cards modelled on allshapes.io: 16:9 landscape, rounded, full-bleed
-// image, gradient overlay, title-only — no metric chips or one-liner
-// cluttering the read. The proof is the image.
+// allshapes.io card pattern: 16:10 landscape, rounded, full-bleed
+// image, gradient overlay. Title + a single eyebrow line + a compact
+// row of stats — that's the proof, no other clutter.
 const works = [
   {
     title: "Five Minute Journal",
     slug: "five-minute-journal",
     hero: "/case-studies/fmj-hero.jpg",
-    eyebrow: "App of the Day · 60k MAU",
+    eyebrow: "App of the Day",
+    stats: ["60k MAU", "4.8★", "25k+ reviews"],
   },
   {
     title: "The Doctor's Kitchen",
     slug: "doctors-kitchen",
     hero: "/case-studies/tdk-aotd.jpg",
-    eyebrow: "Apple Editorial · 4.8★",
+    eyebrow: "Apple Editorial",
+    stats: ["4.8★", "500+ recipes", "Subscription"],
   },
   {
     title: "RNT Fitness",
     slug: "rnt-fitness",
     hero: "/case-studies/rnt-hero.jpg",
     eyebrow: "Premium coaching SaaS",
+    stats: ["Multi-platform", "Multi-tenant", "Cohort-driven"],
   },
 ];
 ---
 
 <section class="py-24 md:py-[120px]" style="background: #1F1B4A;">
   <div class="mx-auto max-w-[1180px] px-6">
+
+    <p class="text-xs uppercase tracking-[0.18em] text-coral mb-6 md:mb-8">Selected Work</p>
 
     <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-16">
       <h2 class="font-serif text-5xl md:text-6xl lg:text-7xl text-cream leading-[1.15] tracking-tight max-w-2xl">
@@ -36,8 +41,6 @@ const works = [
       </a>
     </div>
 
-    <!-- 3-column grid on desktop, 1-column on mobile. Wider gap so each
-         card breathes — no gap-px frame any more. -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
       {works.map((work) => (
         <a
@@ -51,11 +54,16 @@ const works = [
             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
             loading="lazy"
           />
-          <!-- Bottom gradient + title only -->
+          <!-- Bottom gradient + eyebrow + title + stats -->
           <div class="absolute inset-0 flex flex-col justify-end p-6 md:p-7"
-            style="background: linear-gradient(to top, rgba(31,27,74,0.96) 0%, rgba(31,27,74,0.55) 40%, rgba(31,27,74,0.05) 70%, transparent 100%);">
-            <p class="text-xs uppercase tracking-widest text-coral mb-2">{work.eyebrow}</p>
-            <h3 class="font-serif text-2xl md:text-3xl text-cream leading-[1.1]">{work.title}</h3>
+            style="background: linear-gradient(to top, rgba(31,27,74,0.97) 0%, rgba(31,27,74,0.6) 38%, rgba(31,27,74,0.05) 72%, transparent 100%);">
+            <p class="text-xs uppercase tracking-[0.18em] text-coral mb-1.5">{work.eyebrow}</p>
+            <h3 class="font-serif text-2xl md:text-3xl text-cream leading-[1.1] mb-3">{work.title}</h3>
+            <div class="flex flex-wrap gap-1.5">
+              {work.stats.map((s) => (
+                <span class="text-[11px] px-2 py-0.5 rounded-full" style="background: rgba(242,236,202,0.12); color: #d8d2ee; backdrop-filter: blur(2px);">{s}</span>
+              ))}
+            </div>
           </div>
         </a>
       ))}

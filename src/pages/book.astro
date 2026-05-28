@@ -87,12 +87,14 @@ const nextUrl = `${origin}/book/thanks`;
 
         <!-- STEP 1 — Pick a Sprint (H7) -->
         <fieldset data-step="1" class="border-0 p-0 m-0 flex flex-col gap-8">
-          <legend class="font-serif text-3xl md:text-4xl text-navy leading-snug mb-2">
-            Which Sprint fits your moment?
-          </legend>
-          <p class="text-sm text-navy-muted -mt-6 mb-2">
-            Five sprints. {SPRINT_DURATION} each. {PRICE_PER_SPRINT} flat. Pick the one closest to where you are — we'll confirm on Day&nbsp;0 if a different one fits better.
-          </p>
+          <div class="flex flex-col gap-3">
+            <legend class="font-serif text-3xl md:text-4xl text-navy leading-[1.2]">
+              Which Sprint fits your moment?
+            </legend>
+            <p class="text-base text-navy-muted leading-relaxed max-w-2xl">
+              Five sprints. {SPRINT_DURATION} each. {PRICE_PER_SPRINT} flat. Pick the one closest to where you are — we'll confirm on Day&nbsp;0 if a different one fits better.
+            </p>
+          </div>
 
           {buckets.map((bucket) => (
             <div class="flex flex-col gap-4">
@@ -124,10 +126,6 @@ const nextUrl = `${origin}/book/thanks`;
               <span class="text-sm text-navy-muted block mt-1">We'll pick the right path on the Day 0 call.</span>
             </span>
           </label>
-
-          <p class="text-xs text-navy-muted">
-            Run two sprints across buckets and the first one's cost credits forward.
-          </p>
 
           <div class="flex justify-end mt-2">
             <button type="button" data-next="2" class="inline-flex items-center justify-center px-7 py-3.5 rounded-sm bg-coral text-cream text-sm font-medium hover:bg-coral-deep transition-colors">
@@ -246,10 +244,7 @@ const nextUrl = `${origin}/book/thanks`;
             <input type="checkbox" name="accept_terms" value="yes" required class="mt-1 accent-coral" />
             <span class="text-sm text-navy leading-relaxed">
               I agree to the All Shapes
-              <a href="https://allshapes.io/terms-of-service" target="_blank" rel="noopener noreferrer" class="text-coral hover:underline">Terms of Service</a>,
-              <a href="https://allshapes.io/privacy-policy" target="_blank" rel="noopener noreferrer" class="text-coral hover:underline">Privacy Policy</a>,
-              <a href="https://allshapes.io/cookie-policy" target="_blank" rel="noopener noreferrer" class="text-coral hover:underline">Cookie Policy</a>, and acknowledge the
-              <a href="https://allshapes.io/imprint" target="_blank" rel="noopener noreferrer" class="text-coral hover:underline">Imprint</a>.
+              <a href="https://allshapes.io/terms-of-service" target="_blank" rel="noopener noreferrer" class="text-coral hover:underline">Terms of Service</a>.
             </span>
           </label>
 
