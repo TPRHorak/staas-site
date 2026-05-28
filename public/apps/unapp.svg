@@ -1,23 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Unapp">
-  <!-- Background — match Unapp brand black / soft navy -->
-  <rect width="512" height="512" rx="112" ry="112" fill="#0F0F12"/>
+  <!-- Square rounded backdrop, lifted in colour so the monochrome
+       treatment in CSS still produces a recognisable silhouette. -->
+  <rect width="512" height="512" rx="112" ry="112" fill="#F2ECCA"/>
 
-  <!-- Subtle gradient overlay for depth -->
-  <defs>
-    <radialGradient id="g" cx="50%" cy="38%" r="65%">
-      <stop offset="0%" stop-color="#1F1B4A" stop-opacity="0.85"/>
-      <stop offset="100%" stop-color="#0F0F12" stop-opacity="0"/>
-    </radialGradient>
-  </defs>
-  <rect width="512" height="512" rx="112" ry="112" fill="url(#g)"/>
-
-  <!-- Wordmark — "Unapp" in cream, with a coral accent on the "U" -->
-  <g font-family="Georgia, 'Recoleta', serif" font-weight="600" text-anchor="middle">
-    <text x="256" y="296" font-size="148" fill="#F2ECCA">
-      <tspan fill="#E34C39">U</tspan>napp
-    </text>
+  <!-- Stylised 3D cube — the Unapp brand mark, redrawn flat so the
+       monochrome filter has clean geometry to work with. -->
+  <g fill="#1F1B4A">
+    <!-- Cube body — front + top + side projected -->
+    <path d="M256 76 L420 168 L420 332 L256 424 L92 332 L92 168 Z" opacity="0.85"/>
+    <!-- Top face highlight -->
+    <path d="M256 76 L420 168 L256 252 L92 168 Z" fill="#F2ECCA" opacity="0.18"/>
+    <!-- Right face shading -->
+    <path d="M420 168 L420 332 L256 424 L256 252 Z" fill="#0F0F12" opacity="0.18"/>
+    <!-- The notch — small doorway-like cut on the bottom front -->
+    <path d="M192 286 L192 396 L240 376 L240 268 Z" fill="#F2ECCA"/>
   </g>
-
-  <!-- Faint corner mark to feel intentional rather than generic -->
-  <circle cx="64" cy="448" r="8" fill="#E34C39" opacity="0.45"/>
 </svg>
