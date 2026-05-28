@@ -1,21 +1,5 @@
 ---
-// H16 — only the three high-impact projects (Five Minute Journal,
-// Doctor's Kitchen, RNT Fitness). Each column shows two screenshots of
-// the same product so the wall still feels rich without diluting the
-// portfolio with weaker visuals.
-const colA = [
-  { src: "/case-studies/fmj-hero.jpg", label: "App of the Day", title: "Five Minute Journal" },
-  { src: "/case-studies/tdk-aotd.jpg", label: "Apple Editorial", title: "Doctor's Kitchen" },
-  { src: "/case-studies/rnt-hero.jpg", label: "Premium coaching SaaS", title: "RNT Fitness" },
-  { src: "/case-studies/fmj-overview.jpg", label: "60k MAU · 4.8★", title: "Five Minute Journal" },
-];
-
-const colB = [
-  { src: "/case-studies/tdk-overview.png", label: "Daily habit · subscription", title: "Doctor's Kitchen" },
-  { src: "/case-studies/rnt-feed.png", label: "Multi-tenant SaaS", title: "RNT Fitness" },
-  { src: "/case-studies/fmj-hero.jpg", label: "Habit-forming product", title: "Five Minute Journal" },
-  { src: "/case-studies/rnt-profiles.jpg", label: "Cohort coaching", title: "RNT Fitness" },
-];
+import { APPS, FEATURED_INDEX } from '../data/apps';
 ---
 
 <section class="bg-navy-deep text-cream relative overflow-hidden">
@@ -25,11 +9,11 @@ const colB = [
     style="background-image: radial-gradient(#F2ECCA 1px, transparent 1px); background-size: 32px 32px;"
     aria-hidden="true"></div>
 
-  <div class="relative mx-auto max-w-[1180px] px-6 pt-32 pb-0 md:pt-40">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-end relative">
+  <div class="relative mx-auto max-w-[1180px] px-6 pt-32 pb-20 md:pt-40 md:pb-28">
+    <div class="grid grid-cols-1 md:grid-cols-[1.05fr_1fr] gap-12 lg:gap-16 items-center">
 
       <!-- Left: copy -->
-      <div class="pb-24 md:pb-32 relative z-30">
+      <div class="relative z-10">
 
         <p class="text-xs uppercase tracking-[0.18em] mb-8" style="color: #cfcae5;">
           Startup as a Service · <span class="text-cream">by All Shapes</span>
@@ -65,48 +49,92 @@ const colB = [
         </p>
       </div>
 
-      <!-- Right column placeholder so grid still flexes; the wall itself is positioned absolutely below -->
-      <div class="hidden md:block"></div>
-    </div>
-  </div>
-
-  <!-- Bleeding wall of WIDE tiles — absolutely positioned, extends past the right viewport edge -->
-  <div class="hidden md:block absolute top-0 right-0 bottom-0 pointer-events-none z-10" style="width: 58%;" aria-hidden="true">
-    <!-- Fade left edge into the navy bg so the wall blends into the text column -->
-    <div class="absolute inset-y-0 left-0 z-20 pointer-events-none"
-      style="width: 260px; background: linear-gradient(to right, #1F1B4A 0%, rgba(31,27,74,0.95) 40%, rgba(31,27,74,0) 100%);"></div>
-    <!-- Fade bottom edge into the next section -->
-    <div class="absolute inset-x-0 bottom-0 z-20 pointer-events-none h-32"
-      style="background: linear-gradient(to bottom, rgba(31,27,74,0) 0%, #1F1B4A 100%);"></div>
-
-    <!-- Two columns of wide tiles. Aspect 16:10 ~ 1.6:1 — close enough to the
-         source ratio (~2:1) that crops are minimal. -->
-    <div class="absolute inset-0 grid grid-cols-2 gap-5 p-6 pt-24 pl-16">
-      <div class="flex flex-col gap-5" style="transform: translateY(0);">
-        {colA.map((t) => (
-          <div class="relative rounded-md overflow-hidden shrink-0 shadow-lg" style="aspect-ratio: 16/10;">
-            <img src={t.src} alt={t.title} class="w-full h-full object-cover" loading="lazy" />
-            <div class="absolute inset-0 flex flex-col justify-end p-5"
-              style="background: linear-gradient(to top, rgba(31,27,74,0.92) 0%, rgba(31,27,74,0.05) 55%, transparent 100%);">
-              <p class="text-[11px] text-coral leading-tight uppercase tracking-[0.16em]">{t.label}</p>
-              <p class="text-cream text-base font-medium leading-tight mt-1">{t.title}</p>
-            </div>
-          </div>
-        ))}
+      <!-- Right: 3×3 grid of apps we've built. Five Minute Journal sits
+           in the centre. Cards are square, rounded, lightly raised on
+           navy-mid so the icons can be PNG or SVG with their own colour
+           palette. Hovering / focusing a tile lifts it and links out. -->
+      <div class="relative">
+        <ul class="app-grid grid grid-cols-3 gap-2.5 md:gap-3" role="list">
+          {APPS.map((app, i) => (
+            <li class={`app-tile ${i === FEATURED_INDEX ? 'app-tile--featured' : ''}`}>
+              <a
+                href={app.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${app.name} — opens in a new tab`}
+                class="block relative overflow-hidden rounded-xl transition-all"
+                style="aspect-ratio: 1/1; background: #2B2660; border: 1px solid #3d3870;"
+              >
+                <img
+                  src={app.icon}
+                  alt=""
+                  class="absolute inset-0 w-full h-full object-cover"
+                  loading={i === FEATURED_INDEX ? "eager" : "lazy"}
+                  onerror="this.style.display='none'; this.parentElement.querySelector('.app-fallback').style.display='flex';"
+                />
+                <!-- Fallback label shown if the icon fails to load -->
+                <div class="app-fallback absolute inset-0 hidden items-center justify-center p-3 text-center">
+                  <span class="font-serif text-cream text-base leading-tight">{app.name}</span>
+                </div>
+                <!-- Name overlay on hover/focus -->
+                <div class="app-name absolute inset-x-0 bottom-0 px-3 py-2 text-cream text-xs text-center font-medium"
+                  style="background: linear-gradient(to top, rgba(31,27,74,0.96) 0%, rgba(31,27,74,0.6) 65%, transparent 100%);">
+                  {app.name}
+                </div>
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
 
-      <div class="flex flex-col gap-5" style="transform: translateY(-80px);">
-        {colB.map((t) => (
-          <div class="relative rounded-md overflow-hidden shrink-0 shadow-lg" style="aspect-ratio: 16/10;">
-            <img src={t.src} alt={t.title} class="w-full h-full object-cover" loading="lazy" />
-            <div class="absolute inset-0 flex flex-col justify-end p-5"
-              style="background: linear-gradient(to top, rgba(31,27,74,0.92) 0%, rgba(31,27,74,0.05) 55%, transparent 100%);">
-              <p class="text-[11px] text-coral leading-tight uppercase tracking-[0.16em]">{t.label}</p>
-              <p class="text-cream text-base font-medium leading-tight mt-1">{t.title}</p>
-            </div>
-          </div>
-        ))}
-      </div>
     </div>
   </div>
 </section>
+
+<style>
+  .app-grid {
+    /* Keep the grid square overall — each row equal */
+    grid-auto-rows: 1fr;
+  }
+  .app-tile a {
+    will-change: transform, box-shadow;
+  }
+  .app-tile a:hover,
+  .app-tile a:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.45);
+    border-color: #E34C39 !important;
+  }
+  .app-tile a:focus-visible {
+    outline: 2px solid #E34C39;
+    outline-offset: 3px;
+  }
+
+  /* Name overlay — hidden by default, shown on hover/focus. */
+  .app-name {
+    opacity: 0;
+    transition: opacity 220ms ease;
+    pointer-events: none;
+  }
+  .app-tile a:hover .app-name,
+  .app-tile a:focus-visible .app-name {
+    opacity: 1;
+  }
+
+  /* Featured tile (Five Minute Journal) — softly highlighted so the eye
+     is drawn to the centre. Subtle coral ring + slightly more lift. */
+  .app-tile--featured a {
+    box-shadow: 0 8px 24px -10px rgba(227, 76, 57, 0.5),
+                0 0 0 1px rgba(227, 76, 57, 0.35);
+  }
+  .app-tile--featured a:hover,
+  .app-tile--featured a:focus-visible {
+    box-shadow: 0 16px 36px -10px rgba(227, 76, 57, 0.7),
+                0 0 0 1.5px rgba(227, 76, 57, 0.6);
+  }
+
+  /* Mobile-friendly: tighter gaps on small screens */
+  @media (max-width: 640px) {
+    .app-grid { max-width: 360px; margin-left: auto; margin-right: auto; }
+  }
+</style>
