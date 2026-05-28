@@ -8,28 +8,37 @@
 
 export type App = {
   name: string;
-  url: string;
-  icon: string;
+  url?: string;
+  icon?: string;
+  /** A ghost tile — empty placeholder that suggests "and many more." */
+  placeholder?: boolean;
 };
 
-// Grid is laid out as three columns. Tom asked for an additional "MB"
-// tile at the bottom of the middle column so the wall feels like it
-// keeps going past the fade — the irregular bottom edge plus the
-// edge-fade mask sells the "many more" feel.
+// Three vertical columns, 16 tiles total: 10 real + 6 ghosts. The
+// ghosts are empty placeholder tiles — they imply "and many more"
+// without faking specific apps. Combined with the oversized tilted
+// plane in Hero.astro, the half-tiles that bleed off the section
+// edge make the wall feel endless. Five Minute Journal anchors the
+// centre of column 1.
 //
-// COL 0          COL 1                COL 2
-// Doctor's K.    Get Closer           Unapp
-// Habits         Five Minute Journal  Food Medic
-// RNT Pro        Mindful Affirms      MyGearVault
-//                MB
+// COL 0 (5)         COL 1 (6)             COL 2 (5)
+// Doctor's K.       (ghost top)           (ghost top)
+// (ghost)           Get Closer            Unapp
+// Habits            Five Minute Journal   Food Medic
+// RNT Pro           Mindful Affirms       MyGearVault
+// (ghost bottom)    MB                    (ghost)
+//                   (ghost bottom)
+
+const G = (): App => ({ name: "ghost", placeholder: true });
 
 export const APPS: App[] = [
-  // Column 0
+  // -- Column 0 --
   {
     name: "The Doctor's Kitchen",
     url: "https://apps.apple.com/us/app/the-doctors-kitchen/id1568122827",
     icon: "/apps/doctors-kitchen.png",
   },
+  G(),
   {
     name: "Intelligent Change Habits",
     url: "https://apps.apple.com/us/app/intelligent-change-habits/id1594401415",
@@ -40,7 +49,9 @@ export const APPS: App[] = [
     url: "https://apps.apple.com/us/app/rnt-pro/id6444022902",
     icon: "/apps/rnt-pro.png",
   },
-  // Column 1 — Five Minute Journal central, MB trailing at the bottom
+  G(),
+  // -- Column 1 — FMJ central, MB trailing --
+  G(),
   {
     name: "Get Closer",
     url: "https://apps.apple.com/us/app/get-closer-question-games/id1595567160",
@@ -58,13 +69,13 @@ export const APPS: App[] = [
   },
   {
     name: "MB",
-    url: "https://allshapes.io",
     icon: "/apps/mb.png",
   },
-  // Column 2
+  G(),
+  // -- Column 2 --
+  G(),
   {
     name: "Unapp",
-    url: "https://www.crunchbase.com/organization/unapp",
     icon: "/apps/unapp.jpeg",
   },
   {
@@ -77,7 +88,11 @@ export const APPS: App[] = [
     url: "https://apps.apple.com/us/app/mygearvault/id1106860868",
     icon: "/apps/mygearvault.png",
   },
+  G(),
 ];
 
-/** Tile that gets featured styling (Five Minute Journal). */
-export const FEATURED_INDEX = 4;
+/** Index in the flat list that gets the featured styling (FMJ). */
+export const FEATURED_INDEX = 7;
+
+/** Per-column slicing. APPS is ordered to flow into these directly. */
+export const COL_LENGTHS = [5, 6, 5] as const;
