@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="MB">
+  <!-- Dark circular backdrop, the canonical MB look -->
+  <circle cx="256" cy="256" r="256" fill="#1F1B1F"/>
+  <circle cx="256" cy="256" r="256" fill="#1F1B4A" opacity="0.4"/>
+
+  <!-- Serif "MB" ligature in cream — italic, didone-ish weight contrast
+       so the monogram reads as a brand mark rather than a typeset string. -->
+  <g font-family="'Recoleta', Georgia, 'Playfair Display', serif"
+     font-style="italic"
+     fill="#F5EFE2"
+     text-anchor="middle">
+    <text x="222" y="332" font-size="288" font-weight="500">M</text>
+    <text x="312" y="372" font-size="320" font-weight="500">B</text>
+  </g>
+</svg>

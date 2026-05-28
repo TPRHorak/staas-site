@@ -1,18 +1,25 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Unapp">
-  <!-- Square rounded backdrop, lifted in colour so the monochrome
-       treatment in CSS still produces a recognisable silhouette. -->
-  <rect width="512" height="512" rx="112" ry="112" fill="#F2ECCA"/>
+  <defs>
+    <linearGradient id="unappBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFC042"/>
+      <stop offset="55%" stop-color="#FF8A2E"/>
+      <stop offset="100%" stop-color="#F36B1C"/>
+    </linearGradient>
+  </defs>
 
-  <!-- Stylised 3D cube — the Unapp brand mark, redrawn flat so the
-       monochrome filter has clean geometry to work with. -->
-  <g fill="#1F1B4A">
+  <!-- Orange-to-coral gradient backdrop -->
+  <rect width="512" height="512" rx="112" ry="112" fill="url(#unappBg)"/>
+
+  <!-- Stylised 3D cube — white, centred -->
+  <g fill="#FFFFFF">
     <!-- Cube body — front + top + side projected -->
-    <path d="M256 76 L420 168 L420 332 L256 424 L92 332 L92 168 Z" opacity="0.85"/>
-    <!-- Top face highlight -->
-    <path d="M256 76 L420 168 L256 252 L92 168 Z" fill="#F2ECCA" opacity="0.18"/>
+    <path d="M256 80 L420 168 L420 332 L256 424 L92 332 L92 168 Z"/>
+    <!-- Top face shading (a hair darker so the form reads) -->
+    <path d="M256 80 L420 168 L256 252 L92 168 Z" fill="#FFFFFF" opacity="1"/>
+    <path d="M256 80 L420 168 L256 252 L92 168 Z" fill="#000000" opacity="0.06"/>
     <!-- Right face shading -->
-    <path d="M420 168 L420 332 L256 424 L256 252 Z" fill="#0F0F12" opacity="0.18"/>
-    <!-- The notch — small doorway-like cut on the bottom front -->
-    <path d="M192 286 L192 396 L240 376 L240 268 Z" fill="#F2ECCA"/>
+    <path d="M420 168 L420 332 L256 424 L256 252 Z" fill="#000000" opacity="0.10"/>
+    <!-- The notch — small doorway cut on the front-right -->
+    <path d="M256 252 L320 220 L320 388 L256 420 Z" fill="url(#unappBg)"/>
   </g>
 </svg>
