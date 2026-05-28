@@ -1,4 +1,16 @@
 ---
+// Compare page intro — uses the same rotating-word headline as the
+// homepage's WhyAllShapes section so the brand line stays consistent.
+const rotatingWords = [
+  "good",
+  "secure",
+  "intuitive",
+  "scalable",
+  "thoughtful",
+  "efficient",
+  "loved",
+];
+
 const columns = [
   {
     label: "Vibe-coded MVPs",
@@ -18,8 +30,14 @@ const columns = [
 <section class="text-cream py-24 md:py-[120px]" style="background: #2B2660;">
   <div class="mx-auto max-w-[1180px] px-6">
 
-    <h2 class="font-serif text-5xl md:text-6xl lg:text-7xl text-cream leading-[1.2] tracking-tight max-w-3xl mb-20">
-      AI made writing code cheap. It made the <em class="not-italic text-coral">judgement</em> behind it rarer.
+    <p class="text-xs uppercase tracking-[0.18em] text-coral mb-6 md:mb-8">The gap AI left</p>
+
+    <h2 class="font-serif text-5xl md:text-6xl lg:text-7xl text-cream leading-[1.15] tracking-tight max-w-5xl mb-20">
+      AI made building software cheap. It made
+      <span class="word-rotator inline-block align-baseline" data-words={JSON.stringify(rotatingWords)} aria-label="good, secure, intuitive, scalable, thoughtful, efficient, loved">
+        <span class="word-rotator__current text-coral italic">good</span>
+      </span>
+      products rare.
     </h2>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-px rounded overflow-hidden" style="background: #3d3870;">
@@ -38,3 +56,70 @@ const columns = [
     </p>
   </div>
 </section>
+
+<style>
+  .word-rotator {
+    position: relative;
+    min-width: 6.8em;
+    text-align: left;
+  }
+  .word-rotator__current {
+    display: inline-block;
+    transition: opacity 240ms ease, transform 320ms cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: opacity, transform;
+  }
+  .word-rotator.is-leaving .word-rotator__current {
+    opacity: 0;
+    transform: translateY(-0.35em);
+  }
+  .word-rotator.is-entering .word-rotator__current {
+    opacity: 0;
+    transform: translateY(0.35em);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .word-rotator__current { transition: none; }
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    document.querySelectorAll('.word-rotator').forEach((root) => {
+      if (root.dataset.rotatorBound === '1') return;
+      root.dataset.rotatorBound = '1';
+      let words = [];
+      try { words = JSON.parse(root.dataset.words || '[]'); } catch (_) {}
+      if (!Array.isArray(words) || words.length < 2) return;
+      const cur = root.querySelector('.word-rotator__current');
+      if (!cur) return;
+
+      let i = 0;
+      let paused = false;
+      root.addEventListener('mouseenter', () => { paused = true; });
+      root.addEventListener('mouseleave', () => { paused = false; });
+
+      function tick() {
+        if (paused) return;
+        if (reduceMotion) {
+          i = (i + 1) % words.length;
+          cur.textContent = words[i];
+          return;
+        }
+        root.classList.add('is-leaving');
+        setTimeout(() => {
+          i = (i + 1) % words.length;
+          cur.textContent = words[i];
+          root.classList.remove('is-leaving');
+          root.classList.add('is-entering');
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              root.classList.remove('is-entering');
+            });
+          });
+        }, 280);
+      }
+
+      setInterval(tick, 2500);
+    });
+  })();
+</script>

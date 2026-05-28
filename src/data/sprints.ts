@@ -45,12 +45,12 @@ export const SPRINTS: Sprint[] = [
     id: "quick-wins",
     bucket: "Design",
     name: "Quick Wins Audit",
-    anchor: "The metric I care about is stuck, and I don't know why.",
+    anchor: "Conversions are stuck and we don't know why.",
     alsoFor: [
-      "Conversion that won't move",
-      "Retention dropping after week one",
+      "Retention dropping after the first week",
       "Onboarding friction you can feel but can't pinpoint",
-      "Drop-offs at a specific step in the funnel",
+      "Funnel drop-offs at one specific step",
+      "Activation that should be higher than it is",
     ],
     deliverables: [
       "Heuristic + data audit of the friction points",
@@ -66,12 +66,12 @@ export const SPRINTS: Sprint[] = [
     alsoFor: [
       "Deciding what to build next when everything feels urgent",
       "Prioritising a year of work for an investor or board",
-      "Settling internal debate about direction",
+      "Building a technical plan — or sense-checking the one you have",
       "Aligning a team that's pulling in three directions",
     ],
     deliverables: [
       "User-research synthesis from interviews and existing data",
-      "A written, prioritised 3-month roadmap stakeholders can act on",
+      "A written, prioritised 3-month product + technical roadmap",
       "A clear story for why this, not that",
     ],
   },
@@ -81,7 +81,7 @@ export const SPRINTS: Sprint[] = [
     name: "Ship the Hero Feature",
     anchor: "I know what to build, I just don't have the team to ship it.",
     alsoFor: [
-      "Hitting a launch deadline you can't move",
+      "Hitting a launch deadline you can't move — backlog and all",
       "Building the feature that justifies the next pricing tier",
       "Improving retention with one well-designed change",
       "Getting one thing right that everything else depends on",

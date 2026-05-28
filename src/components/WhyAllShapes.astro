@@ -15,9 +15,10 @@ const rotatingWords = [
 <section class="text-cream py-24 md:py-[120px]" style="background: #2B2660;">
   <div class="mx-auto max-w-[1180px] px-6">
 
-    <h2 class="font-serif text-5xl md:text-6xl lg:text-7xl text-cream leading-[1.15] tracking-tight max-w-4xl mb-12">
-      AI made building software cheap.<br/>
-      It made
+    <p class="text-xs uppercase tracking-[0.18em] text-coral mb-6 md:mb-8">Why All Shapes</p>
+
+    <h2 class="font-serif text-5xl md:text-6xl lg:text-7xl text-cream leading-[1.15] tracking-tight max-w-5xl mb-12">
+      AI made building software cheap. It made
       <span class="word-rotator inline-block align-baseline" data-words={JSON.stringify(rotatingWords)} aria-label="good, secure, intuitive, scalable, thoughtful, efficient, loved">
         <span class="word-rotator__current text-coral italic">good</span>
       </span>
@@ -88,6 +89,8 @@ const rotatingWords = [
   (function () {
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     document.querySelectorAll('.word-rotator').forEach((root) => {
+      if (root.dataset.rotatorBound === '1') return;
+      root.dataset.rotatorBound = '1';
       let words = [];
       try { words = JSON.parse(root.dataset.words || '[]'); } catch (_) {}
       if (!Array.isArray(words) || words.length < 2) return;
