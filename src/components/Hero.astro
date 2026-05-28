@@ -1,5 +1,21 @@
 ---
-import { APPS, FEATURED_INDEX } from '../data/apps';
+// H16 — only the three high-impact projects (Five Minute Journal,
+// Doctor's Kitchen, RNT Fitness). Each column shows two screenshots of
+// the same product so the wall still feels rich without diluting the
+// portfolio with weaker visuals.
+const colA = [
+  { src: "/case-studies/fmj-hero.jpg", label: "App of the Day", title: "Five Minute Journal" },
+  { src: "/case-studies/tdk-aotd.jpg", label: "Apple Editorial", title: "Doctor's Kitchen" },
+  { src: "/case-studies/rnt-hero.jpg", label: "Premium coaching SaaS", title: "RNT Fitness" },
+  { src: "/case-studies/fmj-overview.jpg", label: "60k MAU · 4.8★", title: "Five Minute Journal" },
+];
+
+const colB = [
+  { src: "/case-studies/tdk-overview.png", label: "Daily habit · subscription", title: "Doctor's Kitchen" },
+  { src: "/case-studies/rnt-feed.png", label: "Multi-tenant SaaS", title: "RNT Fitness" },
+  { src: "/case-studies/fmj-hero.jpg", label: "Habit-forming product", title: "Five Minute Journal" },
+  { src: "/case-studies/rnt-profiles.jpg", label: "Cohort coaching", title: "RNT Fitness" },
+];
 ---
 
 <section class="bg-navy-deep text-cream relative overflow-hidden">
@@ -9,12 +25,11 @@ import { APPS, FEATURED_INDEX } from '../data/apps';
     style="background-image: radial-gradient(#F2ECCA 1px, transparent 1px); background-size: 32px 32px;"
     aria-hidden="true"></div>
 
-  <!-- Narrower container — only as wide as the text needs. -->
-  <div class="relative mx-auto max-w-[920px] px-6 pt-32 pb-20 md:pt-40 md:pb-28">
-    <div class="grid grid-cols-1 md:grid-cols-[1.4fr_1fr] gap-10 lg:gap-12 items-center">
+  <div class="relative mx-auto max-w-[1180px] px-6 pt-32 pb-0 md:pt-40">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-end relative">
 
       <!-- Left: copy -->
-      <div class="relative z-10">
+      <div class="pb-24 md:pb-32 relative z-30">
 
         <p class="text-xs uppercase tracking-[0.18em] mb-8" style="color: #cfcae5;">
           Startup as a Service · <span class="text-cream">by All Shapes</span>
@@ -50,76 +65,48 @@ import { APPS, FEATURED_INDEX } from '../data/apps';
         </p>
       </div>
 
-      <!-- Right: small 2-row × 5-col app wall. The wall is taller than
-           its container so the top row's top edge and the bottom row's
-           bottom edge get clipped — implies more rows above and below
-           without needing ghost tiles. -->
-      <div class="app-wall" aria-hidden="true">
-        <div class="app-wall__inner">
-          <div class="grid grid-rows-2 grid-cols-5 gap-2">
-            {APPS.map((app, i) => (
-              <div class={`app-tile ${i === FEATURED_INDEX ? 'app-tile--featured' : ''}`}>
-                <div class="block relative overflow-hidden rounded-lg" style="aspect-ratio: 1/1;">
-                  <img
-                    src={app.icon}
-                    alt=""
-                    class="absolute inset-0 w-full h-full object-cover"
-                    loading={i === FEATURED_INDEX ? "eager" : "lazy"}
-                  />
-                </div>
-              </div>
-            ))}
+      <!-- Right column placeholder so grid still flexes; the wall itself is positioned absolutely below -->
+      <div class="hidden md:block"></div>
+    </div>
+  </div>
+
+  <!-- Bleeding wall of WIDE tiles — absolutely positioned, extends past the right viewport edge -->
+  <div class="hidden md:block absolute top-0 right-0 bottom-0 pointer-events-none z-10" style="width: 58%;" aria-hidden="true">
+    <!-- Fade left edge into the navy bg so the wall blends into the text column -->
+    <div class="absolute inset-y-0 left-0 z-20 pointer-events-none"
+      style="width: 260px; background: linear-gradient(to right, #1F1B4A 0%, rgba(31,27,74,0.95) 40%, rgba(31,27,74,0) 100%);"></div>
+    <!-- Fade bottom edge into the next section -->
+    <div class="absolute inset-x-0 bottom-0 z-20 pointer-events-none h-32"
+      style="background: linear-gradient(to bottom, rgba(31,27,74,0) 0%, #1F1B4A 100%);"></div>
+
+    <!-- Two columns of wide tiles. Aspect 16:10 ~ 1.6:1 — close enough to the
+         source ratio (~2:1) that crops are minimal. -->
+    <div class="absolute inset-0 grid grid-cols-2 gap-5 p-6 pt-24 pl-16">
+      <div class="flex flex-col gap-5" style="transform: translateY(0);">
+        {colA.map((t) => (
+          <div class="relative rounded-md overflow-hidden shrink-0 shadow-lg" style="aspect-ratio: 16/10;">
+            <img src={t.src} alt={t.title} class="w-full h-full object-cover" loading="lazy" />
+            <div class="absolute inset-0 flex flex-col justify-end p-5"
+              style="background: linear-gradient(to top, rgba(31,27,74,0.92) 0%, rgba(31,27,74,0.05) 55%, transparent 100%);">
+              <p class="text-[11px] text-coral leading-tight uppercase tracking-[0.16em]">{t.label}</p>
+              <p class="text-cream text-base font-medium leading-tight mt-1">{t.title}</p>
+            </div>
           </div>
-        </div>
+        ))}
       </div>
 
+      <div class="flex flex-col gap-5" style="transform: translateY(-80px);">
+        {colB.map((t) => (
+          <div class="relative rounded-md overflow-hidden shrink-0 shadow-lg" style="aspect-ratio: 16/10;">
+            <img src={t.src} alt={t.title} class="w-full h-full object-cover" loading="lazy" />
+            <div class="absolute inset-0 flex flex-col justify-end p-5"
+              style="background: linear-gradient(to top, rgba(31,27,74,0.92) 0%, rgba(31,27,74,0.05) 55%, transparent 100%);">
+              <p class="text-[11px] text-coral leading-tight uppercase tracking-[0.16em]">{t.label}</p>
+              <p class="text-cream text-base font-medium leading-tight mt-1">{t.title}</p>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   </div>
 </section>
-
-<style>
-  .app-wall {
-    /* Window. The inner grid is taller than this — top and bottom edges
-       of the rows get clipped, so the wall reads as a frame onto a
-       larger collection. No placeholders needed; the cut does it. */
-    overflow: hidden;
-    /* Slightly wider than the column to push the icons to a useful
-       readable size; the section's overflow-hidden contains the spill. */
-    width: 110%;
-    margin-left: -5%;
-  }
-
-  .app-wall__inner {
-    /* Pull the inner grid up so row 1's top edge slips past the
-       container top, and let it overflow downward past the bottom too.
-       Together these create the cut-at-top-and-bottom effect. */
-    margin-top: -22px;
-    margin-bottom: -22px;
-  }
-
-  .app-tile > div {
-    background: #2B2660;
-    border: 1px solid #3d3870;
-    box-shadow: 0 6px 16px -10px rgba(0, 0, 0, 0.5);
-  }
-
-  /* Featured FMJ — soft coral ring as the anchor point. */
-  .app-tile--featured > div {
-    box-shadow: 0 8px 20px -10px rgba(227, 76, 57, 0.55),
-                0 0 0 1.5px rgba(227, 76, 57, 0.5);
-    border-color: rgba(227, 76, 57, 0.45);
-  }
-
-  /* ---- Mobile — keep the same 2x5 but uncrop so nothing's hidden. */
-  @media (max-width: 768px) {
-    .app-wall {
-      width: 100%;
-      max-width: 360px;
-      margin: 0 auto;
-    }
-    .app-wall__inner {
-      margin-top: 0;
-      margin-bottom: 0;
-    }
-  }
-</style>
