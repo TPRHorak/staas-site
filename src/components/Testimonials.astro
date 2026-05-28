@@ -1,75 +1,97 @@
 ---
 const testimonials = [
   {
-    quote: "An advisor was helping me decide which agency to work with. I sent him information and proposals from a bunch of competitors. With all the companies he reviewed, there were always pros and cons for all of them. Except All Shapes.",
+    quote: "An advisor was helping me decide which agency to work with. With all the companies he reviewed, there were always pros and cons. Except All Shapes.",
     name: "Akash Vaghela",
     role: "Founder, RNT Fitness",
     initials: "AV",
     photo: "https://allshapes.io/assets/images/temp/testimonial-rnt.jpg",
-    metrics: ["Multi-platform", "Premium coaching SaaS", "Multi-tenant from day one"],
   },
   {
-    quote: "Your company rules. I often feel dazed from days filled with chasing vendors to hold up their end of our partnership. All Shapes has been a breath of fresh air since day one.",
+    quote: "Your company rules. I often feel dazed from chasing vendors to hold up their end. All Shapes has been a breath of fresh air since day one.",
     name: "Brandon Leichter",
     role: "Owner, Allen's Camera",
     initials: "BL",
     photo: "https://allshapes.io/assets/images/temp/testimonial-acs.jpg",
-    metrics: ["10× online revenue", "22% higher avg order value", "197% growth in carts"],
   },
   {
-    quote: "When we started talking, you could feel the attention to detail and that the team really understands the industry and what we as a company are about. So you could sense it would be a really good collaboration.",
+    quote: "When we started talking, you could feel the attention to detail and that the team really understands the industry and what we as a company are about.",
     name: "Chandni Vaghela",
     role: "Co-founder, RNT Fitness",
     initials: "CV",
     photo: null,
-    metrics: ["Same team, build to maintenance", "In-house but not in-house"],
   },
 ];
 ---
 
-<section class="py-24 md:py-[120px]" style="background: #ECE4B8;">
-  <div class="mx-auto max-w-[1180px] px-6">
+<section class="py-20 md:py-24" style="background: #ECE4B8;">
+  <div class="mx-auto max-w-[1180px] px-6 mb-10">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+      <h2 class="font-serif text-5xl md:text-6xl text-navy leading-[1.15] tracking-tight max-w-lg">
+        What they said.
+      </h2>
+      <p class="hidden md:block text-xs uppercase tracking-widest text-navy-muted shrink-0">
+        Swipe to see more →
+      </p>
+    </div>
+  </div>
 
-    <h2 class="font-serif text-5xl md:text-6xl text-navy leading-tight tracking-tight max-w-lg mb-16">
-      What they said.
-    </h2>
-
-    <div class="flex flex-col gap-px rounded overflow-hidden" style="background: #d8d0a8;">
+  <!-- Horizontal scroll-snap carousel — bleeds to the viewport edge so
+       the next card peeks in. Padding-left aligns the first card to the
+       container; padding-right gives breathing room past the last card. -->
+  <div
+    class="testimonial-carousel overflow-x-auto pb-6 -mb-6"
+    role="region"
+    aria-label="Founder testimonials"
+    tabindex="0"
+  >
+    <div class="testimonial-track flex gap-5 snap-x snap-mandatory pl-[max(1.5rem,calc((100vw-1180px)/2+1.5rem))] pr-[max(1.5rem,calc((100vw-1180px)/2+1.5rem))]">
       {testimonials.map((t) => (
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-0 bg-cream">
-          <!-- Avatar col -->
-          <div class="p-8 md:p-10 md:border-r flex flex-col gap-4" style="border-color: #d8d0a8;">
+        <figure class="testimonial-card snap-start shrink-0 w-[88%] sm:w-[460px] md:w-[460px] bg-cream rounded-xl p-7 md:p-8 flex flex-col gap-6" style="border: 1px solid #d8d0a8;">
+          <blockquote class="font-serif text-lg md:text-xl leading-snug text-navy">
+            "{t.quote}"
+          </blockquote>
+          <figcaption class="mt-auto flex items-center gap-3">
             {t.photo ? (
               <img src={t.photo} alt={t.name}
-                class="w-14 h-14 rounded-full object-cover"
+                class="w-12 h-12 rounded-full object-cover shrink-0"
                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
             ) : null}
             <div class:list={[
-              "w-14 h-14 rounded-full items-center justify-center text-sm font-medium shrink-0 bg-cream-deep text-navy",
+              "w-12 h-12 rounded-full items-center justify-center text-sm font-medium shrink-0 bg-cream-deep text-navy",
               t.photo ? "hidden" : "flex",
             ]}>
               {t.initials}
             </div>
             <div>
               <p class="text-sm font-medium text-navy">{t.name}</p>
-              <p class="text-xs mt-1 text-navy-muted">{t.role}</p>
+              <p class="text-xs text-navy-muted mt-0.5">{t.role}</p>
             </div>
-          </div>
-          <!-- Quote col -->
-          <div class="px-8 pb-8 pt-0 md:p-10 md:col-span-3 flex flex-col justify-between gap-8">
-            <blockquote class="font-serif text-xl md:text-2xl leading-snug text-navy">
-              "{t.quote}"
-            </blockquote>
-            <div class="flex flex-wrap gap-2">
-              {t.metrics.map((m) => (
-                <span class="text-xs px-2 py-1 rounded-sm text-navy" style="background: #F2ECCA;">
-                  {m}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
+          </figcaption>
+        </figure>
       ))}
     </div>
   </div>
 </section>
+
+<style>
+  /* Slim, branded scrollbar so the carousel reads as scrollable. */
+  .testimonial-carousel {
+    scrollbar-width: thin;
+    scrollbar-color: #d8d0a8 transparent;
+  }
+  .testimonial-carousel::-webkit-scrollbar {
+    height: 6px;
+  }
+  .testimonial-carousel::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .testimonial-carousel::-webkit-scrollbar-thumb {
+    background: #d8d0a8;
+    border-radius: 3px;
+  }
+  .testimonial-carousel:focus-visible {
+    outline: 2px solid #E34C39;
+    outline-offset: 4px;
+  }
+</style>
