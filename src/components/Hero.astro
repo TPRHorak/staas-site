@@ -1,13 +1,5 @@
 ---
-import { APPS, FEATURED_INDEX, COL_LENGTHS } from '../data/apps';
-
-// Slice the flat APPS list into three columns. The data is ordered to
-// flow directly into 5 / 6 / 5 tiles.
-const cols = [
-  APPS.slice(0, COL_LENGTHS[0]),
-  APPS.slice(COL_LENGTHS[0], COL_LENGTHS[0] + COL_LENGTHS[1]),
-  APPS.slice(COL_LENGTHS[0] + COL_LENGTHS[1]),
-];
+import { APPS, FEATURED_INDEX } from '../data/apps';
 ---
 
 <section class="bg-navy-deep text-cream relative overflow-hidden">
@@ -17,8 +9,9 @@ const cols = [
     style="background-image: radial-gradient(#F2ECCA 1px, transparent 1px); background-size: 32px 32px;"
     aria-hidden="true"></div>
 
-  <div class="relative mx-auto max-w-[1180px] px-6 pt-32 pb-20 md:pt-40 md:pb-28">
-    <div class="grid grid-cols-1 md:grid-cols-[1.05fr_1fr] gap-12 lg:gap-16 items-center">
+  <!-- Narrower container — only as wide as the text needs. -->
+  <div class="relative mx-auto max-w-[920px] px-6 pt-32 pb-20 md:pt-40 md:pb-28">
+    <div class="grid grid-cols-1 md:grid-cols-[1.4fr_1fr] gap-10 lg:gap-12 items-center">
 
       <!-- Left: copy -->
       <div class="relative z-10">
@@ -57,45 +50,24 @@ const cols = [
         </p>
       </div>
 
-      <!-- Right: oversized tilted plane of app tiles. The plane is
-           larger than its column AND vertically longer than the hero,
-           so its corners bleed past the section's overflow-hidden box.
-           Ghost (placeholder) tiles imply "many more" without faking
-           specific apps. -->
+      <!-- Right: small 2-row × 5-col app wall. The wall is taller than
+           its container so the top row's top edge and the bottom row's
+           bottom edge get clipped — implies more rows above and below
+           without needing ghost tiles. -->
       <div class="app-wall" aria-hidden="true">
-        <div class="app-wall__plane">
-          <div class="grid grid-cols-3 gap-3 md:gap-4 items-start">
-            {cols.map((col, ci) => (
-              <ul class={`app-col app-col--${ci}`} role="list">
-                {col.map((app, i) => {
-                  // Compute the global index so we can mark the
-                  // featured FMJ tile from the flat APPS list.
-                  let globalIndex = 0;
-                  for (let k = 0; k < ci; k++) globalIndex += cols[k].length;
-                  globalIndex += i;
-                  const isFeatured = globalIndex === FEATURED_INDEX;
-                  if (app.placeholder) {
-                    return (
-                      <li class="app-tile app-tile--ghost">
-                        <div class="block relative overflow-hidden rounded-xl" style="aspect-ratio: 1/1;"></div>
-                      </li>
-                    );
-                  }
-                  return (
-                    <li class={`app-tile ${isFeatured ? 'app-tile--featured' : ''}`}>
-                      <div class="block relative overflow-hidden rounded-xl"
-                        style="aspect-ratio: 1/1;">
-                        <img
-                          src={app.icon}
-                          alt=""
-                          class="app-icon absolute inset-0 w-full h-full object-cover"
-                          loading={isFeatured ? "eager" : "lazy"}
-                        />
-                      </div>
-                    </li>
-                  );
-                })}
-              </ul>
+        <div class="app-wall__inner">
+          <div class="grid grid-rows-2 grid-cols-5 gap-2">
+            {APPS.map((app, i) => (
+              <div class={`app-tile ${i === FEATURED_INDEX ? 'app-tile--featured' : ''}`}>
+                <div class="block relative overflow-hidden rounded-lg" style="aspect-ratio: 1/1;">
+                  <img
+                    src={app.icon}
+                    alt=""
+                    class="absolute inset-0 w-full h-full object-cover"
+                    loading={i === FEATURED_INDEX ? "eager" : "lazy"}
+                  />
+                </div>
+              </div>
             ))}
           </div>
         </div>
@@ -106,92 +78,48 @@ const cols = [
 </section>
 
 <style>
-  /* ---- Wedge plane ---- */
-
   .app-wall {
-    position: relative;
-    /* Local clipping — defensive; the parent section already clips. */
-    overflow: visible;
-    /* Constrain the plane's "anchor" to the column's height so the
-       bottom rows fall off the section's natural bottom edge. */
-    align-self: stretch;
-    min-height: 100%;
+    /* Window. The inner grid is taller than this — top and bottom edges
+       of the rows get clipped, so the wall reads as a frame onto a
+       larger collection. No placeholders needed; the cut does it. */
+    overflow: hidden;
+    /* Slightly wider than the column to push the icons to a useful
+       readable size; the section's overflow-hidden contains the spill. */
+    width: 110%;
+    margin-left: -5%;
   }
 
-  .app-wall__plane {
-    /* Bigger than the column AND tilted harder so the corners bleed
-       past the section box. The section's overflow-hidden then makes
-       a clean wedge cut. */
-    transform: rotate(-9deg) translate(2%, -2%);
-    transform-origin: 35% 40%;
-    width: 124%;
-    margin-left: -8%;
-    /* Pull the top a bit so the upper ghost tiles bleed off the top
-       edge as well as the right and bottom. */
-    margin-top: -3rem;
+  .app-wall__inner {
+    /* Pull the inner grid up so row 1's top edge slips past the
+       container top, and let it overflow downward past the bottom too.
+       Together these create the cut-at-top-and-bottom effect. */
+    margin-top: -22px;
+    margin-bottom: -22px;
   }
-
-  /* ---- Columns ---- */
-
-  .app-col {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-  @media (min-width: 768px) {
-    .app-col { gap: 1rem; }
-  }
-
-  /* Stagger each column vertically — magazine wave inside the tilted plane */
-  .app-col--0 { transform: translateY(0); }
-  .app-col--1 { transform: translateY(-44px); }
-  .app-col--2 { transform: translateY(20px); }
-
-  /* ---- Tiles ---- */
 
   .app-tile > div {
     background: #2B2660;
     border: 1px solid #3d3870;
-    box-shadow: 0 12px 28px -14px rgba(0, 0, 0, 0.55);
+    box-shadow: 0 6px 16px -10px rgba(0, 0, 0, 0.5);
   }
 
-  .app-icon { display: block; }
-
-  /* Ghosts — empty translucent tiles. Read as "and more, not shown." */
-  .app-tile--ghost > div {
-    background: rgba(43, 38, 96, 0.55);
-    border: 1px dashed rgba(207, 202, 229, 0.18);
-    box-shadow: none;
-    /* Soft dot pattern hints at "icon goes here" without being literal */
-    background-image: radial-gradient(rgba(242, 236, 202, 0.07) 1.5px, transparent 1.5px);
-    background-size: 14px 14px;
-    background-position: center;
-    background-repeat: round;
-  }
-
-  /* Featured (Five Minute Journal) — coral ring anchors the centre. */
+  /* Featured FMJ — soft coral ring as the anchor point. */
   .app-tile--featured > div {
-    box-shadow: 0 10px 28px -10px rgba(227, 76, 57, 0.55),
+    box-shadow: 0 8px 20px -10px rgba(227, 76, 57, 0.55),
                 0 0 0 1.5px rgba(227, 76, 57, 0.5);
-    border-color: rgba(227, 76, 57, 0.4);
+    border-color: rgba(227, 76, 57, 0.45);
   }
 
-  /* ---- Mobile — drop the tilt + ghosts, show real tiles flat ---- */
+  /* ---- Mobile — keep the same 2x5 but uncrop so nothing's hidden. */
   @media (max-width: 768px) {
-    .app-wall__plane {
-      transform: none;
+    .app-wall {
       width: 100%;
       max-width: 360px;
       margin: 0 auto;
     }
-    .app-col--0 { transform: translateY(0); }
-    .app-col--1 { transform: translateY(-20px); }
-    .app-col--2 { transform: translateY(8px); }
-    /* Hide ghosts on small screens — they read as "missing" on mobile
-       where the bleed effect doesn't sell. */
-    .app-tile--ghost { display: none; }
+    .app-wall__inner {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
   }
 </style>
