@@ -1,5 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { SPRINTS, PRICE_PER_SPRINT } from '../data/sprints';
+
+const byBucket = SPRINTS.reduce((acc, s) => {
+  (acc[s.bucket] ||= []).push(s);
+  return acc;
+}, {} as Record<string, typeof SPRINTS>);
+const buckets = ["Design", "Strategy", "Build"] as const;
 
 const week1Steps = [
   { day: "Day 1", label: "Map", body: "goals, audience, friction" },
@@ -29,25 +36,34 @@ const icps = [
   title="Book a Sprint — Startup as a Service"
   description="Two weeks. €6,250. One real outcome — picked together in Week 1."
 >
-  <!-- Hero -->
+  <!-- Hero (H6 reframe — Sprint is the doorway, not the whole job) -->
   <section class="bg-cream pt-28 pb-20 md:pt-36 md:pb-28">
     <div class="mx-auto max-w-[1180px] px-6">
       <p class="text-xs font-medium tracking-widest uppercase text-coral mb-6">The Sprint</p>
-      <h1 class="font-serif text-5xl md:text-7xl text-navy leading-[1.02] tracking-tight max-w-2xl mb-6">
-        The Sprint.
+      <h1 class="font-serif text-5xl md:text-7xl text-navy leading-[1.15] tracking-tight max-w-3xl mb-6">
+        A Sprint is how we start, <span class="text-coral">not what we sell.</span>
       </h1>
       <p class="text-2xl md:text-3xl text-navy max-w-2xl leading-snug mb-6">
-        Two weeks. €6,250. <span class="text-coral">One real outcome — picked together in Week 1.</span>
+        Two weeks. Fixed price. One real thing.
       </p>
       <p class="text-base text-navy-muted max-w-2xl leading-relaxed mb-10">
-        Two weeks isn't enough to ship a full product. It's enough to do one of two things properly: build one small feature in production, or validate one direction with a tested prototype and a buildable plan. We decide which on Day 3.
+        A live feature, a tested prototype, or a roadmap that holds up to investor questions. After it, we both know whether to keep going. It's not the whole job — it's how we both find out.
       </p>
-      <a
-        href="/book"
-        class="inline-flex items-center justify-center px-8 py-4 rounded bg-coral text-cream text-sm font-medium hover:bg-coral-deep transition-colors"
-      >
-        Book it →
-      </a>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a
+          href="/book"
+          class="inline-flex items-center justify-center px-8 py-4 rounded bg-coral text-cream text-sm font-medium hover:bg-coral-deep transition-colors"
+        >
+          Book a Sprint →
+        </a>
+        <a
+          href="mailto:workshop@allshapes.io?subject=Hello%20from%20startupasaservice.co"
+          class="inline-flex items-center justify-center px-8 py-4 rounded text-sm font-medium transition-colors"
+          style="border: 1px solid #d8d0a8; color: #575280;"
+        >
+          Get in touch
+        </a>
+      </div>
     </div>
   </section>
 
@@ -71,9 +87,70 @@ const icps = [
     </div>
   </section>
 
-  <!-- Week 1 -->
+  <!-- H7 — Five named sprints, grouped Design / Strategy / Build -->
+  <section class="bg-cream py-20 md:py-28" style="border-top: 1px solid #d8d0a8;">
+    <div class="mx-auto max-w-[1180px] px-6">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+        <h2 class="font-serif text-4xl md:text-5xl text-navy leading-[1.15] tracking-tight max-w-2xl">
+          Five sprints. <span style="color: #575280;">Pick the one closest to your moment.</span>
+        </h2>
+        <p class="text-sm text-navy-muted max-w-xs leading-relaxed md:text-right shrink-0">
+          Two weeks. {PRICE_PER_SPRINT} flat. We'll confirm the right one on Day 0.
+        </p>
+      </div>
+
+      <div class="flex flex-col gap-12">
+        {buckets.map((bucket) => (
+          <div class="flex flex-col gap-5">
+            <p class="text-xs uppercase tracking-widest text-coral">{bucket}</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {byBucket[bucket]?.map((s) => (
+                <div class="rounded border p-7 bg-cream-deep flex flex-col gap-3" style="border-color: #d8d0a8;">
+                  <h3 class="font-serif text-2xl text-navy leading-snug">{s.name}</h3>
+                  <p class="text-sm italic" style="color: #2B2660;">"{s.anchor}"</p>
+                  <ul class="flex flex-col gap-1.5 mt-1">
+                    {s.alsoFor.map((line) => (
+                      <li class="flex items-start gap-2 text-sm leading-snug" style="color: #575280;">
+                        <span class="text-coral shrink-0">→</span>
+                        {line}
+                      </li>
+                    ))}
+                  </ul>
+                  <div class="border-t pt-3 mt-2" style="border-color: #d8d0a8;">
+                    <p class="text-xs uppercase tracking-widest text-coral mb-2">You leave with</p>
+                    <ul class="flex flex-col gap-1.5">
+                      {s.deliverables.map((d) => (
+                        <li class="text-sm text-navy leading-snug">— {d}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-12 flex flex-col sm:flex-row gap-4">
+        <a href="/book" class="inline-flex items-center justify-center px-8 py-4 rounded bg-coral text-cream text-sm font-medium hover:bg-coral-deep transition-colors">
+          Pick a Sprint →
+        </a>
+        <a href="mailto:workshop@allshapes.io?subject=Hello%20from%20startupasaservice.co" class="inline-flex items-center justify-center px-8 py-4 rounded text-sm font-medium transition-colors" style="border: 1px solid #d8d0a8; color: #575280;">
+          Not sure which — let's talk
+        </a>
+      </div>
+      <p class="mt-6 text-sm text-navy-muted">
+        Run two sprints across buckets and the first one's cost credits forward.
+      </p>
+    </div>
+  </section>
+
+  <!-- Week 1 — what happens inside any single sprint -->
   <section class="bg-cream-deep py-20 md:py-28">
     <div class="mx-auto max-w-[1180px] px-6">
+      <p class="text-sm text-navy-muted mb-10 max-w-2xl">
+        Inside any single sprint, the rhythm is the same — five days to decide the shape, five days to make it real.
+      </p>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
 
         <!-- Label -->

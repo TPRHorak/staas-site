@@ -4,6 +4,7 @@ const team = [
     name: "Thomas Horak",
     role: "CEO & Co-Founder",
     since: "since 2015",
+    avatar: "/team/thomas-avatar.jpg",
     bio: "15 years running product and engineering across consumer apps, SaaS, and ecommerce. Built All Shapes into the team behind some of the App Store's most recognised consumer products — Five Minute Journal, The Doctor's Kitchen, RNT Fitness. Thomas leads strategy, client relationships, and every meaningful product decision. He also hosts the Changing Shapes podcast — interviewing the founders building today.",
     focus: "Product strategy · Client relationships · Pricing and scope",
     contact: "thomas@allshapes.io",
@@ -13,6 +14,7 @@ const team = [
     name: "Callum McLennan",
     role: "Operations & Co-Founder",
     since: "since 2015",
+    avatar: "/team/callum-avatar.jpg",
     bio: "Callum has run the operational side of All Shapes for a decade — how projects are scoped, staffed, and delivered, and how clients experience working with us. If a Sprint runs smoothly, that's Callum.",
     focus: "Operations · Delivery · Client experience",
     contact: null,
@@ -22,6 +24,7 @@ const team = [
     name: "Jakub Heglas",
     role: "Lead Engineer",
     since: "engineering lead",
+    avatar: "/team/jakub-avatar.jpg",
     bio: "Jakub leads engineering across All Shapes products — iOS, Android, web, and backend, from App-of-the-Day consumer apps to multi-tenant SaaS platforms serving thousands of users. Every architectural decision goes through Jakub. If there's a technical risk in your product, he'll find it.",
     focus: "Architecture · Multi-platform engineering · Technical review",
     contact: null,
@@ -43,13 +46,22 @@ const team = [
     <div class="grid grid-cols-1 md:grid-cols-3 gap-px rounded overflow-hidden" style="background: #d8d0a8;">
       {team.map((person) => (
         <div class="bg-cream p-8 md:p-12 flex flex-col gap-6">
-          <!-- Header -->
-          <div class="flex items-start justify-between">
-            <div>
-              <p class="font-serif text-3xl text-navy">{person.name}</p>
-              <p class="text-sm text-navy-muted mt-1">{person.role}</p>
+          <!-- Header with hand-drawn avatar -->
+          <div class="flex items-start justify-between gap-4">
+            <div class="flex items-center gap-4">
+              <img
+                src={person.avatar}
+                alt={person.name}
+                class="w-20 h-20 rounded-full object-cover shrink-0"
+                style="background: #ECE4B8;"
+                loading="lazy"
+              />
+              <div>
+                <p class="font-serif text-2xl text-navy leading-tight">{person.name}</p>
+                <p class="text-sm text-navy-muted mt-1">{person.role}</p>
+              </div>
             </div>
-            <span class="text-xs shrink-0 mt-1.5 uppercase tracking-wider" style="color: #b8b2d8;">{person.since}</span>
+            <span class="text-xs shrink-0 mt-1 uppercase tracking-wider" style="color: #b8b2d8;">{person.since}</span>
           </div>
 
           <!-- Bio -->
