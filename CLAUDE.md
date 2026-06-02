@@ -104,9 +104,7 @@ public/
 
 ## Password Gate
 
-A client-side JS password overlay is in `BaseLayout.astro`.
-Password: `allshapes` — stored in `sessionStorage` once entered.
-This is for preview sharing only (not cryptographic security).
+Removed — the site is now public (no preview password overlay).
 
 ---
 

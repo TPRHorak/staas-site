@@ -1,7 +1,5 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-// ⚠️ EXPERIMENTAL guest-portrait header — see component for revert notes.
-import PublicationsGuestHeader from '../../components/PublicationsGuestHeader.astro';
 import publications from '../../data/publications.json';
 
 /**
@@ -139,31 +137,35 @@ function formatDate(s: string): string {
   title="Notes — Changing Shapes Podcast"
   description="Conversations with founders, designers, and operators about the products that shape how we live. Hosted by Thomas Horak."
 >
-  {/* ⚠️ EXPERIMENTAL guest-portrait header. To revert to the plain text
-      header, delete this <PublicationsGuestHeader/> + the actions <section>
-      below and restore the original header block (kept in git history), then
-      remove the import at the top of this file. */}
-  <PublicationsGuestHeader />
-
-  <section class="bg-cream pb-16 md:pb-20">
-    <div class="mx-auto max-w-[1180px] px-6 flex flex-col sm:flex-row justify-center gap-4">
-      <a
-        href={SUBSTACK_HOME}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex items-center justify-center px-7 py-3.5 rounded-sm bg-coral text-cream text-sm font-medium hover:bg-coral-deep transition-colors"
-      >
-        Subscribe on Substack →
-      </a>
-      <a
-        href="https://www.youtube.com/@ChangingShapesPodcast"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex items-center justify-center px-7 py-3.5 rounded-sm text-sm font-medium transition-colors"
-        style="border: 1px solid #d8d0a8; color: #575280;"
-      >
-        Watch on YouTube
-      </a>
+  <!-- Header -->
+  <section class="bg-cream pt-28 pb-16 md:pt-36 md:pb-20">
+    <div class="mx-auto max-w-[1180px] px-6">
+      <h1 class="font-serif text-5xl md:text-7xl text-navy leading-tight tracking-tight max-w-3xl mb-6">
+        Conversations<br/>
+        <span style="color: #575280;">with the founders building today.</span>
+      </h1>
+      <p class="text-xl text-navy-muted max-w-2xl leading-relaxed mb-8">
+        The tools we build shape how we live, connect, and see the world. But behind every product is a person who believed it should exist — and a reason why. Thomas talks to them on the <strong class="text-navy">Changing Shapes</strong> podcast.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a
+          href={SUBSTACK_HOME}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center px-7 py-3.5 rounded-sm bg-coral text-cream text-sm font-medium hover:bg-coral-deep transition-colors"
+        >
+          Subscribe on Substack →
+        </a>
+        <a
+          href="https://www.youtube.com/@ChangingShapesPodcast"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center px-7 py-3.5 rounded-sm text-sm font-medium transition-colors"
+          style="border: 1px solid #d8d0a8; color: #575280;"
+        >
+          Watch on YouTube
+        </a>
+      </div>
     </div>
   </section>
 
