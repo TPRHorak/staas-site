@@ -1,0 +1,76 @@
+---
+/**
+ * ⚠️ EXPERIMENTAL — guest portrait collage for the /publications header.
+ *
+ * Shows a scattered pile of the people Thomas has interviewed on Changing
+ * Shapes, styled after the podcast promo card (squircle tiles, coloured
+ * borders). Images are the episodes' cover/social images pulled by
+ * scripts/fetch-publications.mjs — they are NOT clean headshots, so this is
+ * a best-effort approximation.
+ *
+ * TO REVERT: delete this file and remove the <PublicationsGuestHeader …/>
+ * usage (and its import) from src/pages/publications/index.astro. Nothing
+ * else depends on it.
+ */
+import guestsData from '../data/publications.json';
+
+type Guest = { guest: string; link: string; image: string | null };
+
+// Only the episodes where we confidently parsed a guest name, and that have
+// an image — these are the "people I spoke to".
+const guests: Guest[] = (guestsData.episodes ?? [])
+  .filter((e: any) => e.guest && e.image)
+  .map((e: any) => ({ guest: e.guest, link: e.link, image: e.image }));
+
+// Coloured borders + squircle shapes, cycled so the wall feels hand-placed.
+const borders = ['#EC95C5', '#F5C650', '#E34C39', '#F4C4DC', '#F8DA8A'];
+const squircles = [
+  '47% 53% 70% 30% / 30% 52% 48% 70%',
+  '63% 37% 41% 59% / 54% 53% 47% 46%',
+  '40% 60% 54% 46% / 49% 60% 40% 51%',
+  '55% 45% 57% 43% / 47% 41% 59% 53%',
+];
+const rotations = ['-4deg', '3deg', '-2deg', '5deg', '-5deg', '2deg'];
+---
+
+<section class="bg-cream pt-28 pb-12 md:pt-32 md:pb-16 overflow-hidden">
+  <div class="mx-auto max-w-[1180px] px-6 text-center">
+    <p class="text-xs uppercase tracking-[0.22em] mb-6" style="color: #8c87b0;">
+      All Shapes presents · Changing Shapes
+    </p>
+    <h1 class="font-serif text-4xl md:text-6xl text-navy leading-[1.08] tracking-tight max-w-3xl mx-auto mb-6">
+      Every conversation,<br />
+      <span style="color: #575280;">and everyone behind it.</span>
+    </h1>
+    <p class="text-lg md:text-xl text-navy-muted max-w-2xl mx-auto leading-relaxed">
+      Thomas has sat down with {guests.length}+ founders, designers and operators
+      to ask how the products we use are reshaping how we live.
+    </p>
+  </div>
+
+  <!-- Portrait pile -->
+  <div class="mx-auto max-w-[1180px] px-6 mt-10 md:mt-14">
+    <div class="flex flex-wrap justify-center items-center gap-x-3 gap-y-6 md:gap-x-5">
+      {guests.map((g, i) => (
+        <a
+          href={g.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="guest-tile group relative block shrink-0"
+          title={g.guest}
+          style={`transform: rotate(${rotations[i % rotations.length]});`}
+        >
+          <span
+            class="block overflow-hidden shadow-lg transition-transform duration-300 group-hover:scale-105 group-hover:rotate-0"
+            style={`width: clamp(76px, 9vw, 116px); aspect-ratio: 1/1; border: 3px solid ${borders[i % borders.length]}; border-radius: ${squircles[i % squircles.length]};`}
+          >
+            <img src={g.image} alt={g.guest} class="w-full h-full object-cover" loading="lazy" />
+          </span>
+          <span class="pointer-events-none absolute left-1/2 -translate-x-1/2 -bottom-5 whitespace-nowrap text-[10px] font-medium text-navy-muted opacity-0 group-hover:opacity-100 transition-opacity">
+            {g.guest}
+          </span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,8 +1,14 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+// ⚠️ EXPERIMENTAL guest-portrait header — see component for revert notes.
+import PublicationsGuestHeader from '../../components/PublicationsGuestHeader.astro';
+import publications from '../../data/publications.json';
 
 /**
- * Pull recent posts from the Changing Shapes Podcast Substack at build time.
+ * Episodes come primarily from src/data/publications.json, refreshed roughly
+ * daily by scripts/fetch-publications.mjs (npm run fetch:publications). That
+ * snapshot includes each episode's cover image. If the snapshot is empty we
+ * fall back to a live fetch of the Substack feed at build time (no images).
  *
  * Source: https://tomhorak.substack.com/feed
  * Each card links out to the Substack post (no local /notes/[slug] anymore).
@@ -95,16 +101,30 @@ function extractItems(xml: string, fallbackImg: string | null): Item[] {
 let posts: Item[] = [];
 let feedError: string | null = null;
 
-try {
-  const res = await fetch(FEED_URL, {
-    headers: { 'User-Agent': 'staas-site (Astro build)' },
-  });
-  if (!res.ok) throw new Error(`HTTP ${res.status}`);
-  const xml = await res.text();
-  const channelImg = extractChannelImage(xml);
-  posts = extractItems(xml, channelImg).slice(0, 12);
-} catch (e: any) {
-  feedError = e?.message || 'unknown';
+// Primary source: the daily snapshot written by fetch-publications.mjs.
+posts = (publications.episodes ?? [])
+  .map((e: any) => ({
+    title: e.title,
+    link: e.link,
+    pubDate: e.pubDate,
+    description: e.description,
+    image: e.image ?? null,
+  }))
+  .slice(0, 12);
+
+// Fallback: live fetch of the feed (images mostly unavailable this way).
+if (posts.length === 0) {
+  try {
+    const res = await fetch(FEED_URL, {
+      headers: { 'User-Agent': 'staas-site (Astro build)' },
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const xml = await res.text();
+    const channelImg = extractChannelImage(xml);
+    posts = extractItems(xml, channelImg).slice(0, 12);
+  } catch (e: any) {
+    feedError = e?.message || 'unknown';
+  }
 }
 
 function formatDate(s: string): string {
@@ -119,35 +139,31 @@ function formatDate(s: string): string {
   title="Notes — Changing Shapes Podcast"
   description="Conversations with founders, designers, and operators about the products that shape how we live. Hosted by Thomas Horak."
 >
-  <!-- Header -->
-  <section class="bg-cream pt-28 pb-16 md:pt-36 md:pb-20">
-    <div class="mx-auto max-w-[1180px] px-6">
-      <h1 class="font-serif text-5xl md:text-7xl text-navy leading-tight tracking-tight max-w-3xl mb-6">
-        Conversations<br/>
-        <span style="color: #575280;">with the founders building today.</span>
-      </h1>
-      <p class="text-xl text-navy-muted max-w-2xl leading-relaxed mb-8">
-        The tools we build shape how we live, connect, and see the world. But behind every product is a person who believed it should exist — and a reason why. Thomas talks to them on the <strong class="text-navy">Changing Shapes</strong> podcast.
-      </p>
-      <div class="flex flex-col sm:flex-row gap-4">
-        <a
-          href={SUBSTACK_HOME}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center justify-center px-7 py-3.5 rounded-sm bg-coral text-cream text-sm font-medium hover:bg-coral-deep transition-colors"
-        >
-          Subscribe on Substack →
-        </a>
-        <a
-          href="https://www.youtube.com/@ChangingShapesPodcast"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center justify-center px-7 py-3.5 rounded-sm text-sm font-medium transition-colors"
-          style="border: 1px solid #d8d0a8; color: #575280;"
-        >
-          Watch on YouTube
-        </a>
-      </div>
+  {/* ⚠️ EXPERIMENTAL guest-portrait header. To revert to the plain text
+      header, delete this <PublicationsGuestHeader/> + the actions <section>
+      below and restore the original header block (kept in git history), then
+      remove the import at the top of this file. */}
+  <PublicationsGuestHeader />
+
+  <section class="bg-cream pb-16 md:pb-20">
+    <div class="mx-auto max-w-[1180px] px-6 flex flex-col sm:flex-row justify-center gap-4">
+      <a
+        href={SUBSTACK_HOME}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center px-7 py-3.5 rounded-sm bg-coral text-cream text-sm font-medium hover:bg-coral-deep transition-colors"
+      >
+        Subscribe on Substack →
+      </a>
+      <a
+        href="https://www.youtube.com/@ChangingShapesPodcast"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center px-7 py-3.5 rounded-sm text-sm font-medium transition-colors"
+        style="border: 1px solid #d8d0a8; color: #575280;"
+      >
+        Watch on YouTube
+      </a>
     </div>
   </section>
 
@@ -163,21 +179,33 @@ function formatDate(s: string): string {
                 href={p.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="group flex flex-col rounded p-8 bg-cream border transition-colors hover:border-coral min-h-[280px]"
+                class="group flex flex-col overflow-hidden rounded bg-cream border transition-colors hover:border-coral min-h-[280px]"
                 style="border-color: #d8d0a8;"
               >
-                <p class="text-xs uppercase tracking-widest mb-4" style="color: #8c87b0;">
-                  {formatDate(p.pubDate)}
-                </p>
-                <h3 class="font-serif text-xl text-navy leading-snug group-hover:text-coral transition-colors mb-4">
-                  {p.title}
-                </h3>
-                <p class="text-sm text-navy-muted leading-relaxed line-clamp-4 flex-1">
-                  {p.description}
-                </p>
-                <p class="text-sm text-coral mt-6">
-                  Read on Substack →
-                </p>
+                {p.image && (
+                  <div class="relative overflow-hidden" style="aspect-ratio: 16/9; background: #e9e2bd;">
+                    <img
+                      src={p.image}
+                      alt={p.title}
+                      loading="lazy"
+                      class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                  </div>
+                )}
+                <div class="flex flex-col flex-1 p-7">
+                  <p class="text-xs uppercase tracking-widest mb-3" style="color: #8c87b0;">
+                    {formatDate(p.pubDate)}
+                  </p>
+                  <h3 class="font-serif text-xl text-navy leading-snug group-hover:text-coral transition-colors mb-3">
+                    {p.title}
+                  </h3>
+                  <p class="text-sm text-navy-muted leading-relaxed line-clamp-3 flex-1">
+                    {p.description}
+                  </p>
+                  <p class="text-sm text-coral mt-5">
+                    Read on Substack →
+                  </p>
+                </div>
               </a>
             ))}
           </div>

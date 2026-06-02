@@ -34,8 +34,8 @@ const columns = [
 
     <h2 class="font-serif text-5xl md:text-6xl lg:text-7xl text-cream leading-[1.15] tracking-tight max-w-5xl mb-20">
       AI made building software cheap. It made
-      <span class="word-rotator inline-block align-baseline" data-words={JSON.stringify(rotatingWords)} aria-label="good, secure, intuitive, scalable, thoughtful, efficient, loved">
-        <span class="word-rotator__current text-coral italic">good</span>
+      <span class="word-rotator" data-words={JSON.stringify(rotatingWords)} aria-label="good, secure, intuitive, scalable, thoughtful, efficient, loved">
+        <span class="word-rotator__current">good</span>
       </span>
       products rare.
     </h2>
@@ -58,23 +58,38 @@ const columns = [
 </section>
 
 <style>
+  /* Coral parallelogram chip. Reserved width = longest word + padding
+     ("thoughtful" ≈ 4.45em) so the box never resizes and the line never
+     reflows when the word swaps. The box is skewed; the text is
+     counter-skewed so it stays upright. */
   .word-rotator {
-    position: relative;
-    min-width: 6.8em;
-    text-align: left;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 5.1em;
+    padding: 0.06em 0.32em;
+    margin: 0 0.06em;
+    vertical-align: baseline;
+    background: var(--color-coral);
+    color: #fff;
+    border-radius: 6px;
+    transform: skewX(-9deg);
+    overflow: hidden;
+    white-space: nowrap;
   }
   .word-rotator__current {
     display: inline-block;
-    transition: opacity 240ms ease, transform 320ms cubic-bezier(0.4, 0, 0.2, 1);
+    transform: skewX(9deg);
+    transition: opacity 220ms ease, transform 320ms cubic-bezier(0.4, 0, 0.2, 1);
     will-change: opacity, transform;
   }
   .word-rotator.is-leaving .word-rotator__current {
     opacity: 0;
-    transform: translateY(-0.35em);
+    transform: skewX(9deg) translateY(-0.55em);
   }
   .word-rotator.is-entering .word-rotator__current {
     opacity: 0;
-    transform: translateY(0.35em);
+    transform: skewX(9deg) translateY(0.55em);
   }
   @media (prefers-reduced-motion: reduce) {
     .word-rotator__current { transition: none; }

@@ -5,7 +5,9 @@ import { APPS } from '../data/apps';
 // staggered so they don't line up horizontally; both are taller than
 // the hero section so the top and bottom tiles get clipped by the
 // section's overflow-hidden.
-const colA = [APPS[0], APPS[1], APPS[2], APPS[3], APPS[4]];
+// Habits (APPS[1]) sits at the clipped top slot; The Doctor's Kitchen
+// (APPS[0]) takes the second, fully-visible slot.
+const colA = [APPS[1], APPS[0], APPS[2], APPS[3], APPS[4]];
 const colB = [APPS[5], APPS[6], APPS[7], APPS[8], APPS[9]];
 ---
 
@@ -65,10 +67,10 @@ const colB = [APPS[5], APPS[6], APPS[7], APPS[8], APPS[9]];
        right edge of the viewport. Each column holds 5 tiles — both
        columns are taller than the hero section, so the top and bottom
        tiles get clipped naturally by the section's overflow-hidden. -->
-  <div class="hidden md:block absolute top-0 right-0 bottom-0 pointer-events-none z-10" style="width: 38%;" aria-hidden="true">
-    <!-- Fade left edge into the navy bg so the wall blends into the text column -->
-    <div class="absolute inset-y-0 left-0 z-20 pointer-events-none"
-      style="width: 200px; background: linear-gradient(to right, #1F1B4A 0%, rgba(31,27,74,0.95) 40%, rgba(31,27,74,0) 100%);"></div>
+  <div class="icon-wall hidden md:block absolute top-0 right-0 bottom-0 pointer-events-none z-10" style="width: 486px;" aria-hidden="true">
+    <!-- The left edge of the wall is faded into the navy bg with an eased
+         mask (see <style> below) so the tiles dissolve into the text column
+         instead of ending on a hard edge. -->
 
     <!-- Two-column grid. Tiles are square, big, and stacked tall
          enough that the columns spill past the section bounds. -->
@@ -93,3 +95,49 @@ const colB = [APPS[5], APPS[6], APPS[7], APPS[8], APPS[9]];
     </div>
   </div>
 </section>
+
+<style>
+  /* Eased fade on the icon wall's left edge — a multi-stop mask (rather than
+     a flat colour scrim) so the tiles melt into the navy with no banding and
+     no hard seam where the wall meets the text column. */
+  .icon-wall {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.013) 6.5%,
+      rgba(0, 0, 0, 0.049) 12.75%,
+      rgba(0, 0, 0, 0.104) 18.75%,
+      rgba(0, 0, 0, 0.175) 24.5%,
+      rgba(0, 0, 0, 0.259) 30%,
+      rgba(0, 0, 0, 0.352) 35.25%,
+      rgba(0, 0, 0, 0.45) 40.25%,
+      rgba(0, 0, 0, 0.55) 45%,
+      rgba(0, 0, 0, 0.648) 49.5%,
+      rgba(0, 0, 0, 0.741) 53.75%,
+      rgba(0, 0, 0, 0.825) 57.75%,
+      rgba(0, 0, 0, 0.896) 61.5%,
+      rgba(0, 0, 0, 0.951) 65%,
+      rgba(0, 0, 0, 0.987) 68.25%,
+      rgba(0, 0, 0, 1) 72%
+    );
+    mask-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.013) 6.5%,
+      rgba(0, 0, 0, 0.049) 12.75%,
+      rgba(0, 0, 0, 0.104) 18.75%,
+      rgba(0, 0, 0, 0.175) 24.5%,
+      rgba(0, 0, 0, 0.259) 30%,
+      rgba(0, 0, 0, 0.352) 35.25%,
+      rgba(0, 0, 0, 0.45) 40.25%,
+      rgba(0, 0, 0, 0.55) 45%,
+      rgba(0, 0, 0, 0.648) 49.5%,
+      rgba(0, 0, 0, 0.741) 53.75%,
+      rgba(0, 0, 0, 0.825) 57.75%,
+      rgba(0, 0, 0, 0.896) 61.5%,
+      rgba(0, 0, 0, 0.951) 65%,
+      rgba(0, 0, 0, 0.987) 68.25%,
+      rgba(0, 0, 0, 1) 72%
+    );
+  }
+</style>

@@ -45,23 +45,25 @@ const works = [
       {works.map((work) => (
         <a
           href={`/work/${work.slug}`}
-          class="group block relative overflow-hidden rounded-xl"
-          style="aspect-ratio: 16/10; background: #2B2660;"
+          class="group flex flex-col overflow-hidden rounded-xl"
+          style="background: #2B2660;"
         >
-          <img
-            src={work.hero}
-            alt={work.title}
-            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-            loading="lazy"
-          />
-          <!-- Bottom gradient + eyebrow + title + stats -->
-          <div class="absolute inset-0 flex flex-col justify-end p-6 md:p-7"
-            style="background: linear-gradient(to top, rgba(31,27,74,0.97) 0%, rgba(31,27,74,0.6) 38%, rgba(31,27,74,0.05) 72%, transparent 100%);">
+          <!-- Image -->
+          <div class="overflow-hidden" style="aspect-ratio: 16/10;">
+            <img
+              src={work.hero}
+              alt={work.title}
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              loading="lazy"
+            />
+          </div>
+          <!-- Text on solid card background, below the image -->
+          <div class="flex flex-col p-6 md:p-7">
             <p class="text-xs uppercase tracking-[0.18em] text-coral mb-1.5">{work.eyebrow}</p>
             <h3 class="font-serif text-2xl md:text-3xl text-cream leading-[1.1] mb-3">{work.title}</h3>
             <div class="flex flex-wrap gap-1.5">
               {work.stats.map((s) => (
-                <span class="text-[11px] px-2 py-0.5 rounded-full" style="background: rgba(242,236,202,0.12); color: #d8d2ee; backdrop-filter: blur(2px);">{s}</span>
+                <span class="text-[11px] px-2 py-0.5 rounded-full" style="background: rgba(242,236,202,0.12); color: #d8d2ee;">{s}</span>
               ))}
             </div>
           </div>
