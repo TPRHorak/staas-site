@@ -10,12 +10,17 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "fetch:publications": "node scripts/fetch-publications.mjs"
+    "fetch:publications": "node scripts/fetch-publications.mjs",
+    "generate:og": "node scripts/generate-og.mjs"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.3",
     "@tailwindcss/vite": "^4.3.0",
     "astro": "^6.3.1",
     "marked": "^18.0.4",
     "tailwindcss": "^4.3.0"
+  },
+  "devDependencies": {
+    "sharp": "^0.34.5"
   }
 }

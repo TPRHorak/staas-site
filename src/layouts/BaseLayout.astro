@@ -15,7 +15,9 @@ const {
   ogImage = "/og-default.png",
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? "https://staas.allshapes.io");
+const site = Astro.site ?? new URL("https://startupasaservice.co");
+const canonicalURL = new URL(Astro.url.pathname, site);
+const ogImageURL = new URL(ogImage, site);
 ---
 
 <!doctype html>
@@ -31,12 +33,19 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? "https://staas.al
     <!-- OG / Social -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={ogImage} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:url" content={canonicalURL} />
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Startup as a Service" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
 
-    <!-- Favicon placeholder -->
+    <!-- Favicon / icons -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
     <!-- Fonts: Recoleta (self-hosted) + Inter (system) -->
     <link rel="preload" href="/fonts/recoleta-regular.woff2" as="font" type="font/woff2" crossorigin />
