@@ -3,14 +3,22 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import WorkCard from '../../components/WorkCard.astro';
 import { getCollection } from 'astro:content';
 
-// H16 — trim the public portfolio to the three projects that pull
-// their weight visually. Other case studies still exist as content
-// (their /work/<slug> pages stay live) but they're filtered out of
-// the index until the assets earn their place.
+// The public portfolio: projects with a usable hero (a real product shot
+// or a clean brand/app icon). Wide product shots lead; icon-tile cards
+// follow. Any other case study still has a live /work/<slug> page but is
+// kept off the index until it has an asset that earns its place.
 const ALLOWED = new Set([
   'five-minute-journal',
   'doctors-kitchen',
   'rnt-fitness',
+  'allens-camera',
+  'sales-made-simple',
+  'mygear-vault',
+  'food-medic',
+  'lets-get-closer',
+  'mindful-daily-affirmations',
+  'fuggerei',
+  'beproductive',
 ]);
 const allWork = await getCollection('work');
 const works = allWork
@@ -47,6 +55,7 @@ const works = allWork
             oneLine={work.data.oneLine}
             awards={work.data.awards}
             external={work.data.external}
+            iconOnly={work.data.iconOnly}
           />
         ))}
       </div>

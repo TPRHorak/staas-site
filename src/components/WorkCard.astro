@@ -6,15 +6,16 @@ interface Props {
   oneLine: string;
   awards: string[];
   external?: string;
+  iconOnly?: boolean;
 }
-const { title, slug, hero, oneLine, awards, external } = Astro.props;
+const { title, slug, hero, oneLine, awards, external, iconOnly: iconOnlyProp } = Astro.props;
 
 const href = external ?? `/work/${slug}`;
 const isExternal = !!external;
 const linkAttrs = isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {};
-// Welbeck only has a small square brand icon, not a wide hero. Render
-// the image with object-contain on a navy backdrop instead of cropping it.
-const iconOnly = slug === "welbeck-health";
+// Some projects only have a square brand/app icon, not a wide product
+// shot. Render those contained on a navy backdrop instead of cropping.
+const iconOnly = iconOnlyProp ?? slug === "welbeck-health";
 ---
 
 <a
