@@ -169,6 +169,19 @@ async function main() {
   const withImg = episodes.filter((e) => e.image).length;
   console.log(`[publications] resolved ${withImg}/${episodes.length} images`);
 
+  // Skip rewriting when the episode content is identical to what's on disk.
+  // Otherwise the ever-changing `generatedAt` would make git see a diff on
+  // every run and push a redeploy daily even with no new episode.
+  try {
+    const prev = JSON.parse(await readFile(OUT_PATH, 'utf8'));
+    if (JSON.stringify(prev.episodes) === JSON.stringify(episodes)) {
+      console.log('[publications] no episode changes — leaving snapshot as-is');
+      return;
+    }
+  } catch {
+    // no previous file (or unreadable) — fall through and write a fresh one
+  }
+
   const payload = {
     generatedAt: new Date().toISOString(),
     source: FEED_URL,
