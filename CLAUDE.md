@@ -108,6 +108,30 @@ Removed — the site is now public (no preview password overlay).
 
 ---
 
+## Publications refresh (Substack)
+
+`/publications` reads `src/data/publications.json` (episodes + Substack cover
+images), refreshed by `scripts/fetch-publications.mjs`. The script only
+rewrites the file when the episode list actually changes.
+
+**Why it runs locally, not in CI:** Substack is behind Cloudflare, which
+hard-blocks datacenter IPs with HTTP 403 — GitHub Actions, Vercel, and public
+CORS proxies all fail. Only this Mac's residential IP can reach the feed. The
+old `.github/workflows/refresh-publications.yml` was removed for this reason.
+
+**Automation:** a launchd agent runs `scripts/refresh-publications.sh` daily at
+09:00 (fetch → commit → push → Vercel redeploy):
+- Agent: `~/Library/LaunchAgents/io.allshapes.staas-refresh-publications.plist`
+- Log: `~/Library/Logs/staas-refresh-publications.log`
+- Manual run: `bash scripts/refresh-publications.sh`
+
+**One-time requirement:** because the repo lives in `~/Desktop` (a TCC-protected
+folder), the agent needs **Full Disk Access** granted to `/bin/bash`, or it
+fails with "Operation not permitted" (launchd exit 126). System Settings →
+Privacy & Security → Full Disk Access → add `/bin/bash`.
+
+---
+
 ## Pending / Ideas Discussed
 
 - **New lower tier** (~€5–6k/month, support-oriented) — discussed but not yet named or built. User wants to add this below Launch. Scope: bug fixes, small improvements, App Store submissions, async advice.
