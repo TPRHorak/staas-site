@@ -1,8 +1,16 @@
 {
-  "generatedAt": "2026-05-29T21:38:04.377Z",
+  "generatedAt": "2026-06-18T13:13:04.347Z",
   "source": "https://tomhorak.substack.com/feed",
   "channelImage": "https://substackcdn.com/image/fetch/$s_!ujfE!,w_256,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fe2d322d3-3cbe-4ca2-8811-9d20439a1b79_534x534.png",
   "episodes": [
+    {
+      "title": "Storytelling is the number one skill of the AI era — Sabine Devins",
+      "guest": "",
+      "link": "https://tomhorak.substack.com/p/uwhats-the-point-who-cares",
+      "pubDate": "Tue, 16 Jun 2026 05:01:35 GMT",
+      "description": "\"What's the point? And who cares?\" A conversation with storyteller Sabine Devins about the two questions every founder should be answering before they write a single post.",
+      "image": "https://substackcdn.com/image/fetch/$s_!Dvbm!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-video.s3.amazonaws.com%2Fvideo_upload%2Fpost%2F202091763%2Fb87ff9c3-e789-4dfe-84ca-ecb776f28f12%2Ftranscoded-14779.png"
+    },
     {
       "title": "The Practice of Shaping Your Inner World | Juju Kim",
       "guest": "Juju Kim",
@@ -154,14 +162,6 @@
       "pubDate": "Thu, 12 Jun 2025 09:00:50 GMT",
       "description": "&#127897;&#65039; Episode Overview",
       "image": "https://substackcdn.com/image/fetch/$s_!qU6o!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-video.s3.amazonaws.com%2Fvideo_upload%2Fpost%2F165715018%2F3b126c6e-b2a9-4e00-b3bf-86b776ce86b6%2Ftranscoded-00001.png"
-    },
-    {
-      "title": "How the UK’s DMCC Act Re-writes the Rules on Dark Patterns",
-      "guest": "",
-      "link": "https://tomhorak.substack.com/p/how-the-uks-dmcc-act-re-writes-the",
-      "pubDate": "Tue, 03 Jun 2025 06:30:28 GMT",
-      "description": "Britain’s new Digital Markets, Competition and Consumers Act (DMCC) might seem, at first glance, like another bit of regulatory fine print.",
-      "image": "https://substackcdn.com/image/fetch/$s_!n_F5!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F0be1882b-9931-4693-b117-5742c07e0e61_2000x1099.jpeg"
     }
   ]
 }

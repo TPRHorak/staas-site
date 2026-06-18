@@ -23,9 +23,22 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const OUT_PATH = join(__dirname, '..', 'src', 'data', 'publications.json');
 
 const FEED_URL = 'https://tomhorak.substack.com/feed';
-const UA = 'Mozilla/5.0 (compatible; staas-site/1.0; +https://allshapes.io)';
+// Substack sits behind Cloudflare, which 403s requests from datacenter IPs
+// (e.g. GitHub Actions runners) that don't look like a real browser. Send a
+// full browser User-Agent + Accept headers so the feed is served in CI.
+const UA =
+  'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 ' +
+  '(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36';
+const BROWSER_HEADERS = {
+  'User-Agent': UA,
+  Accept:
+    'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
+  'Accept-Language': 'en-US,en;q=0.9',
+  'Cache-Control': 'no-cache',
+};
 const MAX_EPISODES = 24;
 const CONCURRENCY = 5;
+const FETCH_RETRIES = 3;
 
 function unwrapCdata(s) {
   return s.replace(/^\s*<!\[CDATA\[/, '').replace(/\]\]>\s*$/, '').trim();
@@ -71,10 +84,26 @@ function looksLikeName(s) {
   return words.every((w) => /^[A-Z][\w.'-]*$/.test(w));
 }
 
-async function fetchText(url) {
-  const res = await fetch(url, { headers: { 'User-Agent': UA } });
-  if (!res.ok) throw new Error(`HTTP ${res.status} for ${url}`);
-  return res.text();
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+async function fetchText(url, retries = FETCH_RETRIES) {
+  let lastErr;
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    try {
+      const res = await fetch(url, { headers: BROWSER_HEADERS, redirect: 'follow' });
+      // 403/429/5xx from Cloudflare are often transient or rate-based — back off
+      // and retry rather than giving up on the whole run.
+      if (res.status === 403 || res.status === 429 || res.status >= 500) {
+        throw new Error(`HTTP ${res.status} for ${url}`);
+      }
+      if (!res.ok) throw new Error(`HTTP ${res.status} for ${url}`);
+      return res.text();
+    } catch (err) {
+      lastErr = err;
+      if (attempt < retries) await sleep(attempt * 1500);
+    }
+  }
+  throw lastErr;
 }
 
 function extractOgImage(html) {
