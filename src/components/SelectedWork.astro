@@ -27,8 +27,15 @@ const works = [
 ];
 ---
 
-<section class="py-24 md:py-[120px]" style="background: #1F1B4A;">
+<section style="background: #1F1B4A;">
+  <!-- Seam divider: Hero and this section share the same navy, so an
+       edge-faded hairline marks the boundary without a hard band. -->
   <div class="mx-auto max-w-[1180px] px-6">
+    <div aria-hidden="true" class="h-px"
+      style="background: linear-gradient(to right, transparent, #3d3870 18%, #3d3870 82%, transparent);"></div>
+  </div>
+
+  <div class="mx-auto max-w-[1180px] px-6 py-24 md:py-[120px]">
 
     <p class="text-xs uppercase tracking-[0.18em] text-coral mb-6 md:mb-8">Selected Work</p>
 
