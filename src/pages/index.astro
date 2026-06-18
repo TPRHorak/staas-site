@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
-import ClientTicker from '../components/ClientTicker.astro';
 import WhyAllShapes from '../components/WhyAllShapes.astro';
 import SelectedWork from '../components/SelectedWork.astro';
 import Testimonials from '../components/Testimonials.astro';
@@ -20,13 +19,12 @@ import FinalCTA from '../components/FinalCTA.astro';
   description="Customers don't meet your company — they meet your product. All Shapes is the senior team behind Five Minute Journal and The Doctor's Kitchen, switched on for your startup."
 >
   <Hero />
-  <ClientTicker />
-  <WhyAllShapes />
 
-  <!-- H5 — proof moved up: portfolio + testimonials sit directly under
-       the "AI made building software cheap" section so the work does
-       the selling before How it works / Who it's for / Pricing. -->
+  <!-- Lead with the work: the portfolio sits directly below the fold so
+       the products do the selling before any positioning or pricing copy. -->
   <SelectedWork />
+
+  <WhyAllShapes />
   <Testimonials />
 
   <HowWeStart />
