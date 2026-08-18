@@ -5,7 +5,7 @@ const team = [
     role: "CEO & Co-Founder",
     since: "since 2015",
     avatar: "/team/thomas-avatar.jpg",
-    bio: "15 years running product and engineering across consumer apps, SaaS, and ecommerce. Built All Shapes into the team behind some of the App Store's most recognised consumer products — Five Minute Journal, The Doctor's Kitchen, RNT Fitness. Thomas leads strategy, client relationships, and every meaningful product decision. He also hosts the Changing Shapes podcast — interviewing the founders building today.",
+    bio: "15 years running product and engineering across consumer apps, SaaS, and ecommerce. Built All Shapes into the team behind some of the App Store’s most recognised consumer products — Five Minute Journal, The Doctor’s Kitchen, RNT Fitness. Thomas leads strategy, client relationships, and every meaningful product decision. He also hosts the Changing Shapes podcast — interviewing the founders building today.",
     focus: "Product strategy · Client relationships · Pricing and scope",
     contact: "thomas@allshapes.io",
     linkedin: "https://www.linkedin.com/in/thomas-horak/",
@@ -15,7 +15,7 @@ const team = [
     role: "Operations & Co-Founder",
     since: "since 2015",
     avatar: "/team/callum-avatar.jpg",
-    bio: "Callum has run the operational side of All Shapes for a decade — how projects are scoped, staffed, and delivered, and how clients experience working with us. If a Sprint runs smoothly, that's Callum.",
+    bio: "Callum has run the operational side of All Shapes for a decade — how projects are scoped, staffed, and delivered, and how clients experience working with us. If a Sprint runs smoothly, that’s Callum.",
     focus: "Operations · Delivery · Client experience",
     contact: null,
     linkedin: "https://www.linkedin.com/in/callummclennan/",
@@ -25,7 +25,7 @@ const team = [
     role: "Lead Engineer",
     since: "engineering lead",
     avatar: "/team/jakub-avatar.jpg",
-    bio: "Jakub leads engineering across All Shapes products — iOS, Android, web, and backend, from App-of-the-Day consumer apps to multi-tenant SaaS platforms serving thousands of users. Every architectural decision goes through Jakub. If there's a technical risk in your product, he'll find it.",
+    bio: "Jakub leads engineering across All Shapes products — iOS, Android, web, and backend, from App-of-the-Day consumer apps to multi-tenant SaaS platforms serving thousands of users. Every architectural decision goes through Jakub. If there’s a technical risk in your product, he’ll find it.",
     focus: "Architecture · Multi-platform engineering · Technical review",
     contact: null,
     linkedin: "https://www.linkedin.com/in/jakub-heglas/",
@@ -42,7 +42,7 @@ const team = [
       The people behind the product.
     </h2>
     <p class="text-base text-navy-muted max-w-lg mb-20 leading-relaxed">
-      Founded by Thomas and Callum — a decade of building together. Jakub leads engineering. Every client. Every line of code. That's us.
+      Founded by Thomas and Callum — a decade of building together. Jakub leads engineering. Every client. Every line of code. That’s us.
     </p>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-px rounded overflow-hidden" style="background: #d8d0a8;">
@@ -80,12 +80,12 @@ const team = [
           <div class="flex flex-col gap-2 mt-auto pt-2">
             {person.contact && (
               <a href={`mailto:${person.contact}`} class="text-sm text-coral hover:underline">
-                {person.contact} →
+                {person.contact} <span aria-hidden="true">→</span>
               </a>
             )}
             {person.linkedin && (
               <a href={person.linkedin} target="_blank" rel="noopener noreferrer" class="text-sm text-navy-muted hover:text-coral transition-colors">
-                LinkedIn →
+                LinkedIn <span aria-hidden="true">→</span>
               </a>
             )}
           </div>
@@ -94,7 +94,7 @@ const team = [
     </div>
 
     <p class="mt-8 text-sm" style="color: #8c87b0;">
-      UK and Europe-based. We do not offshore. Every decision — that's us.
+      UK and Europe-based. We do not offshore. Every decision — that’s us.
     </p>
   </div>
 </section>

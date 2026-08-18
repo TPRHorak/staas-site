@@ -15,4 +15,4 @@ Unapp was an ambitious productivity platform built around a novel interaction mo
 
 **What we shipped.** Full iOS build with complex real-time sync, a custom interaction model with no direct precedent, and a multi-service backend designed for the demands of the product. The launch happened on schedule, to strong early traction.
 
-**The outcome.** A technically accomplished product that demonstrated what's possible when senior engineering judgement is applied to a genuinely novel interaction model. Covid disrupted the market before the product could scale — but the build proved the approach.
+**The outcome.** A technically accomplished product that demonstrated what’s possible when senior engineering judgement is applied to a genuinely novel interaction model. Covid disrupted the market before the product could scale — but the build proved the approach.

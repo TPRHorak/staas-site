@@ -16,7 +16,7 @@ const pairs = [
     doTitle: "The change in their life is the product.",
     doBody: "Real-life impact → customer success → retention → LTV. That order matters.",
     dontTitle: "Optimising for DAU.",
-    dontBody: "Vanity metrics that don't track the user's life getting better.",
+    dontBody: "Vanity metrics that don’t track the user’s life getting better.",
   },
   {
     doTitle: "Daily-use is a craft.",
@@ -45,16 +45,16 @@ const pairs = [
     <p class="text-xs uppercase tracking-[0.18em] text-coral mb-6 md:mb-8">What we believe</p>
 
     <h2 class="font-serif text-5xl md:text-6xl text-cream leading-tight tracking-tight max-w-xl mb-4">
-      What we do.<br/>What we don't.
+      What we do.<br/>What we don’t.
     </h2>
     <p class="text-base mb-16 max-w-md leading-relaxed" style="color: #a09cbe;">
-      Hire us if these match. Don't if they don't.
+      Hire us if these match. Don’t if they don’t.
     </p>
 
     <!--
       Single 2-col grid. CSS grid auto-flow places one DO cell next to its
-      DON'T cell on each row, and `grid-auto-rows: 1fr` (achieved here by
-      letting cells size to content within a single grid) keeps the do/don't
+      DON’T cell on each row, and `grid-auto-rows: 1fr` (achieved here by
+      letting cells size to content within a single grid) keeps the do/don’t
       pair horizontally aligned by row height. Subtle internal border-bottom
       dividers between rows (cream-deep on the left column, navy-border on
       the right) — the bolder gap-px frame is gone.
@@ -66,7 +66,7 @@ const pairs = [
         <p class="font-sans font-semibold text-xs uppercase tracking-widest" style="color: #2B2660;">We do</p>
       </div>
       <div class="px-8 md:px-10 py-5" style="background: #1F1B4A; border-bottom: 1px solid #3d3870;">
-        <p class="font-sans font-semibold text-xs uppercase tracking-widest" style="color: #E34C39;">We don't</p>
+        <p class="font-sans font-semibold text-xs uppercase tracking-widest" style="color: #E34C39;">We don’t</p>
       </div>
 
       {pairs.map((pair, i) => {
@@ -81,7 +81,7 @@ const pairs = [
               <p class="font-serif text-xl text-navy leading-snug">{pair.doTitle}</p>
               <p class="text-sm leading-relaxed" style="color: #6b6690;">{pair.doBody}</p>
             </div>
-            <!-- DON'T -->
+            <!-- DON’T -->
             <div
               class="px-8 md:px-10 py-6 flex flex-col gap-1.5"
               style={`background: #1F1B4A; ${last ? '' : 'border-bottom: 1px solid #3d3870;'}`}

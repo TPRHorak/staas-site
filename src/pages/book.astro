@@ -20,8 +20,8 @@ const ndaRaw = fs.readFileSync(ndaPath, 'utf8');
 const ndaBody = ndaRaw.replace(/^---[\s\S]*?---\s*/m, '');
 const ndaHtml = marked.parse(ndaBody);
 
-// Build the absolute "thanks" URL from whichever origin we're rendered on.
-// Falls back to the production URL when Astro.url isn't available at build time.
+// Build the absolute "thanks" URL from whichever origin we’re rendered on.
+// Falls back to the production URL when Astro.url isn’t available at build time.
 const origin = Astro.url?.origin || (Astro.site ? new URL(Astro.site).origin : 'https://staas.allshapes.io');
 const nextUrl = `${origin}/book/thanks`;
 ---
@@ -37,7 +37,7 @@ const nextUrl = `${origin}/book/thanks`;
         Start with a Sprint.
       </h1>
       <p class="text-lg leading-relaxed max-w-xl" style="color: #a09cbe;">
-        Four short steps. We've done the homework before we meet so Day 1 is real work. By the time you finish this form you'll have a Day 0 call booked, the NDA accepted, and the team ready.
+        Four short steps. We’ve done the homework before we meet so Day 1 is real work. By the time you finish this form you’ll have a Day 0 call booked, the NDA accepted, and the team ready.
       </p>
 
       <!-- Progress -->
@@ -67,9 +67,9 @@ const nextUrl = `${origin}/book/thanks`;
           _subject   — email subject line
           _next      — redirect URL after success
           _template  — readable table format for the email body
-          _captcha   — disable FormSubmit's reCAPTCHA (the honeypot below
+          _captcha   — disable FormSubmit’s reCAPTCHA (the honeypot below
                        handles bots)
-          _honey     — FormSubmit's built-in honeypot field
+          _honey     — FormSubmit’s built-in honeypot field
       -->
       <form
         name="staas-booking"
@@ -82,7 +82,7 @@ const nextUrl = `${origin}/book/thanks`;
         <input type="hidden" name="_template" value="table" />
         <input type="hidden" name="_captcha" value="false" />
         <p class="hidden" aria-hidden="true">
-          <label>Don't fill this out if you're human: <input name="_honey" tabindex="-1" autocomplete="off" /></label>
+          <label>Don’t fill this out if you’re human: <input name="_honey" tabindex="-1" autocomplete="off" /></label>
         </p>
 
         <!-- STEP 1 — Pick a Sprint (H7) -->
@@ -92,7 +92,7 @@ const nextUrl = `${origin}/book/thanks`;
               Which Sprint fits your moment?
             </legend>
             <p class="text-base text-navy-muted leading-relaxed max-w-2xl">
-              Five sprints. {SPRINT_DURATION} each. {PRICE_PER_SPRINT} flat. Pick the one closest to where you are — we'll confirm on Day&nbsp;0 if a different one fits better.
+              Five sprints. {SPRINT_DURATION} each. {PRICE_PER_SPRINT} flat. Pick the one closest to where you are — we’ll confirm on Day&nbsp;0 if a different one fits better.
             </p>
           </div>
 
@@ -104,7 +104,7 @@ const nextUrl = `${origin}/book/thanks`;
                   <input type="radio" name="engagement" value={s.id} required class="mt-1.5 accent-coral" />
                   <span class="flex-1">
                     <span class="font-serif text-xl text-navy block leading-snug">{s.name}</span>
-                    <span class="text-sm italic text-navy-muted block mt-1.5">"{s.anchor}"</span>
+                    <span class="text-sm italic text-navy-muted block mt-1.5">“{s.anchor}”</span>
                     <ul class="mt-3 flex flex-col gap-1">
                       {s.alsoFor.map((line) => (
                         <li class="flex items-start gap-2 text-sm text-navy-muted leading-snug">
@@ -123,13 +123,13 @@ const nextUrl = `${origin}/book/thanks`;
             <input type="radio" name="engagement" value="not-sure" class="mt-1.5 accent-coral" />
             <span class="flex-1">
               <span class="font-serif text-xl text-navy block">Not sure yet — talk it through</span>
-              <span class="text-sm text-navy-muted block mt-1">We'll pick the right path on the Day 0 call.</span>
+              <span class="text-sm text-navy-muted block mt-1">We’ll pick the right path on the Day 0 call.</span>
             </span>
           </label>
 
           <div class="flex justify-end mt-2">
             <button type="button" data-next="2" class="inline-flex items-center justify-center px-7 py-3.5 rounded-sm bg-coral text-cream text-sm font-medium hover:bg-coral-deep transition-colors">
-              Next →
+              Next <span aria-hidden="true">→</span>
             </button>
           </div>
         </fieldset>
@@ -203,7 +203,7 @@ const nextUrl = `${origin}/book/thanks`;
               ← Back
             </button>
             <button type="button" data-next="3" class="inline-flex items-center justify-center px-7 py-3.5 rounded-sm bg-coral text-cream text-sm font-medium hover:bg-coral-deep transition-colors">
-              Next →
+              Next <span aria-hidden="true">→</span>
             </button>
           </div>
         </fieldset>
@@ -229,7 +229,7 @@ const nextUrl = `${origin}/book/thanks`;
             <div class="prose-nda max-h-[420px] overflow-y-auto px-6 py-4 text-sm leading-relaxed text-navy-muted border-t" style="border-color: #d8d0a8;" set:html={ndaHtml}></div>
             <div class="px-6 py-3 border-t flex items-center justify-between text-xs" style="border-color: #d8d0a8; color: #575280;">
               <span>Horak Consulting GmbH · All Shapes</span>
-              <a href="/legal/All-Shapes-NDA.docx" download class="text-coral hover:underline">Download .docx →</a>
+              <a href="/legal/All-Shapes-NDA.docx" download class="text-coral hover:underline">Download .docx <span aria-hidden="true">→</span></a>
             </div>
           </details>
 
@@ -237,7 +237,7 @@ const nextUrl = `${origin}/book/thanks`;
           <label class="flex items-start gap-3 p-4 rounded border cursor-pointer" style="border-color: #d8d0a8;">
             <input type="checkbox" name="accept_nda" value="yes" required class="mt-1 accent-coral" />
             <span class="text-sm text-navy leading-relaxed">
-              I accept the mutual <strong>Non-Disclosure Agreement</strong> above on behalf of the company I represent, and confirm I'm authorised to do so.
+              I accept the mutual <strong>Non-Disclosure Agreement</strong> above on behalf of the company I represent, and confirm I’m authorised to do so.
             </span>
           </label>
 
@@ -255,7 +255,7 @@ const nextUrl = `${origin}/book/thanks`;
               ← Back
             </button>
             <button type="button" data-next="4" class="inline-flex items-center justify-center px-7 py-3.5 rounded-sm bg-coral text-cream text-sm font-medium hover:bg-coral-deep transition-colors">
-              Next →
+              Next <span aria-hidden="true">→</span>
             </button>
           </div>
         </fieldset>
@@ -266,7 +266,7 @@ const nextUrl = `${origin}/book/thanks`;
             One last look.
           </legend>
           <p class="text-sm text-navy-muted -mt-4 mb-2">
-            We'll send a confirmation to the email you gave us, plus a short welcome pack. Then you'll land on the calendar to grab a Day 0 slot.
+            We’ll send a confirmation to the email you gave us, plus a short welcome pack. Then you’ll land on the calendar to grab a Day 0 slot.
           </p>
 
           <div class="rounded border p-6 bg-cream-deep flex flex-col gap-3 text-sm" style="border-color: #d8d0a8;" data-review>
@@ -274,7 +274,7 @@ const nextUrl = `${origin}/book/thanks`;
           </div>
 
           <p class="text-sm leading-relaxed" style="color: #8c87b0;">
-            By submitting you confirm the information is accurate and that you've accepted the NDA and Terms above.
+            By submitting you confirm the information is accurate and that you’ve accepted the NDA and Terms above.
           </p>
 
           <div class="flex justify-between gap-4 mt-4">
@@ -283,7 +283,7 @@ const nextUrl = `${origin}/book/thanks`;
               ← Back
             </button>
             <button type="submit" class="inline-flex items-center justify-center px-7 py-3.5 rounded-sm bg-coral text-cream text-sm font-medium hover:bg-coral-deep transition-colors">
-              Submit & pick a Day 0 slot →
+              Submit & pick a Day 0 slot <span aria-hidden="true">→</span>
             </button>
           </div>
         </fieldset>
@@ -296,11 +296,11 @@ const nextUrl = `${origin}/book/thanks`;
   <section class="py-12" style="background: #ECE4B8;">
     <div class="mx-auto max-w-[820px] px-6 flex flex-col md:flex-row gap-4 md:items-center md:justify-between">
       <p class="text-sm" style="color: #575280;">
-        Scheduling ping-pong shouldn't be the thing in your way.
+        Scheduling ping-pong shouldn’t be the thing in your way.
       </p>
       <p class="text-sm text-navy-muted">
         Rather just chat first?
-        <a href="mailto:workshop@allshapes.io" class="text-coral hover:underline">workshop@allshapes.io →</a>
+        <a href="mailto:workshop@allshapes.io" class="text-coral hover:underline">workshop@allshapes.io <span aria-hidden="true">→</span></a>
       </p>
     </div>
   </section>
@@ -320,7 +320,14 @@ const nextUrl = `${origin}/book/thanks`;
       const review = document.querySelector('[data-review]');
       const form = document.querySelector('form[name="staas-booking"]');
 
-      function show(step) {
+      function stepFromUrl() {
+        const raw = new URLSearchParams(window.location.search).get('step');
+        const n = parseInt(raw, 10);
+        return n >= 1 && n <= 4 ? n : 1;
+      }
+
+      function show(step, opts) {
+        opts = opts || {};
         fields.forEach((f) => {
           const n = parseInt(f.dataset.step, 10);
           if (n === step) {
@@ -338,8 +345,22 @@ const nextUrl = `${origin}/book/thanks`;
         if (stepCurrent) stepCurrent.textContent = String(step);
         if (stepLabel) stepLabel.textContent = stepNames[step] || '';
         if (step === 4) renderReview();
-        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        window.scrollTo({ top: 0, behavior: prefersReduced ? 'auto' : 'smooth' });
+
+        // Reflect the step in the URL so refresh, share, and back/forward
+        // all land on the right step instead of resetting to step 1.
+        if (opts.history !== false) {
+          const url = step === 1
+            ? window.location.pathname
+            : window.location.pathname + '?step=' + step;
+          const state = { step };
+          if (opts.push) history.pushState(state, '', url);
+          else history.replaceState(state, '', url);
+        }
+
+        if (opts.scroll !== false) {
+          const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          window.scrollTo({ top: 0, behavior: prefersReduced ? 'auto' : 'smooth' });
+        }
       }
 
       function validateStep(step) {
@@ -386,14 +407,19 @@ const nextUrl = `${origin}/book/thanks`;
         btn.addEventListener('click', () => {
           const current = parseInt(btn.closest('fieldset').dataset.step, 10);
           if (!validateStep(current)) return;
-          show(parseInt(btn.dataset.next, 10));
+          show(parseInt(btn.dataset.next, 10), { push: true });
         });
       });
       document.querySelectorAll('[data-prev]').forEach((btn) => {
         btn.addEventListener('click', () => {
-          show(parseInt(btn.dataset.prev, 10));
+          show(parseInt(btn.dataset.prev, 10), { push: true });
         });
       });
+
+      // Back/forward buttons move between steps; deep links open at the
+      // right step. Never scrolls or rewrites history on these paths.
+      window.addEventListener('popstate', () => show(stepFromUrl(), { history: false, scroll: false }));
+      show(stepFromUrl(), { scroll: false });
 
       if (form) {
         let dirty = false;
@@ -401,7 +427,7 @@ const nextUrl = `${origin}/book/thanks`;
         form.addEventListener('input', () => { dirty = true; });
 
         form.addEventListener('submit', () => {
-          // Patch FormSubmit's _next to the current origin so previews
+          // Patch FormSubmit’s _next to the current origin so previews
           // redirect to their own /book/thanks page rather than production.
           const nextField = form.querySelector('input[name="_next"]');
           if (nextField) nextField.value = window.location.origin + '/book/thanks';

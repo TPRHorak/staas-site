@@ -5,7 +5,7 @@ import publications from '../../data/publications.json';
 /**
  * Episodes come primarily from src/data/publications.json, refreshed roughly
  * daily by scripts/fetch-publications.mjs (npm run fetch:publications). That
- * snapshot includes each episode's cover image. If the snapshot is empty we
+ * snapshot includes each episode’s cover image. If the snapshot is empty we
  * fall back to a live fetch of the Substack feed at build time (no images).
  *
  * Source: https://tomhorak.substack.com/feed
@@ -154,7 +154,7 @@ function formatDate(s: string): string {
           rel="noopener noreferrer"
           class="inline-flex items-center justify-center px-7 py-3.5 rounded-sm bg-coral text-cream text-sm font-medium hover:bg-coral-deep transition-colors"
         >
-          Subscribe on Substack →
+          Subscribe on Substack <span aria-hidden="true">→</span>
         </a>
         <a
           href="https://www.youtube.com/@ChangingShapesPodcast"
@@ -208,7 +208,7 @@ function formatDate(s: string): string {
                     {p.description}
                   </p>
                   <p class="text-sm text-coral mt-5">
-                    Read on Substack →
+                    Read on Substack <span aria-hidden="true">→</span>
                   </p>
                 </div>
               </a>
@@ -217,14 +217,14 @@ function formatDate(s: string): string {
 
           <p class="mt-12 text-sm text-navy-muted">
             More on{' '}
-            <a href={SUBSTACK_HOME} target="_blank" rel="noopener noreferrer" class="text-coral hover:underline">tomhorak.substack.com →</a>
+            <a href={SUBSTACK_HOME} target="_blank" rel="noopener noreferrer" class="text-coral hover:underline">tomhorak.substack.com <span aria-hidden="true">→</span></a>
           </p>
         </>
       ) : (
         <div class="rounded border p-10 bg-cream" style="border-color: #d8d0a8;">
           <p class="font-serif text-2xl text-navy mb-4">Latest episodes are over on Substack.</p>
           <p class="text-sm text-navy-muted mb-6">
-            (We pull recent episodes from the Substack feed at build time — the feed wasn't reachable on this build{feedError ? `: ${feedError}` : ''}.)
+            (We pull recent episodes from the Substack feed at build time — the feed wasn’t reachable on this build{feedError ? `: ${feedError}` : ''}.)
           </p>
           <a
             href={SUBSTACK_HOME}
@@ -232,7 +232,7 @@ function formatDate(s: string): string {
             rel="noopener noreferrer"
             class="inline-flex items-center justify-center px-7 py-3.5 rounded-sm bg-coral text-cream text-sm font-medium hover:bg-coral-deep transition-colors"
           >
-            Open the podcast on Substack →
+            Open the podcast on Substack <span aria-hidden="true">→</span>
           </a>
         </div>
       )}

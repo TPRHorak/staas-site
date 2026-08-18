@@ -10,7 +10,7 @@ const testimonials = [
   {
     quote: "Your company rules. I often feel dazed from chasing vendors to hold up their end. All Shapes has been a breath of fresh air since day one.",
     name: "Brandon Leichter",
-    role: "Owner, Allen's Camera",
+    role: "Owner, Allen’s Camera",
     initials: "BL",
     photo: "https://allshapes.io/assets/images/temp/testimonial-acs.jpg",
   },
@@ -32,7 +32,7 @@ const testimonials = [
         What they said.
       </h2>
       <p class="hidden md:block text-xs uppercase tracking-widest text-navy-muted shrink-0">
-        Swipe to see more →
+        Swipe to see more <span aria-hidden="true">→</span>
       </p>
     </div>
   </div>
@@ -50,7 +50,7 @@ const testimonials = [
       {testimonials.map((t) => (
         <figure class="testimonial-card snap-start shrink-0 w-[88%] sm:w-[460px] md:w-[460px] bg-cream rounded-xl p-7 md:p-8 flex flex-col gap-6" style="border: 1px solid #d8d0a8;">
           <blockquote class="font-serif text-lg md:text-xl leading-snug text-navy">
-            "{t.quote}"
+            “{t.quote}”
           </blockquote>
           <figcaption class="mt-auto flex items-center gap-3">
             {t.photo ? (

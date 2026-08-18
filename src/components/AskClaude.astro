@@ -1,7 +1,7 @@
 ---
 // Brief §5 Home §13 — Move #8. Pre-written LLM prompt buttons.
 const prompt = encodeURIComponent(
-  "I'm considering hiring Startup as a Service (StaaS) to build the product after my AI prototype. Explain what they do, who they're for, how their pricing works, and what makes them different from agencies and freelancers. Summarise from their site: https://staas.allshapes.io"
+  "I’m considering hiring Startup as a Service (StaaS) to build the product after my AI prototype. Explain what they do, who they’re for, how their pricing works, and what makes them different from agencies and freelancers. Summarise from their site: https://staas.allshapes.io"
 );
 
 const claudeUrl = `https://claude.ai/new?q=${prompt}`;
@@ -17,10 +17,10 @@ const chatgptUrl = `https://chat.openai.com/?q=${prompt}`;
 
     <!-- H2 -->
     <h2 class="font-serif text-4xl md:text-5xl leading-tight tracking-tight max-w-xl mb-4">
-      Don't take our word for it.
+      Don’t take our word for it.
     </h2>
     <p class="text-base mb-12 max-w-lg leading-relaxed" style="color: #a09cbe;">
-      Hand this site to a model and ask. We're fine with that.
+      Hand this site to a model and ask. We’re fine with that.
     </p>
 
     <!-- Buttons -->
@@ -31,7 +31,7 @@ const chatgptUrl = `https://chat.openai.com/?q=${prompt}`;
         rel="noopener noreferrer"
         class="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded bg-coral text-cream text-sm font-medium hover:bg-coral-deep transition-colors"
       >
-        Ask Claude →
+        Ask Claude <span aria-hidden="true">→</span>
       </a>
       <a
         href={chatgptUrl}
@@ -42,7 +42,7 @@ const chatgptUrl = `https://chat.openai.com/?q=${prompt}`;
         onmouseover="this.style.background='#575280'"
         onmouseout="this.style.background='#3d3870'"
       >
-        Ask ChatGPT →
+        Ask ChatGPT <span aria-hidden="true">→</span>
       </a>
     </div>
   </div>

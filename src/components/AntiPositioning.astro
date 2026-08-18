@@ -1,6 +1,6 @@
 ---
 // Compare page intro — uses the same rotating-word headline as the
-// homepage's WhyAllShapes section so the brand line stays consistent.
+// homepage’s WhyAllShapes section so the brand line stays consistent.
 const rotatingWords = [
   "good",
   "secure",
@@ -18,11 +18,11 @@ const columns = [
   },
   {
     label: "Traditional agencies",
-    body: "Still billing hours. Six months of discovery, rotating juniors, and a plateau the moment you're out of retainer.",
+    body: "Still billing hours. Six months of discovery, rotating juniors, and a plateau the moment you’re out of retainer.",
   },
   {
     label: "Solo freelancers",
-    body: "They write code, not strategy. Can't advise on what to build. Continuity drifts the moment the project ends or they find something better.",
+    body: "They write code, not strategy. Can’t advise on what to build. Continuity drifts the moment the project ends or they find something better.",
   },
 ];
 ---
@@ -134,7 +134,7 @@ const columns = [
         }, 280);
       }
 
-      // Don't auto-cycle under prefers-reduced-motion — leave the first
+      // Don’t auto-cycle under prefers-reduced-motion — leave the first
       // word static rather than looping content changes.
       if (!reduceMotion) setInterval(tick, 2500);
     });

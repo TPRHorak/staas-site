@@ -7,9 +7,9 @@ updated: "2026-05-27"
 
 **BETWEEN**
 
-1. **HORAK CONSULTING GMBH** (All Shapes) incorporated and registered in Germany with Company Registration Number HRB 32350 — Augsburg, whose registered office is at Beim Glaspalast 5, 86153 Augsburg, Germany ("Horak Consulting"); and
+1. **HORAK CONSULTING GMBH** (All Shapes) incorporated and registered in Germany with Company Registration Number HRB 32350 — Augsburg, whose registered office is at Beim Glaspalast 5, 86153 Augsburg, Germany (“Horak Consulting”); and
 
-2. **YOU** (the "Company"), as identified in the booking form to which this NDA is attached.
+2. **YOU** (the “Company”), as identified in the booking form to which this NDA is attached.
 
 **BACKGROUND**
 
@@ -19,29 +19,29 @@ The Disclosing Party wishes to disclose certain Confidential Information to the 
 
 ## 1. Definitions and Interpretation
 
-**"Agreement"** — this agreement.
+**“Agreement”** — this agreement.
 
-**"Background IPR"** — the Intellectual Property Rights of each Party created prior to the Commencement Date.
+**“Background IPR”** — the Intellectual Property Rights of each Party created prior to the Commencement Date.
 
-**"Business Day"** — any day from Monday to Friday other than a statutory or public holiday in Germany.
+**“Business Day”** — any day from Monday to Friday other than a statutory or public holiday in Germany.
 
-**"Commencement Date"** — the date of this Agreement as stated above, or, if earlier, the first date on which the Disclosing Party first disclosed Confidential Information to the Receiving Party.
+**“Commencement Date”** — the date of this Agreement as stated above, or, if earlier, the first date on which the Disclosing Party first disclosed Confidential Information to the Receiving Party.
 
-**"Confidential Information"** — all confidential information (however recorded or preserved) disclosed or made available, directly or indirectly, by the Disclosing Party, its employees, officers, representatives, or advisers to the Receiving Party or its employees, officers, agents, or other representatives either before or after the Commencement Date including but not limited to: Intellectual Property Rights; the existence and terms of this Agreement; any information that would be regarded as confidential by a reasonable business person relating to the business, affairs, customers, clients, suppliers, plans, intentions, or market opportunities of the Disclosing Party; the operations, processes, product information, know-how, designs, trade secrets or software of the Disclosing Party; and any information or analysis derived from the Confidential Information. It does not include any information that: is or becomes generally available to the public (other than as a result of its disclosure by the Receiving Party or its representatives in breach of this agreement); was available to the Receiving Party on a non-confidential basis prior to disclosure by the Disclosing Party; was, is or becomes, available to the Receiving Party on a non-confidential basis from a person who is not bound by a confidentiality agreement with the Disclosing Party; was lawfully in the possession of the Receiving Party before the information was disclosed; the Parties agree in writing is not Confidential Information; or is developed by or for the Receiving Party independently of the information disclosed.
+**“Confidential Information”** — all confidential information (however recorded or preserved) disclosed or made available, directly or indirectly, by the Disclosing Party, its employees, officers, representatives, or advisers to the Receiving Party or its employees, officers, agents, or other representatives either before or after the Commencement Date including but not limited to: Intellectual Property Rights; the existence and terms of this Agreement; any information that would be regarded as confidential by a reasonable business person relating to the business, affairs, customers, clients, suppliers, plans, intentions, or market opportunities of the Disclosing Party; the operations, processes, product information, know-how, designs, trade secrets or software of the Disclosing Party; and any information or analysis derived from the Confidential Information. It does not include any information that: is or becomes generally available to the public (other than as a result of its disclosure by the Receiving Party or its representatives in breach of this agreement); was available to the Receiving Party on a non-confidential basis prior to disclosure by the Disclosing Party; was, is or becomes, available to the Receiving Party on a non-confidential basis from a person who is not bound by a confidentiality agreement with the Disclosing Party; was lawfully in the possession of the Receiving Party before the information was disclosed; the Parties agree in writing is not Confidential Information; or is developed by or for the Receiving Party independently of the information disclosed.
 
-**"Copies"** — copies of Confidential Information including any document, electronic file, note, extract, analysis or other way of representing or recording and recalling information which contains, reflects or is derived from Confidential Information.
+**“Copies”** — copies of Confidential Information including any document, electronic file, note, extract, analysis or other way of representing or recording and recalling information which contains, reflects or is derived from Confidential Information.
 
-**"Disclosing Party"** — a Party to this Agreement which discloses or makes available directly or indirectly Confidential Information to the other Party.
+**“Disclosing Party”** — a Party to this Agreement which discloses or makes available directly or indirectly Confidential Information to the other Party.
 
-**"Foreground IPR"** — Intellectual Property Rights created after the Commencement Date by either Party in connection with the Purpose or in conjunction with the other Party in connection with the Purpose.
+**“Foreground IPR”** — Intellectual Property Rights created after the Commencement Date by either Party in connection with the Purpose or in conjunction with the other Party in connection with the Purpose.
 
-**"Intellectual Property Rights"** — all rights, whether registered or unregistered, in any country or jurisdiction in patents, inventions, trade secrets and other rights in know-how, copyrights (including any extensions or renewals), rights affording equivalent protection to copyright, data, rights in database, registered designs, design rights, industrial designs and utility models, trademarks, trade names, trade dress, logos, domain names, business names relating to or owned by or licensed to the Disclosing Party and all registrations or applications to register any of the foregoing items.
+**“Intellectual Property Rights”** — all rights, whether registered or unregistered, in any country or jurisdiction in patents, inventions, trade secrets and other rights in know-how, copyrights (including any extensions or renewals), rights affording equivalent protection to copyright, data, rights in database, registered designs, design rights, industrial designs and utility models, trademarks, trade names, trade dress, logos, domain names, business names relating to or owned by or licensed to the Disclosing Party and all registrations or applications to register any of the foregoing items.
 
-**"Party"** — Horak Consulting or the Company; **"Parties"** means both.
+**“Party”** — Horak Consulting or the Company; **“Parties”** means both.
 
-**"Purpose"** — non-disclosure for all works discussed in the context of Horak Consulting GmbH.
+**“Purpose”** — non-disclosure for all works discussed in the context of Horak Consulting GmbH.
 
-**"Receiving Party"** — a Party to this Agreement which receives or obtains directly or indirectly Confidential Information.
+**“Receiving Party”** — a Party to this Agreement which receives or obtains directly or indirectly Confidential Information.
 
 ## 2. Obligations of Confidentiality
 
@@ -49,13 +49,13 @@ As from the Commencement Date, the Receiving Party undertakes to comply with its
 
 The Receiving Party agrees:
 
-- to hold the Confidential Information in strict confidence, to apply to such Confidential Information at least the same standard of care with which it treats its own proprietary and confidential information, and to refrain from using any Confidential Information for its own or any third party's benefit or in any other manner not authorised in writing by the Disclosing Party;
+- to hold the Confidential Information in strict confidence, to apply to such Confidential Information at least the same standard of care with which it treats its own proprietary and confidential information, and to refrain from using any Confidential Information for its own or any third party’s benefit or in any other manner not authorised in writing by the Disclosing Party;
 - not to use or exploit the Confidential Information in any way except as is necessary for the Purpose;
 - not to disclose or make available the Confidential Information in whole or in part to any third party;
 - to inform anyone to whom it discloses Confidential Information that the information is confidential and procure that anyone to whom it discloses the information (other than as required by law) complies with the terms of this Agreement as if they were the Receiving Party;
 - to accept responsibility for any use or disclosure of Confidential Information in violation of the terms of this Agreement and to take such steps as may be required by applicable law to enforce this obligation;
 - to return to the Disclosing Party within 10 days of the conclusion of the Purpose all written and/or other materials containing Confidential Information provided by the Disclosing Party in the course of the Purpose if the Parties decide not to proceed further;
-- to limit the number of Copies as are strictly necessary for the Purpose and clearly mark all Copies as "confidential";
+- to limit the number of Copies as are strictly necessary for the Purpose and clearly mark all Copies as “confidential”;
 - ensure that any Confidential Information and/or Copies supplied to it or made by it can be separately identified from its own information;
 - ensure that Confidential Information and/or Copies within its control are protected against theft or unauthorised access; and
 - to notify the Disclosing Party immediately (where it is legally able to do so) if requested or required to disclose any Confidential Information to a third party in connection with any civil or criminal investigation or any judicial or administrative proceeding.
@@ -74,9 +74,9 @@ The Receiving Party shall not make any public announcement concerning this Agree
 
 ## 4. Ownership of Intellectual Property Rights
 
-Each Party retains ownership of its own Background IPR and neither Party shall acquire any interest in the other Party's Background IPR by virtue of this Agreement.
+Each Party retains ownership of its own Background IPR and neither Party shall acquire any interest in the other Party’s Background IPR by virtue of this Agreement.
 
-All Foreground IPR shall be owned by Horak Consulting notwithstanding which Party created it, subject to Horak Consulting's and its designees' unrestricted use, and the rights of exploitation in such Foreground IPR shall be solely at Horak Consulting's discretion.
+All Foreground IPR shall be owned by Horak Consulting notwithstanding which Party created it, subject to Horak Consulting’s and its designees' unrestricted use, and the rights of exploitation in such Foreground IPR shall be solely at Horak Consulting’s discretion.
 
 Each Party shall licence to the other Party such Intellectual Property Rights (including, but not limited to, the Background IPR and the Foreground IPR) as is necessary for the other Party to undertake the Purpose.
 
@@ -88,13 +88,13 @@ The Receiving Party shall (in addition to, and without affecting, any other righ
 
 ## 6. Reservation of Rights and Acknowledgment
 
-Subject to Clause 4, all Confidential Information shall remain the property of the Disclosing Party. No rights in respect of a Party's Confidential Information are granted to the other Party other than as expressly stated.
+Subject to Clause 4, all Confidential Information shall remain the property of the Disclosing Party. No rights in respect of a Party’s Confidential Information are granted to the other Party other than as expressly stated.
 
 Except as expressly stated in this Agreement, no Party makes any express or implied warranty or representation concerning the Confidential Information.
 
 The Receiving Party acknowledges that damages alone would not be an adequate remedy for the breach of any of the provisions of this Agreement. Accordingly, the Disclosing Party shall be entitled to the granting of equitable relief (including injunctive relief) concerning any threatened or actual breach.
 
-The Receiving Party shall be liable to the Disclosing Party for the actions or omissions of the Receiving Party's employees, agents, officers, advisers and other representatives.
+The Receiving Party shall be liable to the Disclosing Party for the actions or omissions of the Receiving Party’s employees, agents, officers, advisers and other representatives.
 
 ## 7. Term and Termination
 

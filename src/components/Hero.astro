@@ -2,10 +2,10 @@
 import { APPS } from '../data/apps';
 
 // Two vertical columns of app icons — 5 tiles each. Each column is
-// staggered so they don't line up horizontally; both are taller than
+// staggered so they don’t line up horizontally; both are taller than
 // the hero section so the top and bottom tiles get clipped by the
-// section's overflow-hidden.
-// Habits (APPS[1]) sits at the clipped top slot; The Doctor's Kitchen
+// section’s overflow-hidden.
+// Habits (APPS[1]) sits at the clipped top slot; The Doctor’s Kitchen
 // (APPS[0]) takes the second, fully-visible slot.
 const colA = [APPS[1], APPS[0], APPS[2], APPS[3], APPS[4]];
 const colB = [APPS[5], APPS[6], APPS[7], APPS[8], APPS[9]];
@@ -29,21 +29,21 @@ const colB = [APPS[5], APPS[6], APPS[7], APPS[8], APPS[9]];
         </p>
 
         <h1 class="font-serif text-5xl md:text-5xl lg:text-6xl text-cream leading-[1.05] tracking-tight mb-8">
-          Customers don't meet your company. <span class="text-coral">They meet your product.</span>
+          Customers don’t meet your company. <span class="text-coral">They meet your product.</span>
         </h1>
 
         <p class="text-base leading-relaxed mb-4 max-w-md" style="color: #cfcae5;">
-          We're the senior product and engineering team that builds it — end to end, in months not years.
+          We’re the senior product and engineering team that builds it — end to end, in months not years.
         </p>
 
         <p class="text-base leading-relaxed mb-10 max-w-md" style="color: #a09cbe;">
-          Behind Five Minute Journal (App of the Day, 60k MAU) and The Doctor's Kitchen (Apple Editorial, 4.8★).
+          Behind Five Minute Journal (App of the Day, 60k&nbsp;MAU) and The Doctor’s Kitchen (Apple Editorial, 4.8★).
         </p>
 
         <div class="flex flex-col sm:flex-row gap-4">
           <a href="/book"
             class="inline-flex items-center justify-center px-7 py-3.5 rounded-sm bg-coral text-cream text-sm font-medium hover:bg-coral-deep transition-colors">
-            Start with a Sprint →
+            Start with a Sprint <span aria-hidden="true">→</span>
           </a>
           <a href="mailto:workshop@allshapes.io?subject=Hello%20from%20startupasaservice.co"
             class="inline-flex items-center justify-center px-7 py-3.5 rounded-sm text-sm font-medium transition-colors"
@@ -54,7 +54,7 @@ const colB = [APPS[5], APPS[6], APPS[7], APPS[8], APPS[9]];
 
         <p class="mt-10 text-sm leading-relaxed" style="color: #a09cbe;">
           Hosted by Thomas Horak — 15 years building startups,<br class="hidden md:block"/>
-          and <a href="https://www.youtube.com/@ChangingShapesPodcast" target="_blank" rel="noopener noreferrer" class="text-cream hover:text-coral transition-colors underline-offset-2 hover:underline">a podcast full of the founders doing it now →</a>
+          and <a href="https://www.youtube.com/@ChangingShapesPodcast" target="_blank" rel="noopener noreferrer" class="text-cream hover:text-coral transition-colors underline-offset-2 hover:underline">a podcast full of the founders doing it now <span aria-hidden="true">→</span></a>
         </p>
       </div>
 
@@ -66,7 +66,7 @@ const colB = [APPS[5], APPS[6], APPS[7], APPS[8], APPS[9]];
   <!-- Two vertical columns of square app icons, bleeding past the
        right edge of the viewport. Each column holds 5 tiles — both
        columns are taller than the hero section, so the top and bottom
-       tiles get clipped naturally by the section's overflow-hidden. -->
+       tiles get clipped naturally by the section’s overflow-hidden. -->
   <div class="icon-wall hidden md:block absolute top-0 right-0 bottom-0 pointer-events-none z-10" style="width: 486px;" aria-hidden="true">
     <!-- The left edge of the wall is faded into the navy bg with an eased
          mask (see <style> below) so the tiles dissolve into the text column
@@ -97,7 +97,7 @@ const colB = [APPS[5], APPS[6], APPS[7], APPS[8], APPS[9]];
 </section>
 
 <style>
-  /* Eased fade on the icon wall's left edge — a multi-stop mask (rather than
+  /* Eased fade on the icon wall’s left edge — a multi-stop mask (rather than
      a flat colour scrim) so the tiles melt into the navy with no banding and
      no hard seam where the wall meets the text column. */
   .icon-wall {
