@@ -26,6 +26,8 @@ const ogImageURL = new URL(ogImage, site);
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
+    <meta name="theme-color" content="#F2ECCA" />
+    <meta name="color-scheme" content="light" />
 
     <!-- Canonical -->
     <link rel="canonical" href={canonicalURL} />
@@ -60,8 +62,14 @@ const ogImageURL = new URL(ogImage, site);
     <title>{title}</title>
   </head>
   <body class="min-h-screen flex flex-col bg-cream text-navy">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-sm focus:bg-navy focus:text-cream focus:text-sm"
+    >
+      Skip to content
+    </a>
     <Nav />
-    <main class="flex-1">
+    <main id="main" class="flex-1">
       <slot />
     </main>
     <Footer />

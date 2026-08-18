@@ -134,7 +134,9 @@ const columns = [
         }, 280);
       }
 
-      setInterval(tick, 2500);
+      // Don't auto-cycle under prefers-reduced-motion — leave the first
+      // word static rather than looping content changes.
+      if (!reduceMotion) setInterval(tick, 2500);
     });
   })();
 </script>

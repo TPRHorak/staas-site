@@ -66,19 +66,35 @@ h1, h2, h3 {
   font-weight: 400;
 }
 
-/* Ticker animation */
-@keyframes ticker {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+/* Visible keyboard focus. UA outlines are inconsistent across our cream and
+   navy surfaces, so we set an explicit coral ring that reads on both. Only
+   for keyboard focus (:focus-visible), so mouse clicks stay clean. */
+:focus-visible {
+  outline: 2px solid var(--color-coral);
+  outline-offset: 2px;
+  border-radius: 2px;
 }
-.ticker-track {
-  animation: ticker 35s linear infinite;
-  will-change: transform;
-}
-.ticker-track:hover {
-  animation-play-state: paused;
+
+/* Anchored sections sit under the sticky nav — keep their tops clear on jump. */
+:target,
+[id] {
+  scroll-margin-top: 6rem;
 }
 
 /* FAQ open/close transition */
 details summary::-webkit-details-marker { display: none; }
 details[open] summary .faq-plus { transform: rotate(45deg); }
+
+/* Honor reduced-motion globally: neutralize animations, transitions, and
+   smooth scrolling for users who ask for less movement. Components with
+   JS-driven loops also check this flag in their own scripts. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

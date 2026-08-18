@@ -47,7 +47,7 @@ const nextUrl = `${origin}/book/thanks`;
         <span class="h-1 flex-1 rounded-sm transition-colors" data-step-bar="3" style="background: #3d3870;"></span>
         <span class="h-1 flex-1 rounded-sm transition-colors" data-step-bar="4" style="background: #3d3870;"></span>
       </div>
-      <p class="text-xs uppercase tracking-widest mt-3" style="color: #a09cbe;">
+      <p class="text-xs uppercase tracking-widest mt-3" style="color: #a09cbe;" aria-live="polite">
         Step <span data-step-current>1</span> of 4 · <span data-step-label>What do you need</span>
       </p>
     </div>
@@ -144,26 +144,27 @@ const nextUrl = `${origin}/book/thanks`;
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <label class="flex flex-col gap-1.5">
               <span class="text-xs uppercase tracking-widest text-navy-muted">Your name</span>
-              <input type="text" name="name" required autocomplete="name" placeholder="Jane Smith"
-                class="px-4 py-3 rounded border bg-cream-deep text-navy text-base focus:outline-none focus:border-coral"
+              <input type="text" name="name" required autocomplete="name" placeholder="Jane Smith…"
+                class="px-4 py-3 rounded border bg-cream-deep text-navy text-base focus:border-coral"
                 style="border-color: #d8d0a8;" />
             </label>
             <label class="flex flex-col gap-1.5">
               <span class="text-xs uppercase tracking-widest text-navy-muted">Email</span>
-              <input type="email" name="email" required autocomplete="email" placeholder="jane@company.com"
-                class="px-4 py-3 rounded border bg-cream-deep text-navy text-base focus:outline-none focus:border-coral"
+              <input type="email" name="email" required autocomplete="email" inputmode="email"
+                spellcheck="false" autocapitalize="off" autocorrect="off" placeholder="jane@company.com"
+                class="px-4 py-3 rounded border bg-cream-deep text-navy text-base focus:border-coral"
                 style="border-color: #d8d0a8;" />
             </label>
             <label class="flex flex-col gap-1.5">
               <span class="text-xs uppercase tracking-widest text-navy-muted">Company</span>
-              <input type="text" name="company" required autocomplete="organization" placeholder="Your company"
-                class="px-4 py-3 rounded border bg-cream-deep text-navy text-base focus:outline-none focus:border-coral"
+              <input type="text" name="company" required autocomplete="organization" placeholder="Acme Inc…"
+                class="px-4 py-3 rounded border bg-cream-deep text-navy text-base focus:border-coral"
                 style="border-color: #d8d0a8;" />
             </label>
             <label class="flex flex-col gap-1.5">
               <span class="text-xs uppercase tracking-widest text-navy-muted">Role</span>
               <input type="text" name="role" autocomplete="organization-title" placeholder="Founder, CEO, Head of Product…"
-                class="px-4 py-3 rounded border bg-cream-deep text-navy text-base focus:outline-none focus:border-coral"
+                class="px-4 py-3 rounded border bg-cream-deep text-navy text-base focus:border-coral"
                 style="border-color: #d8d0a8;" />
             </label>
           </div>
@@ -171,14 +172,14 @@ const nextUrl = `${origin}/book/thanks`;
           <label class="flex flex-col gap-1.5">
             <span class="text-xs uppercase tracking-widest text-navy-muted">What are you building (one or two lines)</span>
             <textarea name="product" required rows="3" placeholder="A subscription app for…"
-              class="px-4 py-3 rounded border bg-cream-deep text-navy text-base focus:outline-none focus:border-coral resize-y"
+              class="px-4 py-3 rounded border bg-cream-deep text-navy text-base focus:border-coral resize-y"
               style="border-color: #d8d0a8;"></textarea>
           </label>
 
           <label class="flex flex-col gap-1.5">
             <span class="text-xs uppercase tracking-widest text-navy-muted">Where are you now</span>
             <select name="stage" required
-              class="px-4 py-3 rounded border bg-cream-deep text-navy text-base focus:outline-none focus:border-coral"
+              class="px-4 py-3 rounded border bg-cream-deep text-navy text-base focus:border-coral"
               style="border-color: #d8d0a8;">
               <option value="">Pick the closest one…</option>
               <option>Idea — nothing built yet</option>
@@ -192,7 +193,7 @@ const nextUrl = `${origin}/book/thanks`;
           <label class="flex flex-col gap-1.5">
             <span class="text-xs uppercase tracking-widest text-navy-muted">Anything else we should know (optional)</span>
             <textarea name="notes" rows="3" placeholder="Codebase URL, deck link, audience size, timing…"
-              class="px-4 py-3 rounded border bg-cream-deep text-navy text-base focus:outline-none focus:border-coral resize-y"
+              class="px-4 py-3 rounded border bg-cream-deep text-navy text-base focus:border-coral resize-y"
               style="border-color: #d8d0a8;"></textarea>
           </label>
 
@@ -337,7 +338,8 @@ const nextUrl = `${origin}/book/thanks`;
         if (stepCurrent) stepCurrent.textContent = String(step);
         if (stepLabel) stepLabel.textContent = stepNames[step] || '';
         if (step === 4) renderReview();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        window.scrollTo({ top: 0, behavior: prefersReduced ? 'auto' : 'smooth' });
       }
 
       function validateStep(step) {
@@ -393,12 +395,32 @@ const nextUrl = `${origin}/book/thanks`;
         });
       });
 
-      // Patch FormSubmit's _next to the current origin so previews redirect
-      // to their own /book/thanks page rather than to production.
       if (form) {
+        let dirty = false;
+        let submitting = false;
+        form.addEventListener('input', () => { dirty = true; });
+
         form.addEventListener('submit', () => {
+          // Patch FormSubmit's _next to the current origin so previews
+          // redirect to their own /book/thanks page rather than production.
           const nextField = form.querySelector('input[name="_next"]');
           if (nextField) nextField.value = window.location.origin + '/book/thanks';
+
+          // Prevent double-submit: disable the button and show progress.
+          submitting = true;
+          dirty = false;
+          const submitBtn = form.querySelector('button[type="submit"]');
+          if (submitBtn) {
+            submitBtn.setAttribute('aria-busy', 'true');
+            submitBtn.textContent = 'Sending…';
+            // Disable after the submit is captured so field data still posts.
+            setTimeout(() => { submitBtn.disabled = true; }, 0);
+          }
+        });
+
+        // Warn before leaving mid-way with unsaved input.
+        window.addEventListener('beforeunload', (e) => {
+          if (dirty && !submitting) { e.preventDefault(); e.returnValue = ''; }
         });
       }
     })();

@@ -172,6 +172,7 @@ function formatDate(s: string): string {
   <!-- Episodes grid -->
   <section class="bg-cream-deep py-16 md:py-24">
     <div class="mx-auto max-w-[1180px] px-6">
+      <h2 class="sr-only">Episodes</h2>
 
       {posts.length > 0 ? (
         <>
@@ -189,6 +190,8 @@ function formatDate(s: string): string {
                     <img
                       src={p.image}
                       alt={p.title}
+                      width="1600"
+                      height="900"
                       loading="lazy"
                       class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                     />

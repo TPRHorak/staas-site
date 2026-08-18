@@ -27,6 +27,9 @@ const { Content } = await render(work);
     <img
       src={work.data.hero}
       alt={work.data.title}
+      width={work.data.iconOnly ? 512 : 1600}
+      height={work.data.iconOnly ? 512 : 700}
+      fetchpriority="high"
       class:list={[
         work.data.iconOnly ? "h-[58%] w-auto rounded-[22%] shadow-xl" : "w-full h-full object-cover",
       ]}

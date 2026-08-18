@@ -34,6 +34,8 @@ const iconOnly = iconOnlyProp ?? slug === "welbeck-health";
     <img
       src={hero}
       alt={title}
+      width={iconOnly ? 512 : 800}
+      height={iconOnly ? 512 : 600}
       class:list={[
         "w-full h-full group-hover:scale-[1.02] transition-transform duration-500",
         iconOnly ? "object-contain p-14" : "object-cover",

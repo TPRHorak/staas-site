@@ -12,7 +12,7 @@ const currentPath = Astro.url.pathname;
   <div class="mx-auto max-w-[1180px] px-6 flex items-center justify-between h-20">
     <!-- Logo — H11 uses the abbreviated AS mark, lighter at nav scale -->
     <a href="/" class="flex items-center gap-3 shrink-0">
-      <img src="/logos/acs_logo_clean.png" alt="All Shapes" class="h-10 md:h-11 w-auto" />
+      <img src="/logos/acs_logo_clean.png" alt="All Shapes" width="190" height="180" class="h-10 md:h-11 w-auto" />
     </a>
 
     <!-- Nav links -->
@@ -38,17 +38,26 @@ const currentPath = Astro.url.pathname;
       Book a Sprint
     </a>
 
-    <!-- Mobile menu toggle (progressive enhancement — JS-free open/close via checkbox) -->
-    <label for="mobile-menu-toggle" class="md:hidden cursor-pointer p-2" aria-label="Open menu">
-      <span class="block w-5 h-0.5 bg-navy mb-1"></span>
-      <span class="block w-5 h-0.5 bg-navy mb-1"></span>
-      <span class="block w-5 h-0.5 bg-navy"></span>
-    </label>
+    <!-- Mobile menu toggle -->
+    <button
+      type="button"
+      id="mobile-menu-button"
+      class="md:hidden p-2"
+      aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <span class="block w-5 h-0.5 bg-navy mb-1" aria-hidden="true"></span>
+      <span class="block w-5 h-0.5 bg-navy mb-1" aria-hidden="true"></span>
+      <span class="block w-5 h-0.5 bg-navy" aria-hidden="true"></span>
+    </button>
   </div>
 
   <!-- Mobile menu -->
-  <input type="checkbox" id="mobile-menu-toggle" class="hidden peer" />
-  <nav class="hidden peer-checked:flex flex-col gap-4 px-6 pb-6 md:hidden bg-cream border-t border-cream-deep">
+  <nav
+    id="mobile-menu"
+    class="hidden md:hidden flex-col gap-4 px-6 pb-6 bg-cream border-t border-cream-deep"
+  >
     {navLinks.map((link) => (
       <a href={link.href} class="text-sm font-medium text-navy hover:text-coral transition-colors">
         {link.label}
@@ -62,3 +71,29 @@ const currentPath = Astro.url.pathname;
     </a>
   </nav>
 </header>
+
+<script is:inline>
+  (function () {
+    const btn = document.getElementById('mobile-menu-button');
+    const menu = document.getElementById('mobile-menu');
+    if (!btn || !menu) return;
+
+    function setOpen(open) {
+      btn.setAttribute('aria-expanded', String(open));
+      btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      menu.classList.toggle('hidden', !open);
+      menu.classList.toggle('flex', open);
+    }
+
+    btn.addEventListener('click', () => {
+      setOpen(btn.getAttribute('aria-expanded') !== 'true');
+    });
+    menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && btn.getAttribute('aria-expanded') === 'true') {
+        setOpen(false);
+        btn.focus();
+      }
+    });
+  })();
+</script>

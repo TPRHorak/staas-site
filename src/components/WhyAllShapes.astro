@@ -137,7 +137,9 @@ const rotatingWords = [
         }, 280);
       }
 
-      setInterval(tick, 2500);
+      // Don't auto-cycle at all when the user prefers reduced motion —
+      // leave the first word in place rather than looping content.
+      if (!reduceMotion) setInterval(tick, 2500);
     });
   })();
 </script>
